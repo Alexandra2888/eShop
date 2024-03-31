@@ -1,0 +1,10 @@
+#order-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#summary {
+    margin-left: -8rem;
+}

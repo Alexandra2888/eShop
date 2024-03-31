@@ -44,6 +44,8 @@ const OrderList = lazy(() => import('./pages/Admin/OrderList.jsx'));
 const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard.jsx'));
 const Contact = lazy(() => import('./pages/Contact/Contact.jsx'));
 
+const Invoice = lazy(() => import('./pages/Invoice/Invoice.jsx'));
+
 const NotFound = lazy(() => import('./pages/NotFound/NotFound.jsx'));
 
 
@@ -147,6 +149,14 @@ const router = createBrowserRouter(
             element={
               <Suspense fallback={<Loader />}>
                 <PlaceOrder />
+              </Suspense>
+            }
+          />
+           <Route
+            path="order/:id/invoice"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Invoice />
               </Suspense>
             }
           />

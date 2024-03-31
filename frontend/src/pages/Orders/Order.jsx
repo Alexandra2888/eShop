@@ -190,6 +190,12 @@ const Order = () => {
           <span>Total</span>
           <span>$ {order.totalPrice}</span>
         </div>
+        <Link to={`/order/${order._id}/invoice`}
+              type="button"
+              className="bg-pink-500 text-white text-center w-full py-2"
+            >
+              Invoice
+            </Link>
 
         {!order.isPaid && (
           <div>
