@@ -4,6 +4,8 @@ import Loader from "../../components/Loader";
 import Metadata from "../../components/Metadata";
 import { toast } from "react-toastify";
 import { contactSchema } from "./Schema/ContactSchema";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -67,7 +69,7 @@ const Contact = () => {
               >
                 Your name
               </label>
-              <input
+              <Input
                 type="text"
                 name="name"
                 className="mt-1 p-2 border rounded w-full"
@@ -87,7 +89,7 @@ const Contact = () => {
               >
                 Your email
               </label>
-              <input
+              <Input
                 type="email"
                 id="email"
                 className="mt-1 p-2 border rounded w-full"
@@ -120,13 +122,13 @@ const Contact = () => {
               )}
             </div>
 
-            <button
+            <Button
               disabled={isLoading}
               type="submit"
               className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
             >
               {isLoading ? "Sending message" : "Send message"}
-            </button>
+            </Button>
             {isLoading && <Loader />}
           </form>
         </div>

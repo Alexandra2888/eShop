@@ -8,6 +8,8 @@ import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
+import Button from "../../components/Button";
+import Input from '../../components/Input';
 
 const ProductList = () => {
   const [image, setImage] = useState("");
@@ -91,7 +93,7 @@ const ProductList = () => {
             <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
               {image ? image.name : "Upload Image"}
 
-              <input
+              <Input
                 type="file"
                 name="image"
                 accept="image/*"
@@ -105,7 +107,7 @@ const ProductList = () => {
             <div className="flex flex-wrap">
               <div className="one">
                 <label htmlFor="name">Name</label> <br />
-                <input
+                <Input
                   type="text"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={name}
@@ -114,7 +116,7 @@ const ProductList = () => {
               </div>
               <div className="two ml-10 ">
                 <label htmlFor="name block">Price</label> <br />
-                <input
+                <Input
                   type="number"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={price}
@@ -125,7 +127,7 @@ const ProductList = () => {
             <div className="flex flex-wrap">
               <div className="one">
                 <label htmlFor="name block">Quantity</label> <br />
-                <input
+                <Input
                   type="number"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={quantity}
@@ -134,7 +136,7 @@ const ProductList = () => {
               </div>
               <div className="two ml-10 ">
                 <label htmlFor="name block">Brand</label> <br />
-                <input
+                <Input
                   type="text"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={brand}
@@ -180,12 +182,12 @@ const ProductList = () => {
               </div>
             </div>
 
-            <button
+            <Button
               onClick={handleSubmit}
               className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
             >
               Submit
-            </button>
+            </Button>
           </div>
         </div>
       </div>

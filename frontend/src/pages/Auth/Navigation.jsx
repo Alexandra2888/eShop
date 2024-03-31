@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import FavoritesCount from "../Products/FavoritesCount";
+import Button from "../../components/Button";
 
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -107,7 +108,7 @@ const Navigation = () => {
       
 
       <div className="relative">
-        <button
+        <Button
           onClick={toggleDropdown}
           className="flex items-center text-gray-800 focus:outline-none"
         >
@@ -134,7 +135,7 @@ const Navigation = () => {
               />
             </svg>
           )}
-        </button>
+        </Button>
 
         {dropdownOpen && userInfo && (
           <ul
@@ -193,12 +194,12 @@ const Navigation = () => {
               </Link>
             </li>
             <li>
-              <button
+              <Button
                 onClick={logoutHandler}
                 className="block w-full px-4 py-2 text-left hover:bg-gray-100"
               >
                 Logout
-              </button>
+              </Button>
             </li>
           </ul>
         )}

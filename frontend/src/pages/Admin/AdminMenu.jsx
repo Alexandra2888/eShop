@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
+import Button from "../../components/Button";
 
 const AdminMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const AdminMenu = () => {
 
   return (
     <>
-      <button
+      <Button
         className={`${
           isMenuOpen ? "top-2 right-2" : "top-5 right-7"
         } bg-[#151515] p-2 fixed rounded-lg`}
@@ -26,7 +27,7 @@ const AdminMenu = () => {
             <div className="w-6 h-0.5 bg-gray-200 my-1"></div>
           </>
         )}
-      </button>
+      </Button>
 
       {isMenuOpen && (
         <section className="bg-[#151515] p-4 fixed right-7 top-5">

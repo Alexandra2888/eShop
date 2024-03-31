@@ -7,6 +7,8 @@ import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Metadata from "../../components/Metadata";
 import { loginSchema } from "./Schemas/LoginSchema";
+import Button from '../../components/Button';
+import Input from "../../components/Input";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -74,7 +76,7 @@ const Login = () => {
               >
                 Email Address
               </label>
-              <input
+              <Input
                 type="email"
                 id="email"
                 className="mt-1 p-2 border rounded w-full"
@@ -92,7 +94,7 @@ const Login = () => {
               >
                 Password
               </label>
-              <input
+              <Input
                 type="password"
                 id="password"
                 className="mt-1 p-2 border rounded w-full"
@@ -103,13 +105,13 @@ const Login = () => {
               <div className="text-red-500">{validationErrors.password}</div>
             </div>
 
-            <button
+            <Button
               disabled={isLoading}
               type="submit"
               className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
             >
               {isLoading ? "Signing In..." : "Sign In"}
-            </button>
+            </Button>
 
             {isLoading && <Loader />}
           </form>

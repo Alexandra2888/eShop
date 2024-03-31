@@ -4,6 +4,7 @@ import Ratings from "./Ratings";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import SmallProduct from "./SmallProduct";
 import Loader from "../../components/Loader";
+import Button from '../../components/Button';
 
 const ProductTabs = ({
   loadingProductReview,
@@ -97,13 +98,13 @@ const ProductTabs = ({
                     className="p-2 border rounded-lg xl:w-[40rem] text-black"
                   ></textarea>
                 </div>
-                <button
+                <Button
                   type="submit"
                   disabled={loadingProductReview}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg"
                 >
                   Submit
-                </button>
+                </Button>
               </form>
             ) : (
               <p>

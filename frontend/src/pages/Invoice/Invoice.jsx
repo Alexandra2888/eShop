@@ -11,6 +11,7 @@ import {
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import "./Invoice.css"
+import Button from "../../components/Button";
 
 const Invoice = () => {
   const { id: orderId } = useParams();
@@ -75,13 +76,13 @@ const Invoice = () => {
   ) : (
     <>
     <div className="container  flex flex-col ml-[10rem] md:flex-row" >
-    <button 
+    <Button 
          type="button"
          onClick={downloadInvoice} 
          className="bg-pink-500 text-white text-center w-fit h-fit my-12 px-4 py-2"
        >
          Download Invoice
-       </button> 
+       </Button> 
       <div className="md:w-1/3 text-black" id='order-summary'>
         <div className="mt-5 border-gray-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2">Shipping</h2>

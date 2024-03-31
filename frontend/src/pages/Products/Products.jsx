@@ -20,6 +20,7 @@ import {
 import moment from "moment";
 import ProductTabs from "./Tabs";
 import HeartIcon from "./HeartIcon";
+import Button from "../../components/Button";
 
 const Product = () => {
   const { id: productId } = useParams();
@@ -154,13 +155,13 @@ const Product = () => {
               </div>
 
               <div className="btn-container">
-                <button
+                <Button
                   onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
                   Add To Cart
-                </button>
+                </Button>
               </div>
               {/* --------------------------------------------------- */}
             </div>

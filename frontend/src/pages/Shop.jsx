@@ -12,6 +12,8 @@ import Loader from "../components/Loader";
 import ProductCard from "./Products/ProductCard";
 
 import Metadata from "../components/Metadata";
+import Button from "../components/Button";
+import Input from '../components/Input';
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -96,7 +98,7 @@ const Shop = () => {
               {categories?.map((c) => (
                 <div key={c._id} className="mb-2">
                   <div className="flex ietms-center mr-4">
-                    <input
+                    <Input
                       type="checkbox"
                       id="red-checkbox"
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
@@ -122,7 +124,7 @@ const Shop = () => {
               {uniqueBrands?.map((brand) => (
                 <>
                   <div className="flex items-enter mr-4 mb-5">
-                    <input
+                    <Input
                       type="radio"
                       id={brand}
                       name="brand"
@@ -146,7 +148,7 @@ const Shop = () => {
             </h2>
 
             <div className="p-5 w-[15rem]">
-              <input
+              <Input
                 type="text"
                 placeholder="Enter Price"
                 value={priceFilter}
@@ -156,12 +158,12 @@ const Shop = () => {
             </div>
 
             <div className="p-5 pt-0">
-              <button
+              <Button
                 className="w-full border my-4"
                 onClick={() => window.location.reload()}
               >
                 Reset
-              </button>
+              </Button>
             </div>
           </div>
 

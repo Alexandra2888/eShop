@@ -7,6 +7,7 @@ import ProgressSteps from "../../components/ProgressSteps";
 import Loader from "../../components/Loader";
 import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
 import { clearCartItems } from "../../redux/features/cart/cartSlice";
+import Button from "../../components/Button";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
@@ -126,14 +127,14 @@ const PlaceOrder = () => {
             </div>
           </div>
 
-          <button
+          <Button
             type="button"
             className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >
             Place Order
-          </button>
+          </Button>
 
           {isLoading && <Loader />}
         </div>

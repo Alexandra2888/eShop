@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const UserList = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
@@ -94,52 +96,52 @@ const UserList = () => {
                           onChange={(e) => setEditableUserName(e.target.value)}
                           className="w-full p-2 border rounded-lg"
                         />
-                        <button
+                        <Button
                           onClick={() => updateHandler(user._id)}
                           className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
                         >
                           <FaCheck />
-                        </button>
+                        </Button>
                       </div>
                     ) : (
                       <div className="flex items-center">
                         {user.username}{" "}
-                        <button
+                        <Button
                           onClick={() =>
                             toggleEdit(user._id, user.username, user.email)
                           }
                         >
                           <FaEdit className="ml-[1rem]" />
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </td>
                   <td className="px-4 py-2">
                     {editableUserId === user._id ? (
                       <div className="flex items-center">
-                        <input
+                        <Input
                           type="text"
                           value={editableUserEmail}
                           onChange={(e) => setEditableUserEmail(e.target.value)}
                           className="w-full p-2 border rounded-lg"
                         />
-                        <button
+                        <Button
                           onClick={() => updateHandler(user._id)}
                           className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
                         >
                           <FaCheck />
-                        </button>
+                        </Button>
                       </div>
                     ) : (
                       <div className="flex items-center">
                         <a href={`mailto:${user.email}`}>{user.email}</a>{" "}
-                        <button
+                        <Button
                           onClick={() =>
                             toggleEdit(user._id, user.name, user.email)
                           }
                         >
                           <FaEdit className="ml-[1rem]" />
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </td>
@@ -153,12 +155,12 @@ const UserList = () => {
                   <td className="px-4 py-2">
                     {!user.isAdmin && (
                       <div className="flex">
-                        <button
+                        <Button
                           onClick={() => deleteHandler(user._id)}
                           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                         >
                           <FaTrash />
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </td>

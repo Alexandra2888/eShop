@@ -11,6 +11,7 @@ import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
+import Button from "../../components/Button";
 
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery();
@@ -108,7 +109,7 @@ const CategoryList = () => {
         <div className="flex flex-wrap">
           {categories?.map((category) => (
             <div key={category._id}>
-              <button
+              <Button
                 className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
                 onClick={() => {
                   {
@@ -119,7 +120,7 @@ const CategoryList = () => {
                 }}
               >
                 {category.name}
-              </button>
+              </Button>
             </div>
           ))}
         </div>

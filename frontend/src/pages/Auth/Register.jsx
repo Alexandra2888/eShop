@@ -7,6 +7,8 @@ import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Metadata from "../../components/Metadata";
 import { registerSchema } from "./Schemas/RegisterSchema";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const Register = () => {
   const [username, setName] = useState("");
@@ -79,7 +81,7 @@ const Register = () => {
             >
               Name
             </label>
-            <input
+            <Input
               type="text"
               id="name"
               className="mt-1 p-2 border rounded w-full"
@@ -97,7 +99,7 @@ const Register = () => {
             >
               Email Address
             </label>
-            <input
+            <Input
               type="email"
               id="email"
               className="mt-1 p-2 border rounded w-full"
@@ -115,7 +117,7 @@ const Register = () => {
             >
               Password
             </label>
-            <input
+            <Input
               type="password"
               id="password"
               className="mt-1 p-2 border rounded w-full"
@@ -133,7 +135,7 @@ const Register = () => {
             >
               Confirm Password
             </label>
-            <input
+            <Input
               type="password"
               id="confirmPassword"
               className="mt-1 p-2 border rounded w-full"
@@ -147,13 +149,13 @@ const Register = () => {
 </div>
           </div>
 
-          <button
+          <Button
             disabled={isLoading}
             type="submit"
             className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
           >
             {isLoading ? "Registering..." : "Register"}
-          </button>
+          </Button>
 
           {isLoading && <Loader />}
         </form>

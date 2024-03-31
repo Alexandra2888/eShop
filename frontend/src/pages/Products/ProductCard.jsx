@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon";
+import Button from "../../components/Button";
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const ProductCard = ({ p }) => {
         <div className="flex justify-between">
           <h5 className="mb-2 text-xl text-whiet dark:text-white">{p?.name}</h5>
 
-          <p className="text-black font-semibold text-pink-500">
+          <p className=" font-semibold text-pink-500">
             {p?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -72,12 +73,12 @@ const ProductCard = ({ p }) => {
             </svg>
           </Link>
 
-          <button
+          <Button
             className="p-2 rounded-full"
             onClick={() => addToCartHandler(p, 1)}
           >
             <AiOutlineShoppingCart size={25} />
-          </button>
+          </Button>
         </section>
       </div>
     </div>

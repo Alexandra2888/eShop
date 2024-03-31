@@ -11,6 +11,7 @@ import {
   useGetPaypalClientIdQuery,
   usePayOrderMutation,
 } from "../../redux/api/orderApiSlice";
+import Button from "../../components/Button";
 
 const Order = () => {
   const { id: orderId } = useParams();
@@ -219,13 +220,13 @@ const Order = () => {
         {loadingDeliver && <Loader />}
         {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
           <div>
-            <button
+            <Button
               type="button"
               className="bg-pink-500 text-white w-full py-2"
               onClick={deliverHandler}
             >
               Mark As Delivered
-            </button>
+            </Button>
           </div>
         )}
       </div>

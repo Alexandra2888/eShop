@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiMessageCircle } from "react-icons/fi";
-
+import Button from "../components/Button";
 
 const TypingIndicator = ({ content }) => {
   return (
@@ -124,9 +124,9 @@ const ChatWidget = () => {
           </form>
         </div>
       )}
-      <button onClick={toggleChat} className="text-3xl p-2 bg-pink-600 py-2 px-4 hover:bg-pink-700 text-white rounded-full">
+      <Button onClick={toggleChat} className="text-3xl p-2 bg-pink-600 py-2 px-4 hover:bg-pink-700 text-white rounded-full">
         <FiMessageCircle />
-      </button>
+      </Button>
     </div>
     );
 }

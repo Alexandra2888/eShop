@@ -9,6 +9,8 @@ import {
 } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const AdminProductUpdate = () => {
   const params = useParams();
@@ -152,7 +154,7 @@ const AdminProductUpdate = () => {
             <div className="mb-3">
               <label className="text-white  py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
                 {image ? image.name : "Upload image"}
-                <input
+                <Input
                   type="file"
                   name="image"
                   accept="image/*"
@@ -166,7 +168,7 @@ const AdminProductUpdate = () => {
               <div className="flex flex-wrap">
                 <div className="one">
                   <label htmlFor="name">Name</label> <br />
-                  <input
+                  <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
                     value={name}
@@ -176,7 +178,7 @@ const AdminProductUpdate = () => {
 
                 <div className="two">
                   <label htmlFor="name block">Price</label> <br />
-                  <input
+                  <Input
                     type="number"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
                     value={price}
@@ -188,7 +190,7 @@ const AdminProductUpdate = () => {
               <div className="flex flex-wrap">
                 <div>
                   <label htmlFor="name block">Quantity</label> <br />
-                  <input
+                  <Input
                     type="number"
                     min="1"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
@@ -198,7 +200,7 @@ const AdminProductUpdate = () => {
                 </div>
                 <div>
                   <label htmlFor="name block">Brand</label> <br />
-                  <input
+                  <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
                     value={brand}
@@ -220,7 +222,7 @@ const AdminProductUpdate = () => {
               <div className="flex justify-between">
                 <div>
                   <label htmlFor="name block">Count In Stock</label> <br />
-                  <input
+                  <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
                     value={stock}
@@ -245,18 +247,18 @@ const AdminProductUpdate = () => {
               </div>
 
               <div className="">
-                <button
+                <Button
                   onClick={handleSubmit}
                   className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
                 >
                   Update
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={handleDelete}
                   className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
                 >
                   Delete
-                </button>
+                </Button>
               </div>
             </div>
           </div>

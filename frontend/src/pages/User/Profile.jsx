@@ -7,6 +7,8 @@ import { useProfileMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
 import Metadata from "../../components/Metadata";
+import Button from "../../components/Button";
+import Input from '../../components/Input';
 
 const Profile = () => {
   const [username, setUserName] = useState("");
@@ -56,7 +58,7 @@ const Profile = () => {
           <form onSubmit={submitHandler}>
             <div className="mb-4">
               <label className="block text-white mb-2">Name</label>
-              <input
+              <Input
                 type="text"
                 placeholder="Enter name"
                 className="form-input p-4 rounded-sm w-full"
@@ -67,7 +69,7 @@ const Profile = () => {
 
             <div className="mb-4">
               <label className="block text-white mb-2">Email Address</label>
-              <input
+              <Input
                 type="email"
                 placeholder="Enter email"
                 className="form-input p-4 rounded-sm w-full"
@@ -78,7 +80,7 @@ const Profile = () => {
 
             <div className="mb-4">
               <label className="block text-white mb-2">Password</label>
-              <input
+              <Input
                 type="password"
                 placeholder="Enter password"
                 className="form-input p-4 rounded-sm w-full"
@@ -89,7 +91,7 @@ const Profile = () => {
 
             <div className="mb-4">
               <label className="block text-white mb-2">Confirm Password</label>
-              <input
+              <Input
                 type="password"
                 placeholder="Confirm password"
                 className="form-input p-4 rounded-sm w-full"
@@ -99,12 +101,12 @@ const Profile = () => {
             </div>
 
             <div className="flex justify-between">
-              <button
+              <Button
                 type="submit"
                 className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
               >
                 Update
-              </button>
+              </Button>
 
               <Link
                 to="/user-orders"

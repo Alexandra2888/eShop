@@ -6,6 +6,8 @@ import {
   savePaymentMethod,
 } from "../../redux/features/cart/cartSlice";
 import ProgressSteps from "../../components/ProgressSteps";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const Shipping = () => {
   const cart = useSelector((state) => state.cart);
@@ -45,7 +47,7 @@ const Shipping = () => {
           <h1 className="text-2xl font-semibold mb-4">Shipping</h1>
           <div className="mb-4">
             <label className="block text-white mb-2">Address</label>
-            <input
+            <Input
               type="text"
               className="w-full p-2 border rounded"
               placeholder="Enter address"
@@ -56,7 +58,7 @@ const Shipping = () => {
           </div>
           <div className="mb-4">
             <label className="block text-white mb-2">City</label>
-            <input
+            <Input
               type="text"
               className="w-full p-2 border rounded"
               placeholder="Enter city"
@@ -67,7 +69,7 @@ const Shipping = () => {
           </div>
           <div className="mb-4">
             <label className="block text-white mb-2">Postal Code</label>
-            <input
+            <Input
               type="text"
               className="w-full p-2 border rounded"
               placeholder="Enter postal code"
@@ -78,7 +80,7 @@ const Shipping = () => {
           </div>
           <div className="mb-4">
             <label className="block text-white mb-2">Country</label>
-            <input
+            <Input
               type="text"
               className="w-full p-2 border rounded"
               placeholder="Enter country"
@@ -91,7 +93,7 @@ const Shipping = () => {
             <label className="block text-gray-400">Select Method</label>
             <div className="mt-2">
               <label className="inline-flex items-center">
-                <input
+                <Input
                   type="radio"
                   className="form-radio text-pink-500"
                   name="paymentMethod"
@@ -105,12 +107,12 @@ const Shipping = () => {
             </div>
           </div>
 
-          <button
+          <Button
             className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full"
             type="submit"
           >
             Continue
-          </button>
+          </Button>
         </form>
       </div>
     </div>

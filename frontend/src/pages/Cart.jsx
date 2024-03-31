@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
 import Metadata from "../components/Metadata";
+import Button from "../components/Button";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -74,12 +75,12 @@ const Cart = () => {
                   </div>
 
                   <div>
-                    <button
+                    <Button
                       className="text-red-500 mr-[5rem]"
                       onClick={() => removeFromCartHandler(item._id)}
                     >
                       <FaTrash className="ml-[1rem] mt-[.5rem]" />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -97,13 +98,13 @@ const Cart = () => {
                       .toFixed(2)}
                   </div>
 
-                  <button
+                  <Button
                     className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}
                   >
                     Proceed To Checkout
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
