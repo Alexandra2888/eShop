@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
+import { addToCart, removeFromCart, resetCart } from "../redux/features/cart/cartSlice";
 
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
@@ -26,6 +26,10 @@ const Cart = () => {
     dispatch(removeFromCart(id));
   };
 
+  const emptyCart = () => {
+    dispatch(resetCart());
+  } 
+
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping");
   };
@@ -36,7 +40,7 @@ const Cart = () => {
       <div className="container flex justify-around items-start wrap mx-auto mt-8">
         {cartItems.length === 0 ? (
           <div>
-             {t('cart_emty')} <Link to="/shop"> {t('go_to_shop')}</Link>
+             {t('cart_empty')} <Link to="/shop"> {t('go_to_shop')}</Link>
           </div>
         ) : (
           <>
@@ -103,7 +107,7 @@ const Cart = () => {
                       .reduce((acc, item) => acc + item.qty * item.price, 0)
                       .toFixed(2)}
                   </div>
-
+<div className="flex">
                   <Button
                     className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
                     disabled={cartItems.length === 0}
@@ -111,6 +115,15 @@ const Cart = () => {
                   >
                      {t('proceed_to_checkout')}
                   </Button>
+
+                  <Button
+                    className="bg-red-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
+                    disabled={cartItems.length === 0}
+                    onClick={emptyCart}
+                  >
+                     Empty cart
+                  </Button>
+                  </div>
                 </div>
               </div>
             </div>
