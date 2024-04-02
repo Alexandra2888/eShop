@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import Ratings from "./Ratings";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import SmallProduct from "./SmallProduct";
@@ -19,6 +21,8 @@ const ProductTabs = ({
   const { data, isLoading } = useGetTopProductsQuery();
 
   const [activeTab, setActiveTab] = useState(1);
+  const { t } = useTranslation();
+
 
   if (isLoading) {
     return <Loader />;
@@ -37,7 +41,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(1)}
         >
-          Write Your Review
+           {t('write_review')}
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -45,7 +49,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(2)}
         >
-          All Reviews
+           {t('all_reviews')}
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -53,7 +57,7 @@ const ProductTabs = ({
           }`}
           onClick={() => handleTabClick(3)}
         >
-          Related Products
+           {t('related_products')}
         </div>
       </section>
 
@@ -65,7 +69,7 @@ const ProductTabs = ({
               <form onSubmit={submitHandler}>
                 <div className="my-2">
                   <label htmlFor="rating" className="block text-xl mb-2">
-                    Rating
+                  {t('rating')}
                   </label>
 
                   <select
@@ -75,18 +79,18 @@ const ProductTabs = ({
                     onChange={(e) => setRating(e.target.value)}
                     className="p-2 border rounded-lg xl:w-[40rem] text-black"
                   >
-                    <option value="">Select</option>
-                    <option value="1">Inferior</option>
-                    <option value="2">Decent</option>
-                    <option value="3">Great</option>
-                    <option value="4">Excellent</option>
-                    <option value="5">Exceptional</option>
+                    <option value=""> {t('select')}</option>
+                    <option value="1"> {t('inferior')}</option>
+                    <option value="2"> {t('decent')}</option>
+                    <option value="3"> {t('great')}</option>
+                    <option value="4"> {t('excellent')}</option>
+                    <option value="5"> {t('exceptional')}</option>
                   </select>
                 </div>
 
                 <div className="my-2">
                   <label htmlFor="comment" className="block text-xl mb-2">
-                    Comment
+                  {t('comment')}
                   </label>
 
                   <textarea
@@ -103,12 +107,12 @@ const ProductTabs = ({
                   disabled={loadingProductReview}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg"
                 >
-                  Submit
+                  {t('submit')}
                 </Button>
               </form>
             ) : (
               <p>
-                Please <Link to="/login">sign in</Link> to write a review
+                 {t('please')} <Link to="/login"> {t('sign_in')}</Link>  {t('to_write_review')}
               </p>
             )}
           </div>
@@ -118,7 +122,7 @@ const ProductTabs = ({
       <section>
         {activeTab === 2 && (
           <>
-            <div>{product.reviews.length === 0 && <p>No Reviews</p>}</div>
+            <div>{product.reviews.length === 0 && <p> {t('no_reviews')}</p>}</div>
 
             <div>
               {product.reviews.map((review) => (

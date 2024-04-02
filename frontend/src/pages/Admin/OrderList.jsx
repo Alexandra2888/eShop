@@ -1,13 +1,18 @@
 import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
+
+import Loader from "../../components/Loader";
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
 import Button from "../../components/Button";
 
 const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -23,13 +28,13 @@ const OrderList = () => {
           <Metadata title={"Orders"} />
           <thead className="w-full border">
             <tr className="mb-[5rem]">
-              <th className="text-left pl-1">ITEMS</th>
-              <th className="text-left pl-1">ID</th>
-              <th className="text-left pl-1">USER</th>
-              <th className="text-left pl-1">DATA</th>
-              <th className="text-left pl-1">TOTAL</th>
-              <th className="text-left pl-1">PAID</th>
-              <th className="text-left pl-1">DELIVERED</th>
+              <th className="text-left pl-1">{t('items')}</th>
+              <th className="text-left pl-1">{t('id')}</th>
+              <th className="text-left pl-1">{t('user')}</th>
+              <th className="text-left pl-1">{t('data')}</th>
+              <th className="text-left pl-1">{t('total')}</th>
+              <th className="text-left pl-1">{t('paid')}</th>
+              <th className="text-left pl-1">{t('delivered')}</th>
               <th></th>
             </tr>
           </thead>
@@ -57,11 +62,11 @@ const OrderList = () => {
                 <td className="py-2">
                   {order.isPaid ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                      Completed
+                       {t('completed')} 
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                      Pending
+                       {t('pending')} 
                     </p>
                   )}
                 </td>
@@ -69,18 +74,18 @@ const OrderList = () => {
                 <td className="px-2 py-2">
                   {order.isDelivered ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                      Completed
+                       {t('completed')}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                      Pending
+                       {t('pending')}
                     </p>
                   )}
                 </td>
 
                 <td>
                   <Link to={`/order/${order._id}`}>
-                    <Button>More</Button>
+                    <Button>  {t('more')}</Button>
                   </Link>
                 </td>
               </tr>

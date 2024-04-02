@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 import {
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
@@ -6,7 +9,7 @@ import {
   useFetchCategoriesQuery,
 } from "../../redux/api/categoryApiSlice";
 
-import { toast } from "react-toastify";
+
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import AdminMenu from "./AdminMenu";
@@ -19,6 +22,8 @@ const CategoryList = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [updatingName, setUpdatingName] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+
+  const { t } = useTranslation();
 
   const [createCategory] = useCreateCategoryMutation();
   const [updateCategory] = useUpdateCategoryMutation();
@@ -97,7 +102,9 @@ const CategoryList = () => {
       <Metadata title={"Categories"} />
       <AdminMenu />
       <div className="md:w-3/4 p-3">
-        <div className="h-12">Manage Categories</div>
+        <div className="h-12">
+        {t('manage_categories')}
+          </div>
         <CategoryForm
           value={name}
           setValue={setName}

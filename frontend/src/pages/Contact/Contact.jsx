@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
 import Metadata from "../../components/Metadata";
 import { toast } from "react-toastify";
@@ -11,6 +12,8 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
+
+  const { t } = useTranslation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,17 +30,15 @@ const Contact = () => {
     // Validate form data
     const result = contactSchema.safeParse(form);
     if (!result.success) {
-      // Convert Zod error format to a simpler object
       const errors = result.error.errors.reduce((acc, curr) => {
         acc[curr.path[0]] = curr.message;
         return acc;
       }, {});
       setValidationErrors(errors);
       setLoading(false);
-      return; // Stop the submission if there are validation errors
+      return;
     }
 
-    // Proceed with sending the email if validation passes
     try {
       await emailjs.send(
         "service_39dkf2b",
@@ -46,7 +47,7 @@ const Contact = () => {
         "nhWo1nAjrBMRvUeuF"
       );
       toast.success("Thanks! We will get back to you soon.");
-      setForm({ name: "", email: "", message: "" }); // Reset form
+      setForm({ name: "", email: "", message: "" }); 
     } catch (error) {
       console.error("EmailJS Error:", error.text);
       toast.error("Oops, something went wrong. Please try again.");
@@ -60,14 +61,14 @@ const Contact = () => {
       <Metadata title={"Contact"} />
       <section className="pl-[10rem] flex flex-wrap">
         <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Drop us a message</h1>
+          <h1 className="text-2xl font-semibold mb-4">  {t('drop_message')}</h1>
           <form onSubmit={handleSubmit} className="container w-[40rem]">
             <div className="my-[2rem]">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-white"
               >
-                Your name
+                  {t('name')}
               </label>
               <Input
                 type="text"
@@ -87,7 +88,7 @@ const Contact = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-white"
               >
-                Your email
+                  {t('email')}
               </label>
               <Input
                 type="email"
@@ -104,7 +105,7 @@ const Contact = () => {
 
             <div className="w-full md:w-1/2 px-4 mb-12">
               <label>
-                  Your message:
+              {t('message')}
               </label>
               <textarea
                 value={form.message}

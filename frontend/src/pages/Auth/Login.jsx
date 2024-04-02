@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
+import { useTranslation } from "react-i18next";import { toast } from "react-toastify";
+
+import { loginSchema } from "./Schemas/LoginSchema";
+
 import { useLoginMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { toast } from "react-toastify";
+
+import Loader from "../../components/Loader";
 import Metadata from "../../components/Metadata";
-import { loginSchema } from "./Schemas/LoginSchema";
 import Button from '../../components/Button';
 import Input from "../../components/Input";
 
@@ -16,6 +19,7 @@ const Login = () => {
 
   const [validationErrors, setValidationErrors] = useState({});
 
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,7 +70,7 @@ const Login = () => {
       <Metadata title={"Login"} />
       <section className="pl-[10rem] flex flex-wrap">
         <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
+          <h1 className="text-2xl font-semibold mb-4">  {t('sign_in')}</h1>
 
           <form onSubmit={submitHandler} className="container w-[40rem]">
             <div className="my-[2rem]">
@@ -74,7 +78,7 @@ const Login = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-white"
               >
-                Email Address
+                  {t('email_address')}
               </label>
               <Input
                 type="email"
@@ -92,7 +96,7 @@ const Login = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-white"
               >
-                Password
+                 {t('password')}
               </label>
               <Input
                 type="password"
@@ -118,12 +122,12 @@ const Login = () => {
 
           <div className="mt-4">
             <p className="text-white">
-              New Customer?{" "}
+            {t('new_customer')}?{" "}
               <Link
                 to={redirect ? `/register?redirect=${redirect}` : "/register"}
                 className="text-pink-500 hover:underline"
               >
-                Register
+                  {t('register')}
               </Link>
             </p>
           </div>

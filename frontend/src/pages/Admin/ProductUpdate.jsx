@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import AdminMenu from "./AdminMenu";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 import {
   useUpdateProductMutation,
   useDeleteProductMutation,
@@ -8,12 +10,15 @@ import {
   useUploadProductImageMutation,
 } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import { toast } from "react-toastify";
+
+import AdminMenu from "./AdminMenu";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 const AdminProductUpdate = () => {
   const params = useParams();
+
+  const { t } = useTranslation();
 
   const { data: productData } = useGetProductByIdQuery(params._id);
 
@@ -139,7 +144,7 @@ const AdminProductUpdate = () => {
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
-            <div className="h-12">Update / Delete Product</div>
+            <div className="h-12">  {t('update_delete_product')}Update / Delete Product</div>
 
             {image && (
               <div className="text-center">
@@ -152,7 +157,7 @@ const AdminProductUpdate = () => {
             )}
 
             <div className="mb-3">
-              <label className="text-white  py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+              <label className="text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
                 {image ? image.name : "Upload image"}
                 <Input
                   type="file"
@@ -167,7 +172,7 @@ const AdminProductUpdate = () => {
             <div className="p-3">
               <div className="flex flex-wrap">
                 <div className="one">
-                  <label htmlFor="name">Name</label> <br />
+                  <label htmlFor="name">  {t('name')}</label> <br />
                   <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
@@ -177,7 +182,7 @@ const AdminProductUpdate = () => {
                 </div>
 
                 <div className="two">
-                  <label htmlFor="name block">Price</label> <br />
+                  <label htmlFor="name block">  {t('price')}</label> <br />
                   <Input
                     type="number"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
@@ -189,7 +194,7 @@ const AdminProductUpdate = () => {
 
               <div className="flex flex-wrap">
                 <div>
-                  <label htmlFor="name block">Quantity</label> <br />
+                  <label htmlFor="name block">  {t('quantity')}</label> <br />
                   <Input
                     type="number"
                     min="1"
@@ -199,7 +204,7 @@ const AdminProductUpdate = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="name block">Brand</label> <br />
+                  <label htmlFor="name block">  {t('brand')}</label> <br />
                   <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
@@ -221,7 +226,7 @@ const AdminProductUpdate = () => {
 
               <div className="flex justify-between">
                 <div>
-                  <label htmlFor="name block">Count In Stock</label> <br />
+                  <label htmlFor="name block">  {t('count_in_stock')}</label> <br />
                   <Input
                     type="text"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
@@ -231,7 +236,7 @@ const AdminProductUpdate = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="">Category</label> <br />
+                  <label htmlFor="">  {t('category')}</label> <br />
                   <select
                     placeholder="Choose Category"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
@@ -251,13 +256,13 @@ const AdminProductUpdate = () => {
                   onClick={handleSubmit}
                   className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
                 >
-                  Update
+                    {t('update')}
                 </Button>
                 <Button
                   onClick={handleDelete}
                   className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
                 >
-                  Delete
+                    {t('delete')}
                 </Button>
               </div>
             </div>

@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+
+import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
+import { clearCartItems } from "../../redux/features/cart/cartSlice";
+
 import Message from "../../components/Message";
 import ProgressSteps from "../../components/ProgressSteps";
 import Loader from "../../components/Loader";
-import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
-import { clearCartItems } from "../../redux/features/cart/cartSlice";
 import Button from "../../components/Button";
 
 const PlaceOrder = () => {
@@ -23,6 +26,9 @@ const PlaceOrder = () => {
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
+
 
   const placeOrderHandler = async () => {
     try {
@@ -54,11 +60,11 @@ const PlaceOrder = () => {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <td className="px-1 py-2 text-left align-top">Image</td>
-                  <td className="px-1 py-2 text-left">Product</td>
-                  <td className="px-1 py-2 text-left">Quantity</td>
-                  <td className="px-1 py-2 text-left">Price</td>
-                  <td className="px-1 py-2 text-left">Total</td>
+                  <td className="px-1 py-2 text-left align-top">{t('image')}</td>
+                  <td className="px-1 py-2 text-left">{t('product')}</td>
+                  <td className="px-1 py-2 text-left">{t('quantity')}</td>
+                  <td className="px-1 py-2 text-left">{t('price')}</td>
+                  <td className="px-1 py-2 text-left">{t('total')}</td>
                 </tr>
               </thead>
 
@@ -89,23 +95,23 @@ const PlaceOrder = () => {
         )}
 
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
+          <h2 className="text-2xl font-semibold mb-5">{t('order_summary')}</h2>
           <div className="flex justify-between flex-wrap p-8 bg-[#181818]">
             <ul className="text-lg">
               <li>
-                <span className="font-semibold mb-4">Items:</span> $
+                <span className="font-semibold mb-4">{t('items')}:</span> $
                 {cart.itemsPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Shipping:</span> $
+                <span className="font-semibold mb-4">{t('shipping')}:</span> $
                 {cart.shippingPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Tax:</span> $
+                <span className="font-semibold mb-4">{t('taxl')}:</span> $
                 {cart.taxPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Total:</span> $
+                <span className="font-semibold mb-4">{t('total')}:</span> $
                 {cart.totalPrice}
               </li>
             </ul>
@@ -122,7 +128,7 @@ const PlaceOrder = () => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Payment Method</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('payment_method')}</h2>
               <strong>Method:</strong> {cart.paymentMethod}
             </div>
           </div>
@@ -133,7 +139,7 @@ const PlaceOrder = () => {
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >
-            Place Order
+            {t('place_order')}
           </Button>
 
           {isLoading && <Loader />}

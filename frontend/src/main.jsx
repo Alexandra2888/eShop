@@ -7,6 +7,7 @@ import store from "./redux/store";
 import { Route, RouterProvider, createRoutesFromElements } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import '../i18n.js'; 
 
 import Loader from "./components/Loader.jsx";
 

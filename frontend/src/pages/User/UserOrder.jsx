@@ -1,15 +1,20 @@
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
+import { useGetMyOrdersQuery } from "../../redux/api/orderApiSlice";
+
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { Link } from "react-router-dom";
-import { useGetMyOrdersQuery } from "../../redux/api/orderApiSlice";
 import Button from "../../components/Button";
 
 const UserOrder = () => {
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
+  const { t } = useTranslation();
+
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">My Orders </h2>
+      <h2 className="text-2xl font-semibold mb-4"> {t('my_orders')} </h2>
 
       {isLoading ? (
         <Loader />
@@ -19,12 +24,12 @@ const UserOrder = () => {
         <table className="w-full">
           <thead>
             <tr>
-              <td className="py-2">IMAGE</td>
-              <td className="py-2">ID</td>
-              <td className="py-2">DATE</td>
-              <td className="py-2">TOTAL</td>
-              <td className="py-2">PAID</td>
-              <td className="py-2">DELIVERED</td>
+              <td className="py-2"> {t('image')}</td>
+              <td className="py-2"> {t('id')}</td>
+              <td className="py-2"> {t('date')}</td>
+              <td className="py-2"> {t('total')}</td>
+              <td className="py-2"> {t('paid')}</td>
+              <td className="py-2"> {t('delivered')}</td>
               <td className="py-2"></td>
             </tr>
           </thead>
@@ -45,11 +50,11 @@ const UserOrder = () => {
                 <td className="py-2">
                   {order.isPaid ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                      Completed
+                       {t('completed')}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                      Pending
+                       {t('pending')}
                     </p>
                   )}
                 </td>
@@ -57,11 +62,11 @@ const UserOrder = () => {
                 <td className="px-2 py-2">
                   {order.isDelivered ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                      Completed
+                       {t('completed')}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                      Pending
+                      {t('pending')}
                     </p>
                   )}
                 </td>
@@ -69,7 +74,7 @@ const UserOrder = () => {
                 <td className="px-2 py-2">
                   <Link to={`/order/${order._id}`}>
                     <Button className="bg-pink-400 text-back py-2 px-3 rounded">
-                      View Details
+                    {t('view_details')}
                     </Button>
                   </Link>
                 </td>

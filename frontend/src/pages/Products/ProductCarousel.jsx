@@ -1,9 +1,8 @@
-import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
-import Message from "../../components/Message";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 import {
   FaBox,
   FaClock,
@@ -12,8 +11,14 @@ import {
   FaStore,
 } from "react-icons/fa";
 
+import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
+
+import Message from "../../components/Message";
+
 const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
+  const { t } = useTranslation();
+
 
   const settings = {
     dots: false,
@@ -70,29 +75,29 @@ const ProductCarousel = () => {
                   <div className="flex justify-between w-[20rem]">
                     <div className="one">
                       <h1 className="flex items-center mb-6">
-                        <FaStore className="mr-2 text-white" /> Brand: {brand}
+                        <FaStore className="mr-2 text-white" /> {t('brand')}: {brand}
                       </h1>
                       <h1 className="flex items-center mb-6">
-                        <FaClock className="mr-2 text-white" /> Added:{" "}
+                        <FaClock className="mr-2 text-white" /> {t('added')}:{" "}
                         {moment(createdAt).fromNow()}
                       </h1>
                       <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> Reviews:
+                        <FaStar className="mr-2 text-white" /> {t('reviews')}:
                         {numReviews}
                       </h1>
                     </div>
 
                     <div className="two">
                       <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> Ratings:{" "}
+                        <FaStar className="mr-2 text-white" /> {t('ratings')}:{" "}
                         {Math.round(rating)}
                       </h1>
                       <h1 className="flex items-center mb-6">
-                        <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
+                        <FaShoppingCart className="mr-2 text-white" />{t('quantity')}:{" "}
                         {quantity}
                       </h1>
                       <h1 className="flex items-center mb-6">
-                        <FaBox className="mr-2 text-white" /> In Stock:{" "}
+                        <FaBox className="mr-2 text-white" /> {t('in_stock')}:{" "}
                         {countInStock}
                       </h1>
                     </div>

@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
+import { useTranslation } from "react-i18next";
+
+
 import { useGetUsersQuery } from "../../redux/api/usersApiSlice";
 import {
   useGetTotalOrdersQuery,
@@ -6,7 +10,7 @@ import {
   useGetTotalSalesQuery,
 } from "../../redux/api/orderApiSlice";
 
-import { useState, useEffect } from "react";
+
 import AdminMenu from "./AdminMenu";
 import OrderList from "./OrderList";
 import Loader from "../../components/Loader";
@@ -17,6 +21,9 @@ const AdminDashboard = () => {
   const { data: customers, isLoading: loading } = useGetUsersQuery();
   const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery();
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
+
+  const { t } = useTranslation();
+
 
   const [state, setState] = useState({
     options: {
@@ -100,7 +107,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">Sales</p>
+            <p className="mt-5">{t('sales')}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}
             </h1>
@@ -110,7 +117,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">Customers</p>
+            <p className="mt-5">{t('customers')}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : customers?.length}
             </h1>
@@ -120,7 +127,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">All Orders</p>
+            <p className="mt-5">{t('all_orders')}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : orders?.totalOrders}
             </h1>

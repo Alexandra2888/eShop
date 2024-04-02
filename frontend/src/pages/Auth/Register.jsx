@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 import { useRegisterMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { toast } from "react-toastify";
+
+import Loader from "../../components/Loader";
 import Metadata from "../../components/Metadata";
 import { registerSchema } from "./Schemas/RegisterSchema";
 import Button from "../../components/Button";
@@ -17,6 +20,8 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
 
+
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,7 +76,7 @@ const Register = () => {
     <Metadata title={"Register"} />
     <section className="pl-[10rem] flex flex-wrap">
       <div className="mr-[4rem] mt-[5rem]">
-        <h1 className="text-2xl font-semibold mb-4">Register</h1>
+        <h1 className="text-2xl font-semibold mb-4">  {t('register')}</h1>
 
         <form onSubmit={submitHandler} className="container w-[40rem]">
           <div className="my-[2rem]">
@@ -79,7 +84,7 @@ const Register = () => {
               htmlFor="name"
               className="block text-sm font-medium text-white"
             >
-              Name
+                {t('name')}
             </label>
             <Input
               type="text"
@@ -97,7 +102,7 @@ const Register = () => {
               htmlFor="email"
               className="block text-sm font-medium text-white"
             >
-              Email Address
+                {t('email_address')}
             </label>
             <Input
               type="email"
@@ -115,7 +120,7 @@ const Register = () => {
               htmlFor="password"
               className="block text-sm font-medium text-white"
             >
-              Password
+                {t('password')}
             </label>
             <Input
               type="password"
@@ -133,7 +138,7 @@ const Register = () => {
               htmlFor="confirmPassword"
               className="block text-sm font-medium text-white"
             >
-              Confirm Password
+               {t('confirm_password')}
             </label>
             <Input
               type="password"
@@ -162,12 +167,12 @@ const Register = () => {
 
         <div className="mt-4">
           <p className="text-white">
-            Already have an account?{" "}
+          {t('have_account')}?{" "}
             <Link
               to={redirect ? `/login?redirect=${redirect}` : "/login"}
               className="text-pink-500 hover:underline"
             >
-              Login
+                {t('login')}
             </Link>
           </p>
         </div>

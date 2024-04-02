@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 import {
   useCreateProductMutation,
   useUploadProductImageMutation,
 } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import { toast } from "react-toastify";
+
+
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
 import Button from "../../components/Button";
@@ -26,6 +30,9 @@ const ProductList = () => {
   const [uploadProductImage] = useUploadProductImageMutation();
   const [createProduct] = useCreateProductMutation();
   const { data: categories } = useFetchCategoriesQuery();
+
+
+  const { t } = useTranslation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +84,7 @@ const ProductList = () => {
       <div className="flex flex-col md:flex-row">
         <AdminMenu />
         <div className="md:w-3/4 p-3">
-          <div className="h-12">Create Product</div>
+          <div className="h-12">  {t('create_product')}</div>
 
           {imageUrl && (
             <div className="text-center">
@@ -106,7 +113,7 @@ const ProductList = () => {
           <div className="p-3">
             <div className="flex flex-wrap">
               <div className="one">
-                <label htmlFor="name">Name</label> <br />
+                <label htmlFor="name">{t('name')}</label> <br />
                 <Input
                   type="text"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -115,7 +122,7 @@ const ProductList = () => {
                 />
               </div>
               <div className="two ml-10 ">
-                <label htmlFor="name block">Price</label> <br />
+                <label htmlFor="name block">{t('price')}</label> <br />
                 <Input
                   type="number"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -126,7 +133,7 @@ const ProductList = () => {
             </div>
             <div className="flex flex-wrap">
               <div className="one">
-                <label htmlFor="name block">Quantity</label> <br />
+                <label htmlFor="name block">{t('quantity')}</label> <br />
                 <Input
                   type="number"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -135,7 +142,7 @@ const ProductList = () => {
                 />
               </div>
               <div className="two ml-10 ">
-                <label htmlFor="name block">Brand</label> <br />
+                <label htmlFor="name block">  {t('brand')}</label> <br />
                 <Input
                   type="text"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -146,7 +153,7 @@ const ProductList = () => {
             </div>
 
             <label htmlFor="" className="my-5">
-              Description
+            {t('description')}
             </label>
             <textarea
               type="text"
@@ -157,7 +164,7 @@ const ProductList = () => {
 
             <div className="flex justify-between">
               <div>
-                <label htmlFor="name block">Count In Stock</label> <br />
+                <label htmlFor="name block">{t('count_in_stock')}</label> <br />
                 <input
                   type="text"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -167,7 +174,7 @@ const ProductList = () => {
               </div>
 
               <div>
-                <label htmlFor="">Category</label> <br />
+                <label htmlFor="">{t('category')}</label> <br />
                 <select
                   placeholder="Choose Category"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -186,7 +193,7 @@ const ProductList = () => {
               onClick={handleSubmit}
               className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
             >
-              Submit
+                {t('submit')}
             </Button>
           </div>
         </div>

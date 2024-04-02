@@ -10,12 +10,17 @@ import {
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./Navigation.css";
+import { useTranslation } from "react-i18next";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import FavoritesCount from "../Products/FavoritesCount";
+
 import Button from "../../components/Button";
+
+import "./Navigation.css";
+
 
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -43,6 +48,13 @@ const Navigation = () => {
     }
   };
 
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+  
+
   return (
     <div
       style={{ zIndex: 9999 }}
@@ -51,13 +63,25 @@ const Navigation = () => {
       } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[4%] hover:w-[15%] h-[100vh]  fixed `}
       id="navigation-container"
     >
-      <div className="flex flex-col justify-center space-y-4">
+      
+      <div className="flex flex-col justify-center space-y-">
+      <div className="mb-4">
+    <select
+      onChange={(e) => changeLanguage(e.target.value)}
+      className="bg-[#000] text-white p-2 rounded cursor-pointer"
+      value={i18n.language}
+    >
+       <option value="de">DE</option>
+      <option value="en">EN</option>
+      <option value="ro">RO</option>
+    </select>
+  </div>
         <Link
           to="/"
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">Home</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem]">{t('home')}</span>{" "}
         </Link>
 
         <Link
@@ -65,7 +89,7 @@ const Navigation = () => {
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineShopping className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">Shop</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem]">{t('shop')}</span>{" "}
         </Link>
 
         <Link
@@ -73,13 +97,13 @@ const Navigation = () => {
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineMessage className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">Contact</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem]">{t('contact')}</span>{" "}
         </Link>
 
         <Link to="/cart" className="flex relative">
           <div className="flex items-center transition-transform transform hover:translate-x-2">
             <AiOutlineShoppingCart className="mt-[3rem] mr-2" size={26} />
-            <span className="hidden nav-item-name mt-[3rem]">Cart</span>{" "}
+            <span className="hidden nav-item-name mt-[3rem]">{t('cart')}</span>{" "}
           </div>
           
 
@@ -98,15 +122,15 @@ const Navigation = () => {
           <div className="flex justify-center items-center transition-transform transform hover:translate-x-2">
             <FaHeart className="mt-[3rem] mr-2" size={20} />
             <span className="hidden nav-item-name mt-[3rem]">
-              Favorites
+            {t('favorites')}
             </span>{" "}
             <FavoritesCount />
           </div>
         </Link>
+        
       </div>
 
       
-
       <div className="relative">
         <Button
           onClick={toggleDropdown}
@@ -150,7 +174,7 @@ const Navigation = () => {
                     to="/admin/dashboard"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
-                    Dashboard
+                    {t('dashboard')}
                   </Link>
                 </li>
                 <li>
@@ -158,7 +182,7 @@ const Navigation = () => {
                     to="/admin/productlist"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
-                    Products
+                    {t('products')}
                   </Link>
                 </li>
                 <li>
@@ -166,7 +190,7 @@ const Navigation = () => {
                     to="/admin/categorylist"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
-                    Category
+                    {t('category')}
                   </Link>
                 </li>
                 <li>
@@ -174,7 +198,7 @@ const Navigation = () => {
                     to="/admin/orderlist"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
-                    Orders
+                    {t('orders')}
                   </Link>
                 </li>
                 <li>
@@ -182,7 +206,7 @@ const Navigation = () => {
                     to="/admin/userlist"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
-                    Users
+                    {t('users')}
                   </Link>
                 </li>
               </>
@@ -190,7 +214,7 @@ const Navigation = () => {
 
             <li>
               <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
-                Profile
+              {t('profile')}
               </Link>
             </li>
             <li>
@@ -198,7 +222,7 @@ const Navigation = () => {
                 onClick={logoutHandler}
                 className="block w-full px-4 py-2 text-left hover:bg-gray-100"
               >
-                Logout
+                {t('logout')}
               </Button>
             </li>
           </ul>
@@ -211,7 +235,7 @@ const Navigation = () => {
                 className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
               >
                 <AiOutlineLogin className="mr-2 mt-[4px]" size={26} />
-                <span className="hidden nav-item-name">LOGIN</span>
+                <span className="hidden nav-item-name">{t('login')}</span>
               </Link>
             </li>
             <li>
@@ -220,7 +244,7 @@ const Navigation = () => {
                 className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
               >
                 <AiOutlineUserAdd size={26} />
-                <span className="hidden nav-item-name">REGISTER</span>
+                <span className="hidden nav-item-name">{t('register')}</span>
               </Link>
             </li>
           </ul>

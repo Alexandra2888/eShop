@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetFilteredProductsQuery } from "../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../redux/api/categoryApiSlice";
+import { useTranslation } from "react-i18next";
 
 import {
   setCategories,
   setProducts,
   setChecked,
 } from "../redux/features/shop/shopSlice";
+
 import Loader from "../components/Loader";
 import ProductCard from "./Products/ProductCard";
-
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
 import Input from '../components/Input';
@@ -23,6 +24,9 @@ const Shop = () => {
 
   const categoriesQuery = useFetchCategoriesQuery();
   const [priceFilter, setPriceFilter] = useState("");
+
+  const { t } = useTranslation();
+
 
   const filteredProductsQuery = useGetFilteredProductsQuery({
     checked,
@@ -91,7 +95,7 @@ const Shop = () => {
         <div className="flex md:flex-row">
           <div className="bg-[#151515] p-3 mt-2 mb-2">
             <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
-              Filter by Categories
+            {t('filter_by_categories')}
             </h2>
 
             <div className="p-5 w-[15rem]">
@@ -117,7 +121,7 @@ const Shop = () => {
             </div>
 
             <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
-              Filter by Brands
+            {t('filter_by_brands')}
             </h2>
 
             <div className="p-5">
@@ -144,7 +148,7 @@ const Shop = () => {
             </div>
 
             <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
-              Filer by Price
+            {t('filter_by_price')}
             </h2>
 
             <div className="p-5 w-[15rem]">
@@ -162,7 +166,7 @@ const Shop = () => {
                 className="w-full border my-4"
                 onClick={() => window.location.reload()}
               >
-                Reset
+               {t('reset')}
               </Button>
             </div>
           </div>

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
+
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
   useUpdateUserMutation,
 } from "../../redux/api/usersApiSlice";
-import { toast } from "react-toastify";
 
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
 import Button from "../../components/Button";
@@ -24,6 +26,8 @@ const UserList = () => {
   const [editableUserEmail, setEditableUserEmail] = useState("");
 
   const [updateUser] = useUpdateUserMutation();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     refetch();
@@ -76,10 +80,10 @@ const UserList = () => {
           <table className="w-full md:w-4/5 mx-auto">
             <thead>
               <tr>
-                <th className="px-4 py-2 text-left">ID</th>
-                <th className="px-4 py-2 text-left">NAME</th>
-                <th className="px-4 py-2 text-left">EMAIL</th>
-                <th className="px-4 py-2 text-left">ADMIN</th>
+                <th className="px-4 py-2 text-left">  {t('id')}</th>
+                <th className="px-4 py-2 text-left">  {t('name')}</th>
+                <th className="px-4 py-2 text-left">  {t('email')}</th>
+                <th className="px-4 py-2 text-left">  {t('admin')}</th>
                 <th className="px-4 py-2"></th>
               </tr>
             </thead>

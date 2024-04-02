@@ -1,17 +1,25 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
+
 import { useAllProductsQuery } from "../../redux/api/productApiSlice";
+
 import AdminMenu from "./AdminMenu";
+
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useAllProductsQuery();
 
+  const { t } = useTranslation();
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>
+        {t('loading')}
+      </div>;
   }
 
   if (isError) {
-    return <div>Error loading products</div>;
+    return <div>  {t('error_loading_products')}  </div>;
   }
 
   return (
@@ -20,7 +28,8 @@ const AllProducts = () => {
         <div className="flex flex-col  md:flex-row">
           <div className="p-3">
             <div className="ml-[2rem] text-xl font-bold h-12">
-              All Products ({products.length})
+            {t('all_products')}
+               ({products.length})
             </div>
             <div className="flex flex-wrap justify-around items-center">
               {products.map((product) => (
@@ -55,7 +64,8 @@ const AllProducts = () => {
                           to={`/admin/product/update/${product._id}`}
                           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
                         >
-                          Update Product
+                            {t('update_product')}
+                          
                           <svg
                             className="w-3.5 h-3.5 ml-2"
                             aria-hidden="true"

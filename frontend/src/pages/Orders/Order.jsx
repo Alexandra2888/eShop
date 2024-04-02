@@ -3,18 +3,24 @@ import { Link, useParams } from "react-router-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Messsage from "../../components/Message";
-import Loader from "../../components/Loader";
+import { useTranslation } from "react-i18next";
+
 import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
   useGetPaypalClientIdQuery,
   usePayOrderMutation,
 } from "../../redux/api/orderApiSlice";
+
+import Messsage from "../../components/Message";
+import Loader from "../../components/Loader";
 import Button from "../../components/Button";
 
 const Order = () => {
   const { id: orderId } = useParams();
+
+  const { t } = useTranslation();
+
 
   const {
     data: order,
@@ -57,7 +63,7 @@ const Order = () => {
     }
   }, [errorPayPal, loadingPaPal, order, paypal, paypalDispatch]);
 
-  function onApprove(data, actions) {
+  const onApprove = (data, actions) => {
     return actions.order.capture().then(async function (details) {
       try {
         await payOrder({ orderId, details });
@@ -69,7 +75,7 @@ const Order = () => {
     });
   }
 
-  function createOrder(data, actions) {
+  const createOrder = (data, actions) => {
     return actions.order
       .create({
         purchase_units: [{ amount: { value: order.totalPrice } }],
@@ -79,7 +85,7 @@ const Order = () => {
       });
   }
 
-  function onError(err) {
+  const onError = (err) => {
     toast.error(err.message);
   }
 
@@ -97,17 +103,17 @@ const Order = () => {
       <div className="md:w-2/3 pr-4">
         <div className="border gray-300 mt-5 pb-4 mb-5">
           {order.orderItems.length === 0 ? (
-            <Messsage>Order is empty</Messsage>
+            <Messsage>{t('order_is_empty')}</Messsage>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-[80%]">
                 <thead className="border-b-2">
                   <tr>
-                    <th className="p-2">Image</th>
-                    <th className="p-2">Product</th>
-                    <th className="p-2 text-center">Quantity</th>
-                    <th className="p-2">Unit Price</th>
-                    <th className="p-2">Total</th>
+                    <th className="p-2">  {t('image')}</th>
+                    <th className="p-2">  {t('product')}</th>
+                    <th className="p-2 text-center">   {t('quantity')}</th>
+                    <th className="p-2">  {t('unit_price')}</th>
+                    <th className="p-2">   {t('total')}</th>
                   </tr>
                 </thead>
 
@@ -142,60 +148,60 @@ const Order = () => {
 
       <div className="md:w-1/3">
         <div className="mt-5 border-gray-300 pb-4 mb-4">
-          <h2 className="text-xl font-bold mb-2">Shipping</h2>
+          <h2 className="text-xl font-bold mb-2">  {t('shipping')}</h2>
           <p className="mb-4 mt-4">
-            <strong className="text-pink-500">Order:</strong> {order._id}
+            <strong className="text-pink-500">  {t('order')}:</strong> {order._id}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Name:</strong>{" "}
+            <strong className="text-pink-500">  {t('name')}:</strong>{" "}
             {order.user.username}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Email:</strong> {order.user.email}
+            <strong className="text-pink-500">  {t('email')}:</strong> {order.user.email}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Address:</strong>{" "}
+            <strong className="text-pink-500">  {t('address')}:</strong>{" "}
             {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Method:</strong>{" "}
+            <strong className="text-pink-500">  {t('method')}:</strong>{" "}
             {order.paymentMethod}
           </p>
 
           {order.isPaid ? (
-            <Messsage variant="success">Paid on {order.paidAt}</Messsage>
+            <Messsage variant="success">  {t('paid_on')} {order.paidAt}</Messsage>
           ) : (
-            <Messsage variant="danger">Not paid</Messsage>
+            <Messsage variant="danger">  {t('not_paid')}</Messsage>
           )}
         </div>
 
-        <h2 className="text-xl font-bold mb-2 mt-[3rem]">Order Summary</h2>
+        <h2 className="text-xl font-bold mb-2 mt-[3rem]">  {t('order_summary')}</h2>
         <div className="flex justify-between mb-2">
-          <span>Items</span>
+          <span>  {t('items')}</span>
           <span>$ {order.itemsPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>Shipping</span>
+          <span>  {t('shipping')}</span>
           <span>$ {order.shippingPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>Tax</span>
+          <span>  {t('tax')}</span>
           <span>$ {order.taxPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>Total</span>
+          <span>  {t('total')}</span>
           <span>$ {order.totalPrice}</span>
         </div>
         <Link to={`/order/${order._id}/invoice`}
               type="button"
               className="bg-pink-500 text-white text-center w-full py-2"
             >
-              Invoice
+                {t('invoice')}
             </Link>
 
         {!order.isPaid && (
@@ -225,7 +231,7 @@ const Order = () => {
               className="bg-pink-500 text-white w-full py-2"
               onClick={deliverHandler}
             >
-              Mark As Delivered
+                {t('mark_as_delivered')}
             </Button>
           </div>
         )}

@@ -2,12 +2,7 @@ import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import {
-  useGetProductDetailsQuery,
-  useCreateReviewMutation,
-} from "../../redux/api/productApiSlice";
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
+import { useTranslation } from "react-i18next";
 import {
   FaBox,
   FaClock,
@@ -16,16 +11,26 @@ import {
   FaStore,
 } from "react-icons/fa";
 import moment from "moment";
+
+import {
+  useGetProductDetailsQuery,
+  useCreateReviewMutation,
+} from "../../redux/api/productApiSlice";
+import { addToCart } from "../../redux/features/cart/cartSlice";
+
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
-import { addToCart } from "../../redux/features/cart/cartSlice";
 import Button from "../../components/Button";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -71,7 +76,7 @@ const ProductDetails = () => {
           to="/"
           className="text-white font-semibold hover:underline ml-[10rem]"
         >
-          Go Back
+         {t('go_back')}: 
         </Link>
       </div>
 
@@ -105,29 +110,29 @@ const ProductDetails = () => {
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
+                    <FaStore className="mr-2 text-white" /> {t('brand')}: :{" "}
                     {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[20rem]">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
+                    <FaClock className="mr-2 text-white" /> {t('added')}: :{" "}
                     {moment(product.createAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:{" "}
+                    <FaStar className="mr-2 text-white" /> {t('reviews')}: :{" "}
                     {product.numReviews}
                   </h1>
                 </div>
 
                 <div className="two">
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Ratings: {rating}
+                    <FaStar className="mr-2 text-white" /> {t('ratings')}: : {rating}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
+                    <FaShoppingCart className="mr-2 text-white" /> {t('quantity')}: :{" "}
                     {product.quantity}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[10rem]">
-                    <FaBox className="mr-2 text-white" /> In Stock:{" "}
+                    <FaBox className="mr-2 text-white" /> {t('in_stock')}: :{" "}
                     {product.countInStock}
                   </h1>
                 </div>
@@ -162,7 +167,7 @@ const ProductDetails = () => {
                   disabled={product.countInStock === 0}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
-                  Add To Cart
+                 {t('add_to_cart')}
                 </Button>
               </div>
             </div>

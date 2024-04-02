@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiMessageCircle } from "react-icons/fi";
+
 import Button from "../components/Button";
 
 const TypingIndicator = ({ content }) => {

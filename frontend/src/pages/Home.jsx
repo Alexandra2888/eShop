@@ -1,14 +1,20 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { useGetProductsQuery } from "../redux/api/productApiSlice";
+
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Header from "../components/Header";
 import Product from "./Products/Product";
 import ChatWidget from "../components/ChatWidget";
 
+
 const Home = () => {
   const { keyword } = useParams();
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
+  const { t } = useTranslation();
+
 
   return (
     <>
@@ -23,14 +29,14 @@ const Home = () => {
         <>
           <div className="flex justify-between items-center">
             <h1 className="ml-[20rem] mt-[10rem] text-[3rem]">
-              Special Products
+            {t('special_products')}
             </h1>
 
             <Link
               to="/shop"
               className="bg-pink-600 font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem]"
             >
-              Shop
+              {t('shop')}
             </Link>
           </div>
 

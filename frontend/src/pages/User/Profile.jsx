@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-import Loader from "../../components/Loader";
 import { useProfileMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { Link } from "react-router-dom";
+
+import Loader from "../../components/Loader";
 import Metadata from "../../components/Metadata";
 import Button from "../../components/Button";
 import Input from '../../components/Input';
@@ -27,6 +29,8 @@ const Profile = () => {
   }, [userInfo.email, userInfo.username]);
 
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -54,10 +58,12 @@ const Profile = () => {
     <div className="container mx-auto p-4 mt-[10rem]">
       <div className="flex justify-center align-center md:flex md:space-x-4">
         <div className="md:w-1/3">
-          <h2 className="text-2xl font-semibold mb-4">Update Profile</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+                     {t('update_profile')}</h2>
           <form onSubmit={submitHandler}>
             <div className="mb-4">
-              <label className="block text-white mb-2">Name</label>
+              <label className="block text-white mb-2">
+                     {t('name')}</label>
               <Input
                 type="text"
                 placeholder="Enter name"
@@ -68,7 +74,8 @@ const Profile = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-white mb-2">Email Address</label>
+              <label className="block text-white mb-2">
+                     {t('email')}</label>
               <Input
                 type="email"
                 placeholder="Enter email"
@@ -79,7 +86,8 @@ const Profile = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-white mb-2">Password</label>
+              <label className="block text-white mb-2">
+                     {t('password')}</label>
               <Input
                 type="password"
                 placeholder="Enter password"
@@ -90,7 +98,8 @@ const Profile = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-white mb-2">Confirm Password</label>
+              <label className="block text-white mb-2">
+                     {t('confirm_password')}</label>
               <Input
                 type="password"
                 placeholder="Confirm password"
@@ -105,14 +114,16 @@ const Profile = () => {
                 type="submit"
                 className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
               >
-                Update
+               
+               {t('update')}
               </Button>
 
               <Link
                 to="/user-orders"
                 className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700"
               >
-                My Orders
+               
+               {t('my_orders')}
               </Link>
             </div>
             {loadingUpdateProfile && <Loader />}
