@@ -2,13 +2,13 @@ import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 
 // Utility Function
-function calcPrices(orderItems) {
+const calcPrices = (orderItems) => {
   const itemsPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0
   );
 
-  const shippingPrice = itemsPrice > 100 ? 0 : 10;
+  const shippingPrice = itemsPrice >= 500 ? 0 : 100;
   const taxRate = 0.15;
   const taxPrice = (itemsPrice * taxRate).toFixed(2);
 
@@ -24,7 +24,7 @@ function calcPrices(orderItems) {
     taxPrice,
     totalPrice,
   };
-}
+};
 
 const createOrder = async (req, res) => {
   try {
@@ -115,7 +115,7 @@ const calculateTotalSales = async (req, res) => {
   }
 };
 
-const calcualteTotalSalesByDate = async (req, res) => {
+const calculateTotalSalesByDate = async (req, res) => {
   try {
     const salesByDate = await Order.aggregate([
       {
@@ -207,7 +207,7 @@ export {
   getUserOrders,
   countTotalOrders,
   calculateTotalSales,
-  calcualteTotalSalesByDate,
+  calculateTotalSalesByDate,
   findOrderById,
   markOrderAsPaid,
   markOrderAsDelivered,

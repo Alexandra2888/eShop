@@ -123,5 +123,6 @@
     "all_orders": "All Orders",
     "customers": "Customers",
     "user": "User",
-    "data": "Data"
+    "data": "Data",
+    "country":"Country"
 }

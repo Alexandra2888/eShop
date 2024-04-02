@@ -123,5 +123,6 @@
     "sales": "Vanzari",
     "all_orders": "Toate comenzile",
     "user": "Utilizator",
-    "data": "Data"
+    "data": "Data",
+    "cuntry":"Tara"
 }

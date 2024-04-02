@@ -106,10 +106,10 @@ const PlaceOrder = () => {
                 <span className="font-semibold mb-4">{t('shipping')}:</span> $
                 {cart.shippingPrice}
               </li>
-              <li>
-                <span className="font-semibold mb-4">{t('taxl')}:</span> $
+              {/* <li>
+                <span className="font-semibold mb-4">{t('tax')}:</span> $
                 {cart.taxPrice}
-              </li>
+              </li> */}
               <li>
                 <span className="font-semibold mb-4">{t('total')}:</span> $
                 {cart.totalPrice}
@@ -119,9 +119,9 @@ const PlaceOrder = () => {
             {error && <Message variant="danger">{error.data.message}</Message>}
 
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('shipping')}</h2>
               <p>
-                <strong>Address:</strong> {cart.shippingAddress.address},{" "}
+                <strong>{t('address')}:</strong> {cart.shippingAddress.address},{" "}
                 {cart.shippingAddress.city} {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country}
               </p>
@@ -129,7 +129,7 @@ const PlaceOrder = () => {
 
             <div>
               <h2 className="text-2xl font-semibold mb-4">{t('payment_method')}</h2>
-              <strong>Method:</strong> {cart.paymentMethod}
+              <strong>{t('method')}:</strong> {cart.paymentMethod}
             </div>
           </div>
 
