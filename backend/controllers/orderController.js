@@ -26,6 +26,10 @@ const calcPrices = (orderItems) => {
   };
 };
 
+
+// @desc    Create order
+// @route   POST /api/orders
+// @access  Private
 const createOrder = async (req, res) => {
   try {
     const { orderItems, shippingAddress, paymentMethod } = req.body;
@@ -70,6 +74,7 @@ const createOrder = async (req, res) => {
       shippingPrice,
       totalPrice,
     });
+    
 
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
@@ -78,6 +83,9 @@ const createOrder = async (req, res) => {
   }
 };
 
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find({}).populate("user", "id username");
@@ -87,6 +95,9 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+// @desc   Get users orders
+// @route   GET /api/orders/mine
+// @access  Private
 const getUserOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id });
@@ -96,6 +107,9 @@ const getUserOrders = async (req, res) => {
   }
 };
 
+// @desc    Count total orders
+// @route   GET /api/orders/total-orders
+// @access  Public
 const countTotalOrders = async (req, res) => {
   try {
     const totalOrders = await Order.countDocuments();
@@ -105,6 +119,9 @@ const countTotalOrders = async (req, res) => {
   }
 };
 
+// @desc    Calculate total sales
+// @route   GET /api/orders/total-sales
+// @access  Public
 const calculateTotalSales = async (req, res) => {
   try {
     const orders = await Order.find();
@@ -115,6 +132,9 @@ const calculateTotalSales = async (req, res) => {
   }
 };
 
+// @desc    Calculate total sales by date
+// @route   POST /api/orders/total-sales-by-date
+// @access  Public
 const calculateTotalSalesByDate = async (req, res) => {
   try {
     const salesByDate = await Order.aggregate([
@@ -139,6 +159,10 @@ const calculateTotalSalesByDate = async (req, res) => {
   }
 };
 
+
+// @desc    Find order by id
+// @route   GET /api/orders/:id
+// @access  Private
 const findOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate(
@@ -157,6 +181,9 @@ const findOrderById = async (req, res) => {
   }
 };
 
+// @desc    Mark orders as payed
+// @route   PUT /api/orders/:id/pay
+// @access  Private/Admin
 const markOrderAsPaid = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -182,6 +209,10 @@ const markOrderAsPaid = async (req, res) => {
   }
 };
 
+
+// @desc    Mark order as delivered
+// @route   PUT /api/orders/:id/deliver
+// @access  Private/Admin
 const markOrderAsDelivered = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
