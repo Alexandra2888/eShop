@@ -3,8 +3,6 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
 
-
-
 // @desc    Create user
 // @route   POST /api/users
 // @access  Private
@@ -38,8 +36,6 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 // @desc    Login user
 // @route   POST /users/auth
 // @access  Private
@@ -71,8 +67,6 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 // @desc    Logout current user
 // @route   POST /api/users/logout
 // @access  Private
@@ -85,8 +79,6 @@ const logoutCurrentUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 });
 
-
-
 // @desc    Get all users
 // @route   GET /api/users
 // @access  Private/Admin
@@ -94,8 +86,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
 });
-
-
 
 // @desc    Get current user profile
 // @route   GET /api/users/profile
@@ -114,8 +104,6 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found.");
   }
 });
-
-
 
 // @desc    Update current user profile
 // @route   PUT /api/users/profile
@@ -147,8 +135,6 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 // @desc    Delete user by id
 // @route  DELETE /api/users/:id
 // @access  Private/Admin
@@ -169,8 +155,6 @@ const deleteUserById = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 // @desc    Get user by id
 // @route   GET /api/users/:id
 // @access  Private/Admin
@@ -184,7 +168,6 @@ const getUserById = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
-
 
 // @desc    Update user by id
 // @route   PUT /api/users/:id
