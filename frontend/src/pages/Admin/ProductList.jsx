@@ -80,11 +80,11 @@ const ProductList = () => {
     <>
     <Metadata title={"Products"} />
 
-    <div className="container xl:mx-[9rem] sm:mx-[0]">
+    <div className="container md:ml-[15rem] my-12">
       <div className="flex flex-col md:flex-row">
         <AdminMenu />
         <div className="md:w-3/4 p-3">
-          <div className="h-12">  {t('create_product')}</div>
+          <div className="h-12 text-center">  {t('create_product')}</div>
 
           {imageUrl && (
             <div className="text-center">
@@ -116,16 +116,16 @@ const ProductList = () => {
                 <label htmlFor="name">{t('name')}</label> <br />
                 <Input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className="two ml-10 ">
+              <div className="two md:ml-10 ">
                 <label htmlFor="name block">{t('price')}</label> <br />
                 <Input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -136,16 +136,16 @@ const ProductList = () => {
                 <label htmlFor="name block">{t('quantity')}</label> <br />
                 <Input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              <div className="two ml-10 ">
+              <div className="two md:ml-10 ">
                 <label htmlFor="name block">  {t('brand')}</label> <br />
                 <Input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                 />
@@ -157,17 +157,17 @@ const ProductList = () => {
             </label>
             <textarea
               type="text"
-              className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white"
+              className="p-2 mb-3 bg-white dark:bg-[#101011] border rounded-lg w-[95%] text-white"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
 
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row md:justify-between">
               <div>
                 <label htmlFor="name block">{t('count_in_stock')}</label> <br />
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#101011] text-white"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                 />
@@ -177,7 +177,7 @@ const ProductList = () => {
                 <label htmlFor="">{t('category')}</label> <br />
                 <select
                   placeholder="Choose Category"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#101011] text-white"
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   {categories?.map((c) => (
@@ -188,10 +188,9 @@ const ProductList = () => {
                 </select>
               </div>
             </div>
-
             <Button
               onClick={handleSubmit}
-              className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
+              className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 "
             >
                 {t('submit')}
             </Button>

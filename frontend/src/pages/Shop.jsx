@@ -91,10 +91,15 @@ const Shop = () => {
   return (
     <>
       <Metadata title={"Shop"} />
-      <div className="container mx-auto">
-        <div className="flex md:flex-row">
-          <div className="bg-[#151515] p-3 mt-2 mb-2">
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+      <div className="flex justify-center md:ml-[10rem]">
+        <div>
+
+
+          <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row">
+            <div className="flex">
+            <div>
+            <h2 className="h4 text-center py-2 rounded-full mb-2 text-black font-semibold dark:text-slate-50">
+              
             {t('filter_by_categories')}
             </h2>
 
@@ -106,7 +111,7 @@ const Shop = () => {
                       type="checkbox"
                       id="red-checkbox"
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
 
                     <label
@@ -120,7 +125,7 @@ const Shop = () => {
               ))}
             </div>
 
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+            <h2 className="h4 text-center py-2  rounded-full mb-2 text-black font-semibold dark:text-slate-50">
             {t('filter_by_brands')}
             </h2>
 
@@ -133,7 +138,7 @@ const Shop = () => {
                       id={brand}
                       name="brand"
                       onChange={() => handleBrandClick(brand)}
-                      className="w-4 h-4 text-pink-400 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-blue-400 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
 
                     <label
@@ -147,7 +152,7 @@ const Shop = () => {
               ))}
             </div>
 
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+            <h2 className="h4 text-center py-2  rounded-full mb-2 text-black font-semibold dark:text-slate-50">
             {t('filter_by_price')}
             </h2>
 
@@ -163,14 +168,17 @@ const Shop = () => {
 
             <div className="p-5 pt-0">
               <Button
-                className="w-full border my-4"
+                className="w-full border my-4  text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
                 onClick={() => window.location.reload()}
               >
                {t('reset')}
               </Button>
             </div>
           </div>
+          </div>
 
+
+<div>
           <div className="p-3">
             <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
             <div className="flex flex-wrap">
@@ -184,6 +192,8 @@ const Shop = () => {
                 ))
               )}
             </div>
+          </div>
+          </div>
           </div>
         </div>
       </div>

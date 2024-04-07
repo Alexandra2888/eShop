@@ -140,14 +140,14 @@ const AdminProductUpdate = () => {
 
   return (
     <>
-      <div className="container  xl:mx-[9rem] sm:mx-[0]">
+      <div className="container my-12 md:ml-[10rem] xl:mx-[9rem] sm:mx-[0]">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
-            <div className="h-12">  {t('update_delete_product')}Update / Delete Product</div>
+            <div className="h-12 text-center">{t('update_delete_product')}</div>
 
             {image && (
-              <div className="text-center">
+              <div className="text-center mx-auto max-w-xs md:max-w-md">
                 <img
                   src={image}
                   alt="product"
@@ -157,7 +157,7 @@ const AdminProductUpdate = () => {
             )}
 
             <div className="mb-3">
-              <label className="text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+              <label className="text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 max-w-sm">
                 {image ? image.name : "Upload image"}
                 <Input
                   type="file"
@@ -168,14 +168,14 @@ const AdminProductUpdate = () => {
                 />
               </label>
             </div>
-
+            <div className="flex flex-col justify-center md:ml-[8rem]">
             <div className="p-3">
               <div className="flex flex-wrap">
                 <div className="one">
                   <label htmlFor="name">  {t('name')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -185,7 +185,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name block">  {t('price')}</label> <br />
                   <Input
                     type="number"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white "
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />
@@ -198,7 +198,7 @@ const AdminProductUpdate = () => {
                   <Input
                     type="number"
                     min="1"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   />
@@ -207,7 +207,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name block">  {t('brand')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
                     value={brand}
                     onChange={(e) => setBrand(e.target.value)}
                   />
@@ -215,21 +215,21 @@ const AdminProductUpdate = () => {
               </div>
 
               <label htmlFor="" className="my-5">
-                Description
+              {t('description')}
               </label>
               <textarea
                 type="text"
-                className="p-2 mb-3 bg-[#101011]  border rounded-lg w-[95%] text-white"
+                className="p-2 mb-3  border rounded-lg w-[95%] bg-white text-black dark:bg-[#101011] dark:text-white"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
 
-              <div className="flex justify-between">
+              <div className="flex flex-col justify-between">
                 <div>
                   <label htmlFor="name block">  {t('count_in_stock')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white "
                     value={stock}
                     onChange={(e) => setStock(e.target.value)}
                   />
@@ -239,7 +239,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="">  {t('category')}</label> <br />
                   <select
                     placeholder="Choose Category"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     {categories?.map((c) => (
@@ -250,17 +250,17 @@ const AdminProductUpdate = () => {
                   </select>
                 </div>
               </div>
-
+              </div>
               <div className="">
                 <Button
                   onClick={handleSubmit}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
+                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  mr-6"
                 >
                     {t('update')}
                 </Button>
                 <Button
                   onClick={handleDelete}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
+                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-red-600"
                 >
                     {t('delete')}
                 </Button>

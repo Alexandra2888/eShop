@@ -1,15 +1,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import moment from "moment";
 import { useTranslation } from "react-i18next";
-import {
-  FaBox,
-  FaClock,
-  FaShoppingCart,
-  FaStar,
-  FaStore,
-} from "react-icons/fa";
+import { FaBox, FaStar, FaStore } from "react-icons/fa";
 
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 
@@ -19,94 +12,105 @@ const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
   const { t } = useTranslation();
 
-
-  const settings = {
-    dots: false,
+  var settings = {
+    dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
+    slidesToShow: 2,
+    slidesToScroll: 4,
+    initialSlide: 0,
     autoplay: true,
-    autoplaySpeed: 3000,
+    speed: 3000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
+    <div className="mb-4 md:ml-[10rem] max-w-screen-lg">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <Slider
-          {...settings}
-          className="xl:w-[50rem]  lg:w-[50rem] md:w-[56rem] sm:w-[40rem] sm:block"
-        >
-          {products.map(
-            ({
-              image,
-              _id,
-              name,
-              price,
-              description,
-              brand,
-              createdAt,
-              numReviews,
-              rating,
-              quantity,
-              countInStock,
-            }) => (
-              <div key={_id}>
-                <img
-                  src={image}
-                  alt={name}
-                  className="w-full rounded-lg object-cover h-[30rem]"
-                />
+        <>
+          <div className="my-24 max-w-sm md:max-w-full">
+            <h3 className="text-xl font-semibold text-center my-8">
+              Featured products
+            </h3>
+            <Slider {...settings} className="">
+              {products.map(
+                ({
+                  image,
+                  _id,
+                  name,
+                  price,
 
-                <div className="mt-4 flex justify-between">
-                  <div className="one">
-                    <h2>{name}</h2>
-                    <p> $ {price}</p> <br /> <br />
-                    <p className="w-[25rem]">
-                      {description.substring(0, 170)} ...
-                    </p>
-                  </div>
+                  brand,
 
-                  <div className="flex justify-between w-[20rem]">
-                    <div className="one">
-                      <h1 className="flex items-center mb-6">
-                        <FaStore className="mr-2 text-white" /> {t('brand')}: {brand}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaClock className="mr-2 text-white" /> {t('added')}:{" "}
-                        {moment(createdAt).fromNow()}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> {t('reviews')}:
-                        {numReviews}
-                      </h1>
+                  numReviews,
+                  rating,
+                }) => (
+                  <div
+                    key={_id}
+                    className="flex flex-col items-center space-y-4 p-4"
+                  >
+                    <img
+                      src={image}
+                      alt={name}
+                      className="w-full h-64 object-cover md:h-72 lg:h-80 xl:h-96"
+                    />
+                    <div className="text-center space-y-2">
+                      <h2 className="text-lg font-bold">{name}</h2>
+                      <p className="text-gray-500">$ {price}</p>
                     </div>
-
-                    <div className="two">
-                      <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> {t('ratings')}:{" "}
-                        {Math.round(rating)}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaShoppingCart className="mr-2 text-white" />{t('quantity')}:{" "}
-                        {quantity}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaBox className="mr-2 text-white" /> {t('in_stock')}:{" "}
-                        {countInStock}
-                      </h1>
+                    <div className="text-sm space-y-1">
+                      <div className="flex items-center justify-between">
+                        <h1 className="flex items-center">
+                          <FaStore className="mr-1 text-blue-900" /> {brand}
+                        </h1>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <h1 className="flex items-center">
+                          <FaStar className="mr-1 text-yellow-300" /> {numReviews}{" "}
+                          Reviews
+                        </h1>
+                        <h1 className="flex items-center">
+                          <FaBox className="mr-1 text-blue-900" /> {rating}{" "}
+                          Rating
+                        </h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            )
-          )}
-        </Slider>
+                )
+              )}
+            </Slider>
+          </div>
+        </>
       )}
     </div>
   );

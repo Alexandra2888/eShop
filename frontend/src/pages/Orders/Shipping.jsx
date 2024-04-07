@@ -46,10 +46,10 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 max-w-sm md:w-full">
       <ProgressSteps step1 step2 />
       <div className="mt-[10rem] flex justify-around items-center flex-wrap">
-        <form onSubmit={submitHandler} className="w-[40rem]">
+        <form onSubmit={submitHandler} className="w-fit md:w-[40rem]">
           <h1 className="text-2xl font-semibold mb-4">{t('shipping')}</h1>
           <div className="mb-4">
             <label className="block text-white mb-2">{t('address')}</label>
@@ -101,7 +101,7 @@ const Shipping = () => {
               <label className="inline-flex items-center">
                 <Input
                   type="radio"
-                  className="form-radio text-pink-500"
+                  className="form-radio text-blue-500"
                   name="paymentMethod"
                   value="PayPal"
                   checked={paymentMethod === "PayPal"}
@@ -114,7 +114,7 @@ const Shipping = () => {
           </div>
 
           <Button
-            className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full"
+            className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white px-5 py-3 md:py-2 md:px-4 rounded-full text-md md:text-lg w-fit flex justify-center items-center md:w-full"
             type="submit"
           >
             {t('continue')}

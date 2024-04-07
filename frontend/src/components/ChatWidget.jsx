@@ -125,7 +125,7 @@ const ChatWidget = () => {
           </form>
         </div>
       )}
-      <Button onClick={toggleChat} className="text-3xl p-2 bg-pink-600 py-2 px-4 hover:bg-pink-700 text-white rounded-full">
+      <Button onClick={toggleChat} className="text-3xl p-2 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white rounded-full">
         <FiMessageCircle />
       </Button>
     </div>

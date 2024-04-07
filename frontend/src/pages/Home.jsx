@@ -5,9 +5,10 @@ import { useGetProductsQuery } from "../redux/api/productApiSlice";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import Header from "../components/Header";
+import Main from "../components/Main";
 import Product from "./Products/Product";
 import ChatWidget from "../components/ChatWidget";
+import Reviews from "../components/Reviews";
 
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      {!keyword ? <Header /> : null}
+      {!keyword ? <Main /> : null}
       {isLoading ? (
         <Loader />
       ) : isError ? (
@@ -27,26 +28,29 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex justify-between items-center">
-            <h1 className="ml-[20rem] mt-[10rem] text-[3rem]">
+          <div className="flex justify-center md:justify-between items-center ">
+            <h1 className="ml-[20rem] mt-[10rem] text-xl font-bold text-center">
             {t('special_products')}
             </h1>
 
             <Link
               to="/shop"
-              className="bg-pink-600 font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem]"
+              className="bg-blue-600 text-white font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem] mx-8"
             >
               {t('shop')}
             </Link>
           </div>
 
-          <div>
+              <div>
             <div className="flex justify-center flex-wrap mt-[2rem]">
               {data.products.map((product) => (
                 <div key={product._id}>
                   <Product product={product} />
                 </div>
               ))}
+                  <div>
+                   <Reviews/>
+                  </div>
             </div>
             <ChatWidget className="mr-0"/>
           </div>

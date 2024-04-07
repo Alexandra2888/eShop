@@ -2,29 +2,28 @@ import { Link } from "react-router-dom";
 import Metadata from "../../components/Metadata";
 import { useTranslation } from "react-i18next";
 
-const NotFound = () => {
-  const { t } = useTranslation();
+
+export default function NotFound() {
+    const { t } = useTranslation();
 
   return (
     <>
-    <Metadata title={"Not Found"} />
-    <main className="flex flex-col justify-center items-center h-screen"> 
-      <div className="flex"> 
-      <div className="flex flex-col justify-center items-center mx-auto">
-        <h2 className="font-semibold">
-        {t('not_found')}
-         </h2>
-        <Link to="/" className="w-fit bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-4">{t('home')}</Link> 
+  <Metadata title={"Not Found"} />
+      <main className="grid min-h-full place-items-center bg-white px-6 sm:py-32 lg:px-8 dark:bg-gray-900 ">
+        <div className="text-center">
+          <p className="text-base font-semibold text-blue-600">404</p>
+          <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-slate-50">{t('not_found')}</h1>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <Link
+              to='/'
+              className="rounded-md bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+             {t('home')}
+            </Link>
+          
+          </div>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1576502200916-3808e07386a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2065&q=80"
-          alt="Not Found"
-          className="w-[50%] h-fit mx-auto" 
-        />
-      </div>
-    </main>
+      </main>
     </>
-  );
-};
-
-export default NotFound;
+  )
+}

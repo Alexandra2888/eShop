@@ -107,6 +107,7 @@
     "add_to_cart": "In den Warenkorb legen",
     "write_review": "Bewertung schreiben",
     "all_reviews": "Alle Bewertungen",
+    "comment": "Kommentar",
     "related_products": "Verwandte Produkte",
     "rating": "Bewertung",
     "select": "Auswählen",
@@ -124,6 +125,10 @@
     "customers": "Kunden",
     "user": "Benutzer",
     "data": "Daten",
-    "country":"Estadt"
+    "country":"Estadt",
+    "banner_title": "Verbessern Sie Ihr Leben mit den neuesten IT-Produkten",
+    "shop_now": "Jetzt einkaufen",
+    "footer_description":"Verbesserung des täglichen Lebens durch innovative IT-Lösungen.",
+    "empty_cart":"Leerer Warenkorb"
   }
   

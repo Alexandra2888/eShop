@@ -1,37 +1,33 @@
 import { useState } from "react";
-import {
-  AiOutlineHome,
-  AiOutlineShopping,
-  AiOutlineLogin,
-  AiOutlineUserAdd,
-  AiOutlineShoppingCart,
-  AiOutlineMessage
-} from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  HomeIcon,
+  XMarkIcon,
+  ShoppingCartIcon,
+  EnvelopeOpenIcon,
+  ShoppingBagIcon,
+  HeartIcon,
+  ArrowRightStartOnRectangleIcon,
+  ArrowLeftStartOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
+
 import FavoritesCount from "../Products/FavoritesCount";
-
+import NavLink from "./NavLink";
 import Button from "../../components/Button";
+import ToggleTheme from "../../components/ToggleTheme";
 
-import "./Navigation.css";
-
-
-const Navigation = () => {
+function Navigation() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { userInfo } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,205 +49,421 @@ const Navigation = () => {
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
-  
 
   return (
-    <div
-      style={{ zIndex: 9999 }}
-      className={`${
-        showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[4%] hover:w-[15%] h-[100vh]  fixed `}
-      id="navigation-container"
-    >
-      
-      <div className="flex flex-col justify-center space-y-">
-      <div className="mb-4">
-    <select
-      onChange={(e) => changeLanguage(e.target.value)}
-      className="bg-[#000] text-white p-2 rounded cursor-pointer"
-      value={i18n.language}
-    >
-       <option value="de">DE</option>
-      <option value="en">EN</option>
-      <option value="ro">RO</option>
-    </select>
-  </div>
-        <Link
-          to="/"
-          className="flex items-center transition-transform transform hover:translate-x-2"
-        >
-          <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">{t('home')}</span>{" "}
-        </Link>
-
-        <Link
-          to="/shop"
-          className="flex items-center transition-transform transform hover:translate-x-2"
-        >
-          <AiOutlineShopping className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">{t('shop')}</span>{" "}
-        </Link>
-
-        <Link
-          to="/contact"
-          className="flex items-center transition-transform transform hover:translate-x-2"
-        >
-          <AiOutlineMessage className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">{t('contact')}</span>{" "}
-        </Link>
-
-        <Link to="/cart" className="flex relative">
-          <div className="flex items-center transition-transform transform hover:translate-x-2">
-            <AiOutlineShoppingCart className="mt-[3rem] mr-2" size={26} />
-            <span className="hidden nav-item-name mt-[3rem]">{t('cart')}</span>{" "}
-          </div>
-          
-
-          <div className="absolute top-9">
-            {cartItems.length > 0 && (
-              <span>
-                <span className="px-1 py-0 text-sm text-white bg-pink-500 rounded-full">
-                  {cartItems.reduce((a, c) => a + c.qty, 0)}
-                </span>
-              </span>
-            )}
-          </div>
-        </Link>
-
-        <Link to="/favorite" className="flex relative">
-          <div className="flex justify-center items-center transition-transform transform hover:translate-x-2">
-            <FaHeart className="mt-[3rem] mr-2" size={20} />
-            <span className="hidden nav-item-name mt-[3rem]">
-            {t('favorites')}
-            </span>{" "}
-            <FavoritesCount />
-          </div>
-        </Link>
-        
-      </div>
-
-      
-      <div className="relative">
-        <Button
-          onClick={toggleDropdown}
-          className="flex items-center text-gray-800 focus:outline-none"
-        >
-          {userInfo ? (
-            <span className="text-white">{userInfo.username}</span>
-          ) : (
-            <></>
-          )}
-          {userInfo && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 ml-1 ${
-                dropdownOpen ? "transform rotate-180" : ""
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={dropdownOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
-              />
-            </svg>
-          )}
-        </Button>
-
-        {dropdownOpen && userInfo && (
-          <ul
-            className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
-              !userInfo.isAdmin ? "-top-20" : "-top-80"
-            } `}
+    <>
+      <div>
+        <Transition.Root show={sidebarOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-50 lg:hidden"
+            onClose={setSidebarOpen}
           >
-            {userInfo.isAdmin && (
-              <>
-                <li>
-                  <Link
-                    to="/admin/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    {t('dashboard')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/admin/productlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    {t('products')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/admin/categorylist"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    {t('category')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/admin/orderlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    {t('orders')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/admin/userlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    {t('users')}
-                  </Link>
-                </li>
-              </>
-            )}
+            <Transition.Child
+              as={Fragment}
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-900/80" />
+            </Transition.Child>
 
-            <li>
-              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
-              {t('profile')}
-              </Link>
-            </li>
-            <li>
-              <Button
-                onClick={logoutHandler}
-                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+            <div className="fixed inset-0 flex">
+              <Transition.Child
+                as={Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
               >
-                {t('logout')}
-              </Button>
-            </li>
-          </ul>
-        )}
-        {!userInfo && (
-          <ul>
-            <li>
-              <Link
-                to="/login"
-                className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
+                <Dialog.Panel className="relative mr-16 flex w-fit max-w-xs flex-1">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in-out duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                      <Button
+                        type="button"
+                        className="-m-2.5 p-2.5"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        <span className="sr-only">Close sidebar</span>
+                        <XMarkIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
+                      </Button>
+                    </div>
+                  </Transition.Child>
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 pb-2">
+                    <div className="flex h-16 shrink-0 items-center">eShop</div>
+                    <nav className="flex flex-1 flex-col">
+                      <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                        <li>
+                          <ul
+                            role="list"
+                            className="-mx-2 space-y-1 dark:text-gray-900"
+                          >
+                            <li>
+                              <select
+                                onChange={(e) => changeLanguage(e.target.value)}
+                                className="bg-inherit text-black p-2 rounded cursor-pointer"
+                                value={i18n.language}
+                              >
+                                <option value="de">DE</option>
+                                <option value="en">EN</option>
+                                <option value="ro">RO</option>
+                              </select>
+                            </li>
+                            <li>
+                              <NavLink
+                                to="/"
+                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              >
+                                <HomeIcon
+                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                  aria-hidden="true"
+                                />
+                                <span className="dark:text-gray-900">
+                                  {t("home")}
+                                </span>
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                to="/shop"
+                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold dark:text-gray-900"
+                              >
+                                <ShoppingBagIcon
+                                  className="h-6 w-6  dark:text-gray-900 "
+                                  aria-hidden="true"
+                                />
+                                <span className="dark:text-gray-900">
+                                  {" "}
+                                  {t("shop")}
+                                </span>
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                to="/contact"
+                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              >
+                                <EnvelopeOpenIcon
+                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                  aria-hidden="true"
+                                />
+                                <span className="dark:text-gray-900">
+                                  {" "}
+                                  {t("contact")}
+                                </span>
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                to="/cart"
+                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              >
+                                <ShoppingCartIcon
+                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                  aria-hidden="true"
+                                />
+                                <span className="dark:text-gray-900">
+                                  {" "}
+                                  {t("cart")}
+                                </span>
+                                {cartItems.length > 0 && (
+                                  <span>
+                                    <span className="px-1 py-0 text-sm text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 rounded-full">
+                                      {cartItems.reduce((a, c) => a + c.qty, 0)}
+                                    </span>
+                                  </span>
+                                )}
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                to="/favorite"
+                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              >
+                                <HeartIcon
+                                  className="h-6 w-6  dark:text-gray-900 "
+                                  aria-hidden="true"
+                                />
+                                <span className="dark:text-gray-900">
+                                  {t("favorites")}
+                                </span>
+                                <FavoritesCount />
+                              </NavLink>
+                            </li>
+                            <li>
+                              <li>
+                                <NavLink to="/admin/dashboard">
+                                  <span className="sr-only">admin</span>
+                                  {userInfo && userInfo.isAdmin && (
+                                    <span className="text-white mx-4 dark:text-gray-900">
+                                      {t("admin")}
+                                    </span>
+                                  )}
+                                </NavLink>
+                              </li>
+                            </li>
+                            <li>
+                              {!userInfo && (
+                                <ul>
+                                  <li>
+                                    <NavLink
+                                      to="/login"
+                                      className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
+                                    >
+                                      <ArrowRightStartOnRectangleIcon className=" h-6 w-6 text-white mr-2 mt-[4px] dark:text-gray-900" />
+
+                                      <span className="dark:text-gray-900">
+                                        {" "}
+                                        {t("login")}
+                                      </span>
+                                    </NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink
+                                      to="/register"
+                                      className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
+                                    >
+                                      <ArrowRightStartOnRectangleIcon className="h-6 w-6 text-white mr-2 dark:text-gray-900" />
+
+                                      <span className="dark:text-gray-900">
+                                        {" "}
+                                        {t("register")}
+                                      </span>
+                                    </NavLink>
+                                  </li>
+                                </ul>
+                              )}
+                            </li>
+                          </ul>
+                        </li>
+                       
+                        {userInfo && (
+                          <li className="flex ">
+                            <span>
+                              <ArrowLeftStartOnRectangleIcon className="h-6 w-6 text-white dark:text-gray-900" />
+                            </span>
+                            <Button
+                              onClick={logoutHandler}
+                              className="block -mt-2 w-full px-4 py-2 text-left"
+                            >
+                              <span className="dark:text-gray-900">
+                                {" "}
+                                {t("logout")}
+                              </span>
+                            </Button>
+                          </li>
+                        )}
+                          <li className="mx-12 mt-18">
+                            <ToggleTheme />
+                          </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        {/* Static sidebar for desktop */}
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-fit lg:flex-col ">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white px-6">
+            <Link
+              to="/"
+              className="flex h-16 shrink-0 items-center dark:text-gray-900"
+            >
+              eShop
+            </Link>
+            <nav className="flex flex-1 flex-col">
+              <ul
+                role="list"
+                className="flex flex-1 flex-col gap-y-7 dark:text-gray-900"
               >
-                <AiOutlineLogin className="mr-2 mt-[4px]" size={26} />
-                <span className="hidden nav-item-name">{t('login')}</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/register"
-                className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
-              >
-                <AiOutlineUserAdd size={26} />
-                <span className="hidden nav-item-name">{t('register')}</span>
-              </Link>
-            </li>
-          </ul>
-        )}
+                {/* Language Selector */}
+                <li>
+                  <select
+                    onChange={(e) => changeLanguage(e.target.value)}
+                    className="bg-inherit text-black p-2 rounded cursor-pointer"
+                    value={i18n.language}
+                  >
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                    <option value="ro">RO</option>
+                  </select>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <HomeIcon
+                      className="h-6 w-6 text-white dark:text-gray-900"
+                      aria-hidden="true"
+                    />
+                    <span className="dark:text-gray-900"> {t("home")}</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/shop"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <ShoppingBagIcon
+                      className="h-6 w-6  dark:text-gray-900"
+                      aria-hidden="true"
+                    />
+                    <span className="dark:text-gray-900"> {t("shop")}</span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/favorite"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <HeartIcon
+                      className="h-6 w-6  dark:text-gray-900"
+                      aria-hidden="true"
+                    />
+                    <span className="dark:text-gray-900">
+                      {" "}
+                      {t("favorites")}
+                    </span>
+                    <FavoritesCount />
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/cart"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <ShoppingCartIcon
+                      className="h-6 w-6 text-white dark:text-gray-900"
+                      aria-hidden="true"
+                    />
+                    <span className="dark:text-gray-900"> {t("cart")}</span>
+                    {cartItems.length > 0 && (
+                      <span>
+                        <span className="px-1 py-0 text-sm text-white bg-gray-700 rounded-full">
+                          {cartItems.reduce((a, c) => a + c.qty, 0)}
+                        </span>
+                      </span>
+                    )}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/contact"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <EnvelopeOpenIcon
+                      className="h-6 w-6 text-white dark:text-gray-900"
+                      aria-hidden="true"
+                    />
+                    <span className="dark:text-gray-900"> {t("contact")}</span>
+                  </NavLink>
+                </li>
+
+                {!userInfo && (
+                  <>
+                    <li>
+                      <NavLink
+                        to="/login"
+                        className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                      >
+                        <ArrowRightStartOnRectangleIcon
+                          className="h-6 w-6 text-white dark:text-gray-900"
+                          aria-hidden="true"
+                        />
+                        <span className="dark:text-gray-900">
+                          {" "}
+                          {t("login")}
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/register"
+                        className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                      >
+                        <ArrowRightStartOnRectangleIcon
+                          className="h-6 w-6 text-white dark:text-gray-900"
+                          aria-hidden="true"
+                        />
+                        <span className="dark:text-gray-900">
+                          {" "}
+                          {t("register")}
+                        </span>
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+
+                {userInfo && (
+                  <li className="flex">
+                    <Button
+                      onClick={logoutHandler}
+                      className="block w-full px-4 py-2 text-left text-sm leading-6 font-semibold"
+                    >
+                      <span className="dark:text-gray-900"> {t("logout")}</span>
+                    </Button>
+                  </li>
+                )}
+                <li>
+                  <NavLink to="/admin/dashboard">
+                    <span className="sr-only">admin</span>
+                    {userInfo && userInfo.isAdmin && (
+                      <span className="text-white mx-4 dark:text-gray-900">
+                        {t("admin")}
+                      </span>
+                    )}
+                  </NavLink>
+                </li>
+              </ul>
+              <ul>
+                <li className="mx-12 -mt-16 dark:text-gray-900">
+                  <ToggleTheme />
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 pb-2 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+        <Button
+          type="button"
+          className="-m-2.5 p-2.5 text-indigo-200 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <span className="sr-only">Open sidebar</span>
+          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+        </Button>
+        <a href="#">
+          <span className="sr-only">Admin</span>
+          {userInfo && userInfo.isAmin && <span>{t("admin")}</span>}
+        </a>
+      </div>
+    </>
   );
-};
+}
 
 export default Navigation;

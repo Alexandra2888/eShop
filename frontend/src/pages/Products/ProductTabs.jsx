@@ -33,7 +33,7 @@ const ProductTabs = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row mx-8 md:mx-0">
       <section className="mr-[5rem]">
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -67,7 +67,7 @@ const ProductTabs = ({
           <div className="mt-4">
             {userInfo ? (
               <form onSubmit={submitHandler}>
-                <div className="my-2">
+                <div className="my-2 ml-3 md:ml-0">
                   <label htmlFor="rating" className="block text-xl mb-2">
                   {t('rating')}
                   </label>
@@ -88,7 +88,7 @@ const ProductTabs = ({
                   </select>
                 </div>
 
-                <div className="my-2">
+                <div className="my-3 md:my-2 ml-2 md:ml-0">
                   <label htmlFor="comment" className="block text-xl mb-2">
                   {t('comment')}
                   </label>
@@ -105,7 +105,7 @@ const ProductTabs = ({
                 <Button
                   type="submit"
                   disabled={loadingProductReview}
-                  className="bg-pink-600 text-white py-2 px-4 rounded-lg"
+                  className="ml-3 md:ml-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-white py-2 px-4 rounded-lg"
                 >
                   {t('submit')}
                 </Button>

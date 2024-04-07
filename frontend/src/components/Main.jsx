@@ -4,8 +4,9 @@ import { useGetTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";
 import SmallProduct from "../pages/Products/SmallProduct";
 import ProductCarousel from "../pages/Products/ProductCarousel";
+import Banner from "./Banner";
 
-const Header = () => {
+const Main = () => {
   const { data, isLoading, error } = useGetTopProductsQuery();
   const { t } = useTranslation();
 
@@ -20,20 +21,23 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-around">
-        <div className="xl:block lg:hidden md:hidden:sm:hidden">
-          <div className="grid grid-cols-2">
-            {data.map((product) => (
-              <div key={product._id}>
-                <SmallProduct product={product} />
-              </div>
-            ))}
-          </div>
+      <div className="flex flex-col justify-center items-center">
+        <Banner />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <h3 className="text-xl font-semibold text-center col-span-full">Latest products</h3>
+  {data.map((product) => (
+    <div key={product._id} className="p-3">
+      <SmallProduct product={product} />
+    </div>
+  ))}
+</div>
+
+      <ProductCarousel />
+
+       
         </div>
-        <ProductCarousel />
-      </div>
     </>
   );
 };
 
-export default Header;
+export default Main;

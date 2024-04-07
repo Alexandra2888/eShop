@@ -14,12 +14,12 @@ const Favorites = () => {
   return (
     <>
     <Metadata title={"Favorites"} />
-    <div className="ml-[10rem]">
-      <h1 className="text-lg font-bold ml-[3rem] mt-[3rem]">
+    <div className="flex flex-col justify-center items-center h-screen dark:bg-gray-900 dark:text-slate-50">
+      <h1 className="text-lg font-bold md:py-12">
       {t('favorite_products')}
       </h1>
 
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap max-w-xs md:max-3xl">
         {favorites.map((product) => (
           <Product key={product._id} product={product} />
         ))}

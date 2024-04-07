@@ -24,17 +24,17 @@ const ProductCard = ({ p }) => {
   };
 
   return (
-    <div className="max-w-sm relative bg-[#1A1A1A] rounded-lg shaodw dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex flex-wrap md:w-[20rem] md:h-[20rem] border-gray-200 border-[1px] rounded-xl shadow-md space-x-5 shaodw-xl overflow-hidden ">
       <section className="relative">
         <Link to={`/product/${p._id}`}>
-          <span className="absolute bottom-3 right-3 bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
+          <span className="absolute bottom-3 right-3 bg-blue-800 text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full ">
             {p?.brand}
           </span>
           <img
             className="cursor-pointer w-full"
             src={p.image}
             alt={p.name}
-            style={{ height: "170px", objectFit: "cover" }}
+            style={{ height: "170px", objectFit: "cover", margin:"2px" }}
           />
         </Link>
         <HeartIcon product={p} />
@@ -44,7 +44,7 @@ const ProductCard = ({ p }) => {
         <div className="flex justify-between">
           <h5 className="mb-2 text-xl text-whiet dark:text-white">{p?.name}</h5>
 
-          <p className=" font-semibold text-pink-500">
+          <p className=" font-semibold text-black">
             {p?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
@@ -52,14 +52,15 @@ const ProductCard = ({ p }) => {
           </p>
         </div>
 
-        <p className="mb-3 font-normal text-[#CFCFCF]">
+        <p className="mb-3 font-normal text-gray-700">
           {p?.description?.substring(0, 60)} ...
         </p>
 
         <section className="flex justify-between items-center">
+          <div className="flex items-center space-x-24">
           <Link
             to={`/product/${p._id}`}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 dark:focus:ring-blue-600"
           >
             {t('read_more')}
             <svg
@@ -84,7 +85,8 @@ const ProductCard = ({ p }) => {
             onClick={() => addToCartHandler(p, 1)}
           >
             <AiOutlineShoppingCart size={25} />
-          </Button>
+            </Button>
+            </div>
         </section>
       </div>
     </div>

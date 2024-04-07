@@ -110,6 +110,7 @@
     "all_reviews": "Toate recenziile",
     "related_products": "Produse asemanatoare",
     "rating": "Evaluare",
+    "comment": "Comentarii",
     "select": "Selecteaza",
     "inferior": "Inferior",
     "decent": "Decent",
@@ -124,5 +125,9 @@
     "all_orders": "Toate comenzile",
     "user": "Utilizator",
     "data": "Data",
-    "cuntry":"Tara"
+    "cuntry":"Tara",
+    "banner_title": "Imbunatateste-ti viata cu cele mai recente produse IT",
+    "shop_now": "Cumpara acum",
+    "footer_description":"Imbunatatirea vietii de zi cu zi cu solutii IT inovative.",
+    "empty_cart":"Goleste cosul"
 }
