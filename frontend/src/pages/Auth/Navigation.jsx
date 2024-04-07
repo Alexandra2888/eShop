@@ -105,7 +105,7 @@ function Navigation() {
                       </Button>
                     </div>
                   </Transition.Child>
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 pb-2">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-[#172A45] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 pb-2">
                     <div className="flex h-16 shrink-0 items-center">eShop</div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -184,7 +184,7 @@ function Navigation() {
                                 </span>
                                 {cartItems.length > 0 && (
                                   <span>
-                                    <span className="px-1 py-0 text-sm text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 rounded-full">
+                                    <span className="px-1 py-0 text-sm text-white dark:bg-[#172A45] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 rounded-full">
                                       {cartItems.reduce((a, c) => a + c.qty, 0)}
                                     </span>
                                   </span>
@@ -283,7 +283,7 @@ function Navigation() {
 
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-fit lg:flex-col ">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white px-6">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-navy-900 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  text-white px-6">
             <Link
               to="/"
               className="flex h-16 shrink-0 items-center dark:text-gray-900"
@@ -448,7 +448,7 @@ function Navigation() {
         </div>
       </div>
 
-      <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 pb-2 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+      <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 dark:bg-navy-900 pb-2 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
         <Button
           type="button"
           className="-m-2.5 p-2.5 text-indigo-200 lg:hidden"

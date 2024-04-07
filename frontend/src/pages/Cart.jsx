@@ -39,7 +39,7 @@ const Cart = () => {
   return (
     <>
       <Metadata title={"Cart"} />
-      <div className="flex justify-center items-center my-8 h-screen dark:bg-gray-900 text-slate-50">
+      <div className="flex justify-center items-center my-8 h-screen ">
         {cartItems.length === 0 ? (
           <div className="font-bold">
             {t("cart_empty")}{" "}

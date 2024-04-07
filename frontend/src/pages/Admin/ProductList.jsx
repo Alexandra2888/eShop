@@ -116,7 +116,7 @@ const ProductList = () => {
                 <label htmlFor="name">{t('name')}</label> <br />
                 <Input
                   type="text"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -125,7 +125,7 @@ const ProductList = () => {
                 <label htmlFor="name block">{t('price')}</label> <br />
                 <Input
                   type="number"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -136,7 +136,7 @@ const ProductList = () => {
                 <label htmlFor="name block">{t('quantity')}</label> <br />
                 <Input
                   type="number"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
@@ -145,7 +145,7 @@ const ProductList = () => {
                 <label htmlFor="name block">  {t('brand')}</label> <br />
                 <Input
                   type="text"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                 />
@@ -157,7 +157,7 @@ const ProductList = () => {
             </label>
             <textarea
               type="text"
-              className="p-2 mb-3 bg-white dark:bg-[#101011] border rounded-lg w-[95%] text-white"
+              className="p-2 mb-3 bg-white dark:bg-[#3A3A3A] dark:text-slate-50 border rounded-lg w-[95%] text-white"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
@@ -167,7 +167,7 @@ const ProductList = () => {
                 <label htmlFor="name block">{t('count_in_stock')}</label> <br />
                 <input
                   type="text"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#3A3A3A] dark:text-slate-50"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                 />
@@ -177,7 +177,7 @@ const ProductList = () => {
                 <label htmlFor="">{t('category')}</label> <br />
                 <select
                   placeholder="Choose Category"
-                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#101011] text-white"
+                  className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#3A3A3A] dark:text-slate-50"
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   {categories?.map((c) => (

@@ -14,7 +14,7 @@ const Favorites = () => {
   return (
     <>
     <Metadata title={"Favorites"} />
-    <div className="flex flex-col justify-center items-center h-screen dark:bg-gray-900 dark:text-slate-50">
+    <div className="flex flex-col justify-center items-center h-screen ">
       <h1 className="text-lg font-bold md:py-12">
       {t('favorite_products')}
       </h1>

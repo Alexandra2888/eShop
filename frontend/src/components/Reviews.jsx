@@ -35,11 +35,11 @@ function classNames(...classes) {
 
 const Reviews = () =>  {
   return (
-      <div className="bg-white md:ml-[10rem] dark:bg-gray-900">
+      <div className=" md:ml-[10rem] d">
          
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-32">
       <div className="lg:col-span-4">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-50">Customer Reviews</h2>
+        <h2 className="text-2xl font-bold tracking-tight  dark:text-white">Customer Reviews</h2>
 
         <div className="mt-3 flex items-center">
           <div>
@@ -57,7 +57,7 @@ const Reviews = () =>  {
             </div>
             <p className="sr-only">{reviews.average} out of 5 stars</p>
           </div>
-          <p className="ml-2 text-sm text-gray-900">Based on {reviews.totalCount} reviews</p>
+          <p className="ml-2 text-sm text-gray-900dar: text-white">Based on {reviews.totalCount} reviews</p>
         </div>
 
         <div className="mt-6">
@@ -67,7 +67,7 @@ const Reviews = () =>  {
             {reviews.counts.map((count) => (
               <div key={count.rating} className="flex items-center text-sm">
                 <dt className="flex flex-1 items-center">
-                  <p className="w-3 font-medium text-gray-900">
+                  <p className="w-3 font-medium ">
                     {count.rating}
                     <span className="sr-only"> star reviews</span>
                   </p>
@@ -91,7 +91,7 @@ const Reviews = () =>  {
                     </div>
                   </div>
                 </dt>
-                <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
+                <dd className="ml-3 w-10 text-right text-sm tabular-nums ">
                   {Math.round((count.count / reviews.totalCount) * 100)}%
                 </dd>
               </div>
@@ -110,7 +110,7 @@ const Reviews = () =>  {
                 <div className="flex items-center">
                   <img src={review.avatarSrc} alt={`${review.author}.`} className="h-12 w-12 rounded-full" />
                   <div className="ml-4">
-                    <h4 className="text-sm font-bold text-gray-900">{review.author}</h4>
+                    <h4 className="text-sm font-bold ">{review.author}</h4>
                     <div className="mt-1 flex items-center">
                       {[0, 1, 2, 3, 4].map((rating) => (
                         <StarIcon
@@ -128,7 +128,7 @@ const Reviews = () =>  {
                 </div>
 
                 <div
-                  className="mt-4 space-y-6 text-base italic text-gray-600"
+                  className="mt-4 space-y-6 text-base italic"
                   dangerouslySetInnerHTML={{ __html: review.content }}
                 />
               </div>

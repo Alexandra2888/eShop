@@ -98,7 +98,7 @@ const Shop = () => {
           <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row">
             <div className="flex">
             <div>
-            <h2 className="h4 text-center py-2 rounded-full mb-2 text-black font-semibold dark:text-slate-50">
+            <h2 className="h4 text-center py-2 rounded-full mb-2  font-semibold">
               
             {t('filter_by_categories')}
             </h2>

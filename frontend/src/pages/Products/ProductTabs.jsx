@@ -105,7 +105,7 @@ const ProductTabs = ({
                 <Button
                   type="submit"
                   disabled={loadingProductReview}
-                  className="ml-3 md:ml-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-white py-2 px-4 rounded-lg"
+                  className="ml-3 md:ml-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  text-white py-2 px-4 rounded-lg"
                 >
                   {t('submit')}
                 </Button>
@@ -128,7 +128,7 @@ const ProductTabs = ({
               {product.reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
+                  className=" p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
                 >
                   <div className="flex justify-between">
                     <strong className="text-[#B0B0B0]">{review.name}</strong>
