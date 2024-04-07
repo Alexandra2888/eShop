@@ -99,7 +99,7 @@ const Order = () => {
   ) : error ? (
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
-    <div className="container flex flex-col ml-[10rem] md:flex-row">
+    <div className="container flex flex-col md:ml-[10rem] md:flex-row">
       <div className="md:w-2/3 pr-4">
         <div className="border gray-300 mt-5 pb-4 mb-5">
           {order.orderItems.length === 0 ? (
@@ -143,33 +143,39 @@ const Order = () => {
               </table>
             </div>
           )}
-        </div>
+            </div>
+            <Link to={`/order/${order._id}/invoice`}
+              type="button"
+              className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit  py-3 px-4 mx-36 md:mx-96"
+            >
+                {t('invoice')}
+            </Link>
       </div>
 
       <div className="md:w-1/3">
         <div className="mt-5 border-gray-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2">  {t('shipping')}</h2>
           <p className="mb-4 mt-4">
-            <strong className="text-pink-500">  {t('order')}:</strong> {order._id}
+            <strong className="text-blue-600">  {t('order')}:</strong> {order._id}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">  {t('name')}:</strong>{" "}
+            <strong className="text-blue-600">  {t('name')}:</strong>{" "}
             {order.user.username}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">  {t('email')}:</strong> {order.user.email}
+            <strong className="text-blue-600">  {t('email')}:</strong> {order.user.email}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">  {t('address')}:</strong>{" "}
+            <strong className="text-blue-600">  {t('address')}:</strong>{" "}
             {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">  {t('method')}:</strong>{" "}
+            <strong className="text-blue-600">  {t('method')}:</strong>{" "}
             {order.paymentMethod}
           </p>
 
@@ -197,12 +203,7 @@ const Order = () => {
           <span>  {t('total')}</span>
           <span>$ {order.totalPrice}</span>
         </div>
-        <Link to={`/order/${order._id}/invoice`}
-              type="button"
-              className="bg-pink-500 text-white text-center w-full py-2"
-            >
-                {t('invoice')}
-            </Link>
+      
 
         {!order.isPaid && (
           <div>
@@ -228,7 +229,7 @@ const Order = () => {
           <div>
             <Button
               type="button"
-              className="bg-pink-500 text-white w-full py-2"
+              className="bg-blue-600 text-white w-full py-2"
               onClick={deliverHandler}
             >
                 {t('mark_as_delivered')}

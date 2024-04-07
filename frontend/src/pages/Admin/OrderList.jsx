@@ -23,7 +23,7 @@ const OrderList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <table className="container my-20 mx-auto max-w-sm md:max-w-6xl">
+        <table className="container my-36 mx-auto max-w-sm md:max-w-6xl">
           <AdminMenu />
           <Metadata title={"Orders"} />
           <thead className="max-w-sm md:w-full border text-xs md:text-sm">

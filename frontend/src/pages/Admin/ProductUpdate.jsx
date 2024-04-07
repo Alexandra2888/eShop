@@ -175,7 +175,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name">  {t('name')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-blac dark:bg-[#3A3A3A] dark:text-white mr-[5rem]"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -185,7 +185,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name block">  {t('price')}</label> <br />
                   <Input
                     type="number"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white "
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-white "
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />
@@ -198,7 +198,7 @@ const AdminProductUpdate = () => {
                   <Input
                     type="number"
                     min="1"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-white mr-[5rem]"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   />
@@ -207,7 +207,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name block">  {t('brand')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-white"
                     value={brand}
                     onChange={(e) => setBrand(e.target.value)}
                   />
@@ -219,7 +219,7 @@ const AdminProductUpdate = () => {
               </label>
               <textarea
                 type="text"
-                className="p-2 mb-3  border rounded-lg w-[95%] bg-white text-black dark:bg-[#101011] dark:text-white"
+                className="p-2 mb-3  border rounded-lg w-[95%] bg-white text-black dark:bg-[#3A3A3A] dark:text-white"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -229,7 +229,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="name block">  {t('count_in_stock')}</label> <br />
                   <Input
                     type="text"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white "
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-white "
                     value={stock}
                     onChange={(e) => setStock(e.target.value)}
                   />
@@ -239,7 +239,7 @@ const AdminProductUpdate = () => {
                   <label htmlFor="">  {t('category')}</label> <br />
                   <select
                     placeholder="Choose Category"
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#101011] dark:text-white mr-[5rem]"
+                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-white mr-[5rem]"
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     {categories?.map((c) => (

@@ -84,15 +84,8 @@ const Invoice = () => {
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
     <>
-    <div className="container  flex flex-col ml-[10rem] md:flex-row" >
-    <Button 
-         type="button"
-         onClick={downloadInvoice} 
-         className="bg-pink-500 text-white text-center w-fit h-fit my-12 px-4 py-2"
-       >
-        {t('download_invoice')}
-       </Button> 
-      <div className="md:w-1/3 text-black" id='order-summary'>
+    <div className="container flex justify-center items-center flex-col my-12 py-8" >
+      <div className="md:w-1/3 text-black bg-white" id='order-summary'>
         <div className="mt-5 border-gray-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2">{t('shipping')}</h2>
           <p className="mb-4 mt-4">
@@ -140,9 +133,16 @@ const Invoice = () => {
           <span>$ {order.totalPrice}</span>
         </div>
 
-        </div>
+              </div>
+              
     </div>
-        
+    <Button 
+         type="button"
+         onClick={downloadInvoice} 
+         className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit h-fit my-12 px-4 py-2"
+       >
+        {t('download_invoice')}
+       </Button> 
       </div>
 
        </>
