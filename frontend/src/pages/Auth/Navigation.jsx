@@ -4,16 +4,16 @@ import { useTranslation } from "react-i18next";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
-  Bars3Icon,
-  HomeIcon,
-  XMarkIcon,
-  ShoppingCartIcon,
-  EnvelopeOpenIcon,
-  ShoppingBagIcon,
-  HeartIcon,
-  ArrowRightStartOnRectangleIcon,
-  ArrowLeftStartOnRectangleIcon,
-} from "@heroicons/react/24/outline";
+  FaHome,
+  FaEnvelopeOpen,
+  FaShoppingBag,
+  FaHeart,
+  FaShoppingCart,
+  FaBars,
+  FaTimes,
+  FaSignInAlt,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
@@ -98,7 +98,7 @@ function Navigation() {
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon
+                        <FaTimes
                           className="h-6 w-6 text-white"
                           aria-hidden="true"
                         />
@@ -130,8 +130,8 @@ function Navigation() {
                                 to="/"
                                 className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               >
-                                <HomeIcon
-                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                <FaHome
+                                  className="h-5 w-5 text-white dark:text-gray-900"
                                   aria-hidden="true"
                                 />
                                 <span className="dark:text-gray-900">
@@ -144,8 +144,8 @@ function Navigation() {
                                 to="/shop"
                                 className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold dark:text-gray-900"
                               >
-                                <ShoppingBagIcon
-                                  className="h-6 w-6  dark:text-gray-900 "
+                                <FaShoppingBag
+                                  className="h-5 w-5  dark:text-gray-900 "
                                   aria-hidden="true"
                                 />
                                 <span className="dark:text-gray-900">
@@ -159,8 +159,8 @@ function Navigation() {
                                 to="/contact"
                                 className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               >
-                                <EnvelopeOpenIcon
-                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                <FaEnvelopeOpen
+                                  className="h-5 w-5 text-white dark:text-gray-900"
                                   aria-hidden="true"
                                 />
                                 <span className="dark:text-gray-900">
@@ -174,8 +174,8 @@ function Navigation() {
                                 to="/cart"
                                 className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               >
-                                <ShoppingCartIcon
-                                  className="h-6 w-6 text-white dark:text-gray-900"
+                                <FaShoppingCart
+                                  className="h-5 w-5 text-white dark:text-gray-900"
                                   aria-hidden="true"
                                 />
                                 <span className="dark:text-gray-900">
@@ -196,8 +196,8 @@ function Navigation() {
                                 to="/favorite"
                                 className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               >
-                                <HeartIcon
-                                  className="h-6 w-6  dark:text-gray-900 "
+                                <FaHeart
+                                  className="h-5 w-5  dark:text-gray-900 "
                                   aria-hidden="true"
                                 />
                                 <span className="dark:text-gray-900">
@@ -226,7 +226,7 @@ function Navigation() {
                                       to="/login"
                                       className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
                                     >
-                                      <ArrowRightStartOnRectangleIcon className=" h-6 w-6 text-white mr-2 mt-[4px] dark:text-gray-900" />
+                                      <FaSignInAlt className=" h-6 w-6 text-white mr-2 mt-[4px] dark:text-gray-900" />
 
                                       <span className="dark:text-gray-900">
                                         {" "}
@@ -239,7 +239,7 @@ function Navigation() {
                                       to="/register"
                                       className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
                                     >
-                                      <ArrowRightStartOnRectangleIcon className="h-6 w-6 text-white mr-2 dark:text-gray-900" />
+                                      <FaSignOutAlt className="h-6 w-6 text-white mr-2 dark:text-gray-900" />
 
                                       <span className="dark:text-gray-900">
                                         {" "}
@@ -252,11 +252,11 @@ function Navigation() {
                             </li>
                           </ul>
                         </li>
-                       
+
                         {userInfo && (
                           <li className="flex ">
                             <span>
-                              <ArrowLeftStartOnRectangleIcon className="h-6 w-6 text-white dark:text-gray-900" />
+                              <FaSignOutAlt className="h-6 w-6 text-white dark:text-gray-900" />
                             </span>
                             <Button
                               onClick={logoutHandler}
@@ -269,9 +269,9 @@ function Navigation() {
                             </Button>
                           </li>
                         )}
-                          <li className="mx-12 mt-18">
-                            <ToggleTheme />
-                          </li>
+                        <li className="mx-12 mt-18">
+                          <ToggleTheme />
+                        </li>
                       </ul>
                     </nav>
                   </div>
@@ -313,8 +313,8 @@ function Navigation() {
                     to="/"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
-                    <HomeIcon
-                      className="h-6 w-6 text-white dark:text-gray-900"
+                    <FaHome
+                      className="h-5 w-5 text-white dark:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="dark:text-gray-900"> {t("home")}</span>
@@ -325,8 +325,8 @@ function Navigation() {
                     to="/shop"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
-                    <ShoppingBagIcon
-                      className="h-6 w-6  dark:text-gray-900"
+                    <FaShoppingBag
+                      className="h-5 w-5  dark:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="dark:text-gray-900"> {t("shop")}</span>
@@ -338,8 +338,8 @@ function Navigation() {
                     to="/favorite"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
-                    <HeartIcon
-                      className="h-6 w-6  dark:text-gray-900"
+                    <FaHeart
+                      className="h-5 w-5  dark:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="dark:text-gray-900">
@@ -355,8 +355,8 @@ function Navigation() {
                     to="/cart"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
-                    <ShoppingCartIcon
-                      className="h-6 w-6 text-white dark:text-gray-900"
+                    <FaShoppingCart
+                      className="h-5 w-5 text-white dark:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="dark:text-gray-900"> {t("cart")}</span>
@@ -374,8 +374,8 @@ function Navigation() {
                     to="/contact"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
-                    <EnvelopeOpenIcon
-                      className="h-6 w-6 text-white dark:text-gray-900"
+                    <FaEnvelopeOpen
+                      className="h-5 w-5 text-white dark:text-gray-900"
                       aria-hidden="true"
                     />
                     <span className="dark:text-gray-900"> {t("contact")}</span>
@@ -389,8 +389,8 @@ function Navigation() {
                         to="/login"
                         className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                       >
-                        <ArrowRightStartOnRectangleIcon
-                          className="h-6 w-6 text-white dark:text-gray-900"
+                        <FaSignInAlt
+                          className="h-5 w-5 text-white dark:text-gray-900"
                           aria-hidden="true"
                         />
                         <span className="dark:text-gray-900">
@@ -404,8 +404,8 @@ function Navigation() {
                         to="/register"
                         className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                       >
-                        <ArrowRightStartOnRectangleIcon
-                          className="h-6 w-6 text-white dark:text-gray-900"
+                        <FaSignInAlt
+                          className="h-5 w-5 text-white dark:text-gray-900"
                           aria-hidden="true"
                         />
                         <span className="dark:text-gray-900">
@@ -418,14 +418,20 @@ function Navigation() {
                 )}
 
                 {userInfo && (
-                  <li className="flex">
-                    <Button
-                      onClick={logoutHandler}
-                      className="block w-full px-4 py-2 text-left text-sm leading-6 font-semibold"
-                    >
-                      <span className="dark:text-gray-900"> {t("logout")}</span>
-                    </Button>
-                  </li>
+                  <li className="flex ">
+                  <span>
+                    <FaSignOutAlt className="h-6 w-6 text-white dark:text-gray-900" />
+                  </span>
+                  <Button
+                    onClick={logoutHandler}
+                    className="block -mt-2 w-full px-4 py-2 text-left"
+                  >
+                    <span className="dark:text-gray-900">
+                      {" "}
+                      {t("logout")}
+                    </span>
+                  </Button>
+                </li>
                 )}
                 <li>
                   <NavLink to="/admin/dashboard">
@@ -455,7 +461,7 @@ function Navigation() {
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
-          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          <FaBars className="h-6 w-6" aria-hidden="true" />
         </Button>
         <a href="#">
           <span className="sr-only">Admin</span>

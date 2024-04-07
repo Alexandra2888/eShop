@@ -1,4 +1,5 @@
-import { StarIcon } from '@heroicons/react/20/solid'
+import { FaStar } from 'react-icons/fa';
+
 
 const reviews = {
     average: 4.2,
@@ -45,7 +46,7 @@ const Reviews = () =>  {
           <div>
             <div className="flex items-center">
               {[0, 1, 2, 3, 4].map((rating) => (
-                <StarIcon
+                <FaStar
                   key={rating}
                   className={classNames(
                     reviews.average > rating ? 'text-yellow-400' : 'text-gray-300',
@@ -72,7 +73,7 @@ const Reviews = () =>  {
                     <span className="sr-only"> star reviews</span>
                   </p>
                   <div aria-hidden="true" className="ml-1 flex flex-1 items-center">
-                    <StarIcon
+                    <FaStar
                       className={classNames(
                         count.count > 0 ? 'text-yellow-400' : 'text-gray-300',
                         'h-5 w-5 flex-shrink-0'
@@ -113,7 +114,7 @@ const Reviews = () =>  {
                     <h4 className="text-sm font-bold ">{review.author}</h4>
                     <div className="mt-1 flex items-center">
                       {[0, 1, 2, 3, 4].map((rating) => (
-                        <StarIcon
+                        <FaStar
                           key={rating}
                           className={classNames(
                             review.rating > rating ? 'text-yellow-400' : 'text-gray-300',

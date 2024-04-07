@@ -94,7 +94,7 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className=" md:ml-[8rem] bottom-0 bg-inherit text-inherit dark:bg-inherit dark:bg-[#3A3A3A] dark:text-slate-50" aria-labelledby="footer-heading">
+    <footer className=" md:ml-[8rem] bottom-0 bg-inherit dark:bg-[#3A3A3A] dark:text-slate-50" aria-labelledby="footer-heading">
     <h2 id="footer-heading" className="sr-only">
       Footer
     </h2>
