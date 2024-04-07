@@ -92,13 +92,11 @@ const Shop = () => {
     <>
       <Metadata title={"Shop"} />
       <div className="flex justify-center md:ml-[10rem]">
-        <div>
-
-
-          <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row">
-            <div className="flex">
+        <div >
+          <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row ">
+            <div className="">
             <div>
-            <h2 className="h4 text-center py-2 rounded-full mb-2  font-semibold">
+            <h2 className="h4 text-center py-2 rounded-full mb-2 font-semibold">
               
             {t('filter_by_categories')}
             </h2>
@@ -116,7 +114,7 @@ const Shop = () => {
 
                     <label
                       htmlFor="pink-checkbox"
-                      className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
                     >
                       {c.name}
                     </label>
@@ -143,7 +141,7 @@ const Shop = () => {
 
                     <label
                       htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
                     >
                       {brand}
                     </label>
@@ -162,13 +160,13 @@ const Shop = () => {
                 placeholder="Enter Price"
                 value={priceFilter}
                 onChange={handlePriceChange}
-                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-pink-300"
+                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-sky-300"
               />
             </div>
 
             <div className="p-5 pt-0">
               <Button
-                className="w-full border my-4  text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
+                className="w-full border my-4  text-black bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
                 onClick={() => window.location.reload()}
               >
                {t('reset')}
