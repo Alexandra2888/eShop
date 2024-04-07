@@ -52,7 +52,7 @@ const PlaceOrder = () => {
     <>
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-auto mt-8">
+      <div className="container mt-8 md:ml-[15rem] max-w-6xl">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
@@ -96,7 +96,7 @@ const PlaceOrder = () => {
 
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-5">{t('order_summary')}</h2>
-          <div className="flex justify-between flex-wrap p-8 bg-[#181818]">
+          <div className="flex justify-between flex-wrap p-8 dark:bg-[#3A3A3A]">
             <ul className="text-lg">
               <li>
                 <span className="font-semibold mb-4">{t('items')}:</span> $
@@ -106,10 +106,10 @@ const PlaceOrder = () => {
                 <span className="font-semibold mb-4">{t('shipping')}:</span> $
                 {cart.shippingPrice}
               </li>
-              {/* <li>
+              <li>
                 <span className="font-semibold mb-4">{t('tax')}:</span> $
                 {cart.taxPrice}
-              </li> */}
+              </li>
               <li>
                 <span className="font-semibold mb-4">{t('total')}:</span> $
                 {cart.totalPrice}
@@ -135,7 +135,7 @@ const PlaceOrder = () => {
 
           <Button
             type="button"
-            className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
+            className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >
