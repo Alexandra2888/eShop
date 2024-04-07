@@ -8,7 +8,8 @@ const calcPrices = (orderItems) => {
     0
   );
 
-  const shippingPrice = itemsPrice >= 500 ? 0 : 100;
+  const shippingPrice = itemsPrice <= 500 ? 100 : 0;
+
   const taxRate = 0.15;
   const taxPrice = (itemsPrice * taxRate).toFixed(2);
 
