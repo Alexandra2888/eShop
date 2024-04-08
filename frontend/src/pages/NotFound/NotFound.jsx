@@ -9,10 +9,10 @@ export default function NotFound() {
   return (
     <>
   <Metadata title={"Not Found"} />
-      <main className="grid min-h-full place-items-center bg-white px-6 sm:py-32 lg:px-8 dark:bg-gray-900 ">
+      <main className="grid min-h-full place-items-center bg-white text-black px-6 sm:py-32 lg:px-8 dark:bg-[#3A3A3A] dark:text-slate-50 h-screen">
         <div className="text-center">
           <p className="text-base font-semibold text-blue-600">404</p>
-          <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-slate-50">{t('not_found')}</h1>
+          <h1 className="mt-4 text-2xl font-bold tracking-tight  sm:text-4xl dark:text-slate-50">{t('not_found')}</h1>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               to='/'
