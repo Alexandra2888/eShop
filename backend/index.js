@@ -23,10 +23,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({
-  origin: 'https://eshop-yn0p.onrender.com'
-}));
-
+app.use(
+  cors({
+    origin: "http://localhost:5173/",
+  })
+);
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
