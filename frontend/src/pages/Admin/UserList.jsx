@@ -92,7 +92,7 @@ const UserList = () => {
       ) : (
         <div>
           <AdminMenu />
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto h-screen">
             <table className="min-w-full">
               <thead>
                 <tr className="bg-gray-100 dark:bg-gray-700">
