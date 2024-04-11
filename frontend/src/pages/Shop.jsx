@@ -15,6 +15,7 @@ import ProductCard from "./Products/ProductCard";
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
 import Input from '../components/Input';
+import BackToTopBtn from "../components/BackToTopBtn";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -172,7 +173,8 @@ const Shop = () => {
                {t('reset')}
               </Button>
             </div>
-          </div>
+              </div>
+              <BackToTopBtn/>
           </div>
 
 
