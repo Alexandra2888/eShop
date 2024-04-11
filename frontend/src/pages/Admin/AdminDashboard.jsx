@@ -18,8 +18,8 @@ import Metadata from "../../components/Metadata";
 
 const AdminDashboard = () => {
   const { data: sales, isLoading } = useGetTotalSalesQuery();
-  const { data: customers, isLoading: loading } = useGetUsersQuery();
-  const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery();
+  const { data: customers } = useGetUsersQuery();
+  const { data: orders } = useGetTotalOrdersQuery();
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
 
   const { t } = useTranslation();
@@ -102,7 +102,7 @@ const AdminDashboard = () => {
       <Metadata title={"Admin Dashboard"} />
       <section className="md:ml-[8rem]">
         <div className="w-[80%] flex justify-around flex-wrap">
-          <div className="rounded-lg bg-white p-5 w-[20rem] mt-5 md:ml-[5rem] dark:bg-[#3A3A3A] dark:text-slate-50">
+          <div className="rounded-lg bg-white text-black p-5 w-[20rem] mt-5 md:ml-[5rem] dark:bg-[#3A3A3A] dark:text-slate-50">
             <div className="font-bold rounded-full w-[3rem] bg-blue-600 text-center p-3">
               $
             </div>
@@ -134,7 +134,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="ml-[10rem] mt-[4rem]">
+        <div className="ml-[10rem] mt-[4rem] dark:bg-[#3A3A3A] dark:text-slate-50">
           <Chart
             options={state.options}
             series={state.series}
