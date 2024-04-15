@@ -131,5 +131,15 @@
     "footer_description":"Enhancing everyday life with innovative IT solutions.",
     "empty_cart":"  Empty cart",
     "ready_for_tech": "Ready for a tech upgrade?",
-    "check_latest_collection": "Check out our latest collection."
+    "check_latest_collection": "Check out our latest collection.",
+    "latest_products":"Latest products",
+    "customer_reviews": "Customer Reviews",
+    "review_data": "Review Data",
+    "star_reviews": "Star Reviews",
+    "recent_reviews": "Recent Reviews",
+    "delete_product":"Are you sure you want to delete this product?",
+    "cancel":"Cancel",
+    "confirm":"Confirm",
+    "delete_user":"Are you sure you want to delete this user?",
+    "featured_products":"Featured products"
 }

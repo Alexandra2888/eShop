@@ -60,7 +60,7 @@ const ProductCarousel = () => {
         <>
           <div className="my-24 max-w-sm md:max-w-full">
             <h3 className="text-xl font-semibold text-center my-8">
-              Featured products
+            {t("featured_products")}
             </h3>
             <Slider {...settings} className="">
               {products.map(
@@ -97,11 +97,11 @@ const ProductCarousel = () => {
                       <div className="flex items-center justify-between">
                         <h1 className="flex items-center">
                           <FaStar className="mr-1 text-yellow-300" /> {numReviews}{" "}
-                          Reviews
+                          {t("reviews")}
                         </h1>
                         <h1 className="flex items-center">
                           <FaBox className="mr-1 text-blue-900" /> {rating}{" "}
-                          Rating
+                          {t("rating")}
                         </h1>
                       </div>
                     </div>

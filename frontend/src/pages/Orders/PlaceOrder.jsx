@@ -84,7 +84,7 @@ const PlaceOrder = () => {
 
       <div className="container mt-8 md:ml-[15rem] max-w-6xl">
         {cart.cartItems.length === 0 ? (
-          <Message>Your cart is empty</Message>
+          <Message>{t("empty_cart")}</Message>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">

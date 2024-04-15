@@ -131,6 +131,15 @@
     "footer_description":"Verbesserung des täglichen Lebens durch innovative IT-Lösungen.",
     "empty_cart":"Leerer Warenkorb",
     "ready_for_tech": "Bereit für ein technisches Upgrade?",
-    "check_latest_collection": "Entdecken Sie unsere neueste Kollektion."
+    "check_latest_collection": "Entdecken Sie unsere neueste Kollektion.",
+    "latest_products": "Neueste Produkte",
+    "customer_reviews": "Kundenbewertungen",
+    "review_data": "Bewertungsdaten",
+    "star_reviews": "Sternbewertungen",
+    "recent_reviews": "Neueste Bewertungen",
+    "delete_product": "Sind Sie sicher, dass Sie dieses Produkt löschen möchten?",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "delete_user": "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
   }
   

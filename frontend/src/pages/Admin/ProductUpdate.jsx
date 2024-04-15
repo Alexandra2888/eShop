@@ -276,13 +276,13 @@ const AdminProductUpdate = () => {
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
                 >
-                  <p className="text-black">Are you sure you want to delete this product? </p>
+                  <p className="text-black"> {t("delete_product")} </p>
                   <div className="flex justify-between">
                   <Button onClick={confirmDelete} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600">
-                   Confirm
+                  {t("confirm")}
                   </Button>
                   <Button onClick={() => setIsModalOpen(false)} className="p2-4 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600">
-                    Cancel
+                  {t("cancel")}
                     </Button>
                     </div>
                 </Modal>

@@ -165,13 +165,13 @@ const UserList = () => {
                             isOpen={isDeleteModalOpen}
                             onClose={() => setIsDeleteModalOpen(false)}
                           >
-                              <p className="text-black">Are you sure you want to delete this user?</p>
+                              <p className="text-black">{t("delete_user")}</p>
                               <div className="flex justify-between">
                             <Button onClick={confirmDelete} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600">
-                             Confirm
+                            {t("confirm")}
                             </Button>
                             <Button onClick={() => setIsDeleteModalOpen(false)} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600">
-                              Cancel
+                            {t("cancel")}
                                 </Button>
                                 </div>
                           </Modal>

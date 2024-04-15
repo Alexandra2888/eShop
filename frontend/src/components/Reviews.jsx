@@ -1,4 +1,5 @@
 import { FaStar } from 'react-icons/fa';
+import { useTranslation } from "react-i18next";
 
 
 const reviews = {
@@ -34,13 +35,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Reviews = () =>  {
+const Reviews = () => {
+  const { t } = useTranslation();
+
   return (
       <div className=" md:ml-[10rem] d">
          
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-32">
       <div className="lg:col-span-4">
-        <h2 className="text-2xl font-bold tracking-tight  dark:text-white">Customer Reviews</h2>
+        <h2 className="text-2xl font-bold tracking-tight  dark:text-white">{t('customer_reviews')}</h2>
 
         <div className="mt-3 flex items-center">
           <div>
@@ -62,7 +65,7 @@ const Reviews = () =>  {
         </div>
 
         <div className="mt-6">
-          <h3 className="sr-only">Review data</h3>
+          <h3 className="sr-only">{t('review_data')}</h3>
 
           <dl className="space-y-3">
             {reviews.counts.map((count) => (
@@ -70,7 +73,7 @@ const Reviews = () =>  {
                 <dt className="flex flex-1 items-center">
                   <p className="w-3 font-medium ">
                     {count.rating}
-                    <span className="sr-only"> star reviews</span>
+                    <span className="sr-only"> {t('star_reviews')}</span>
                   </p>
                   <div aria-hidden="true" className="ml-1 flex flex-1 items-center">
                     <FaStar
@@ -102,7 +105,7 @@ const Reviews = () =>  {
 </div>
 
       <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-        <h3 className="sr-only">Recent reviews</h3>
+        <h3 className="sr-only">{t('recent_reviews')}</h3>
 
         <div className="flow-root">
           <div className="-my-12 divide-y divide-gray-200">

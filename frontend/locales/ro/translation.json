@@ -130,6 +130,16 @@
     "shop_now": "Cumpara acum",
     "footer_description":"Imbunatatirea vietii de zi cu zi cu solutii IT inovative.",
     "empty_cart":"Goleste cosul",
-    "ready_for_tech": "Esti pregatit pentru un upgrade tehnologic?",
-    "check_latest_collection": "Descopera cea mai recenta colectie."
+    "ready_for_tech": "Esti pregatit pentru un upgrade hi-tech?",
+    "check_latest_collection": "Descopera cea mai recenta colectie.",
+    "latest_products":"Ultimele produse adaugate",
+    "customer_reviews": "Recenzii ale clienților",
+    "review_data": "Datele recenziilor",
+    "star_reviews": "Recenzii pe stele",
+    "recent_reviews": "Recenzii recente",
+    "delete_product": "Sigur vrei sa stergi acest produs?",
+    "cancel": "Anuleaza",
+    "confirm": "Confirma",
+    "delete_user":"Sigur vrei sa stergi acest utilizator?",
+    "customers":"Clienti"
 }

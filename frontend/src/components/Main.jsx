@@ -24,7 +24,7 @@ const Main = () => {
       <div className="flex flex-col justify-center items-center">
         <Banner />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <h3 className="text-xl font-semibold text-center col-span-full">Latest products</h3>
+  <h3 className="text-xl font-semibold text-center col-span-full">{t('latest_products')}</h3>
   {data.map((product) => (
     <div key={product._id} className="p-3">
       <SmallProduct product={product} />
