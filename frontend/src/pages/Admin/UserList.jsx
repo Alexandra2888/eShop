@@ -95,7 +95,7 @@ const UserList = () => {
           <div className="overflow-x-auto h-screen">
             <table className="min-w-full">
               <thead>
-                <tr className="bg-gray-100 dark:bg-gray-700">
+                <tr className="bg-gray-100 dark:bg-inherit" >
                   <th className="px-4 py-2 text-left">{t("name")}</th>
                   <th className="px-4 py-2 text-left">{t("email")}</th>
                   <th className="px-4 py-2 text-left">{t("admin")}</th>
@@ -103,7 +103,7 @@ const UserList = () => {
               </thead>
               <tbody>
                 {users.map((user) => (
-                  <tr key={user._id} className="border-b dark:border-gray-600">
+                  <tr key={user._id} className="border-b ">
                     <td className="px-4 py-2">
                       {editableUserId === user._id ? (
                         <input

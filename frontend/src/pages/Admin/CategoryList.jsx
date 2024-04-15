@@ -98,7 +98,7 @@ const CategoryList = () => {
   };
 
   return (
-    <div className="md:ml-[10rem] my-12 flex flex-col md:flex-row h-screen">
+    <div className="md:ml-[15rem] my-12 flex flex-col md:flex-row h-screen">
       <Metadata title={"Categories"} />
       <AdminMenu />
       <div className="md:w-3/4 p-3">

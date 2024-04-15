@@ -95,7 +95,7 @@ const Shop = () => {
       <div className="flex justify-center md:ml-[10rem]">
         <div >
           <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row ">
-            <div className="">
+            <div>
             <div>
             <h2 className="h4 text-center py-2 rounded-full mb-2 font-semibold">
               
@@ -180,7 +180,7 @@ const Shop = () => {
 
 <div>
           <div className="p-3">
-            <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
+            <h2 className="h4 text-center mb-2">{products?.length}  {t('products')}</h2>
             <div className="flex flex-wrap">
               {products.length === 0 ? (
                 <Loader />
