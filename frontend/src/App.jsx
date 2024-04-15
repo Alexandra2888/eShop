@@ -1,35 +1,24 @@
+import { Outlet } from "react-router-dom";
+import Navigation from "./pages/Auth/Navigation";
+import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18n";
-import {  Route, Routes } from "react-router";
-import { lazy } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n'; 
 
-import { AppProvider } from "./context/DarkModeContext.jsx";
-
-const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
-
-import useUserRoutes from "./routes/userRoutes.jsx";
-import useAdminRoutes from "./routes/adminRoutes.jsx";
-
-
+import { AppProvider } from "./context/DarkModeContext";
 
 const App = () => {
-  const userRoutes = useUserRoutes();
-  const adminRoutes = useAdminRoutes();
   return (
     <>
       <I18nextProvider i18n={i18n}>
-        <AppProvider>
-          <BrowserRouter>
-        <Routes>
-              {userRoutes}
-              {adminRoutes}
-            <Route path="*" element={<NotFound />} />
-            </Routes>
-            </BrowserRouter>
-        </AppProvider>
+      <AppProvider>
+      <Navigation />
+      <main className="py-3 dark:bg-[#3A3A3A] dark:text-slate-50">
+        <Outlet />
+        </main>
+          <Footer />
+          </AppProvider>
       </I18nextProvider>
       <ToastContainer />
     </>

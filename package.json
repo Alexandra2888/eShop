@@ -7,7 +7,6 @@
   "scripts": {
     "backend": "nodemon backend/index.js",
     "frontend": "npm run dev --prefix frontend",
-    "dev": "concurently \"npm run frontend\" \"npm run backend\"",
     "start": "node backend/index.js",
     "build": "nodemon backend/index.js",
     "data:import": "node server/seeder.js",

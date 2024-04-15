@@ -187,7 +187,7 @@ const Shop = () => {
               ) : (
                 products?.map((p) => (
                   <div className="p-3" key={p._id}>
-                    <ProductCard p={p} />
+                    <ProductCard p={p} key={p._id} />
                   </div>
                 ))
               )}
