@@ -14,7 +14,7 @@ import Loader from "../components/Loader";
 import ProductCard from "./Products/ProductCard";
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
-import Input from '../components/Input';
+import Input from "../components/Input";
 import BackToTopBtn from "../components/BackToTopBtn";
 
 const Shop = () => {
@@ -27,7 +27,6 @@ const Shop = () => {
   const [priceFilter, setPriceFilter] = useState("");
 
   const { t } = useTranslation();
-
 
   const filteredProductsQuery = useGetFilteredProductsQuery({
     checked,
@@ -92,108 +91,102 @@ const Shop = () => {
   return (
     <>
       <Metadata title={"Shop"} />
-      <div className="flex justify-center md:ml-[10rem]">
-        <div >
+      <div className="flex justify-between md:ml-[10rem] flex-col md:flex-row min-h-screen">
+        <div className="w-full md:w-68 p-4 border-r">
           <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row ">
             <div>
-            <div>
-            <h2 className="h4 text-center py-2 rounded-full mb-2 font-semibold">
-              
-            {t('filter_by_categories')}
-            </h2>
+              <div>
+                <h2 className="h4 text-center py-2 rounded-full mb-2 font-semibold">
+                  {t("filter_by_categories")}
+                </h2>
 
-            <div className="p-5 w-[15rem]">
-              {categories?.map((c) => (
-                <div key={c._id} className="mb-2">
-                  <div className="flex ietms-center mr-4">
-                    <Input
-                      type="checkbox"
-                      id="red-checkbox"
-                      onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
+                <div className="p-5 w-[15rem]">
+                  {categories?.map((c) => (
+                    <div key={c._id} className="mb-2">
+                      <div className="flex ietms-center mr-4">
+                        <Input
+                          type="checkbox"
+                          id="red-checkbox"
+                          onChange={(e) => handleCheck(e.target.checked, c._id)}
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
 
-                    <label
-                      htmlFor="pink-checkbox"
-                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
-                    >
-                      {c.name}
-                    </label>
-                  </div>
+                        <label
+                          htmlFor="pink-checkbox"
+                          className="ml-2 text-sm font-medium text-black dark:text-gray-300"
+                        >
+                          {c.name}
+                        </label>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <h2 className="h4 text-center py-2  rounded-full mb-2 text-black font-semibold dark:text-slate-50">
-            {t('filter_by_brands')}
-            </h2>
+                <h2 className="h4 text-center py-2 rounded-full mb-2 text-black font-semibold dark:text-slate-50">
+                  {t("filter_by_brands")}
+                </h2>
 
-            <div className="p-5">
-              {uniqueBrands?.map((brand) => (
-                <>
-                  <div className="flex items-enter mr-4 mb-5">
-                    <Input
-                      type="radio"
-                      id={brand}
-                      name="brand"
-                      onChange={() => handleBrandClick(brand)}
-                      className="w-4 h-4 text-blue-400 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
+                <div className="p-5">
+                  {uniqueBrands?.map((brand) => (
+                    <>
+                      <div className="flex items-enter mr-4 mb-5">
+                        <Input
+                          type="radio"
+                          id={brand}
+                          name="brand"
+                          onChange={() => handleBrandClick(brand)}
+                          className="w-4 h-4 text-blue-400 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
 
-                    <label
-                      htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
-                    >
-                      {brand}
-                    </label>
-                  </div>
-                </>
-              ))}
-            </div>
+                        <label
+                          htmlFor="pink-radio"
+                          className="ml-2 text-sm font-medium text-black dark:text-gray-300"
+                        >
+                          {brand}
+                        </label>
+                      </div>
+                    </>
+                  ))}
+                </div>
 
-            <h2 className="h4 text-center py-2  rounded-full mb-2 text-black font-semibold dark:text-slate-50">
-            {t('filter_by_price')}
-            </h2>
+                <h2 className="h4 text-center py-2  rounded-full mb-2 text-black font-semibold dark:text-slate-50">
+                  {t("filter_by_price")}
+                </h2>
 
-            <div className="p-5 w-[15rem]">
-              <Input
-                type="text"
-                placeholder="Enter Price"
-                value={priceFilter}
-                onChange={handlePriceChange}
-                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-sky-300"
-              />
-            </div>
+                <div className="p-5 w-[15rem]">
+                  <Input
+                    type="text"
+                    placeholder="Enter Price"
+                    value={priceFilter}
+                    onChange={handlePriceChange}
+                    className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-sky-300"
+                  />
+                </div>
 
-            <div className="p-5 pt-0">
-              <Button
-                className="w-full border my-4  text-black bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
-                onClick={() => window.location.reload()}
-              >
-               {t('reset')}
-              </Button>
-            </div>
+                <div className="p-5 pt-0">
+                  <Button
+                    className="w-full border my-4  text-black bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
+                    onClick={() => window.location.reload()}
+                  >
+                    {t("reset")}
+                  </Button>
+                </div>
               </div>
-              <BackToTopBtn/>
-          </div>
-
-
-<div>
-          <div className="p-3">
-            <h2 className="h4 text-center mb-2">{products?.length}  {t('products')}</h2>
-            <div className="flex flex-wrap">
-              {products.length === 0 ? (
-                <Loader />
-              ) : (
-                products?.map((p) => (
-                  <div className="p-3" key={p._id}>
-                    <ProductCard p={p} key={p._id} />
-                  </div>
-                ))
-              )}
+              <BackToTopBtn />
             </div>
-          </div>
-          </div>
+
+            <div className="p-3">
+              <h2 className="h4 text-center mb-2">
+                {products?.length} {t("products")}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+                {products.length === 0 ? (
+                  <Loader />
+                ) : (
+                  products?.map((p) => <ProductCard p={p} key={p._id} />)
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
