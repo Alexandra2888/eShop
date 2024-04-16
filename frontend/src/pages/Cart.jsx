@@ -45,7 +45,7 @@ const Cart = () => {
             {t("cart_empty")}{" "}
             <Link
               to="/shop"
-              className="text-blue-800 font-normal hover:underline mx-2"
+              className="text-blue-800 font-normal hover:underline mx-2 dark:text-gray-300"
             >
               {" "}
               {t("go_to_shop")}
@@ -126,9 +126,9 @@ const Cart = () => {
                         .toFixed(2)}
                     </div>
                   </div>
-                  <div className="flex justify-center -mt-16 md:mt-8 md:justify-between">
+                  <div className="flex justify-center -mt-16 md:mt-8 md:justify-around">
                     <Button
-                      className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white rounded-full mx-4 md:py-2 px-4 md:text-lg"
+                      className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white md:-ml-24 rounded-full mx-4 md:mx-0 md:py-2 px-4 md:text-lg"
                       disabled={cartItems.length === 0}
                       onClick={checkoutHandler}
                     >
@@ -136,7 +136,7 @@ const Cart = () => {
                     </Button>
 
                     <Button
-                      className="bg-red-500 rounded-full mx-4 md:py-2 px-4 md:text-lg"
+                      className="bg-red-500 rounded-full md:py-2 px-4 md:text-lg mx-4 md:mx-0"
                       disabled={cartItems.length === 0}
                       onClick={emptyCart}
                     >
