@@ -29,8 +29,14 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+const corsOptions = {
+  origin: 'https://main--eshop28.netlify.app',
+  credentials: true, 
+  optionsSuccessStatus: 200,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
+
 
 
 app.use("/api/users", userRoutes);
