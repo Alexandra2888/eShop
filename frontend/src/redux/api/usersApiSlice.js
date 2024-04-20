@@ -2,6 +2,13 @@ import { apiSlice } from "./apiSlice";
 import { USERS_URL } from "../constants";
 
 export const userApiSlice = apiSlice.injectEndpoints({
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (data) => ({
