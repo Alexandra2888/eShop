@@ -22,7 +22,6 @@ const createUser = asyncHandler(async (req, res) => {
 
   try {
     await newUser.save();
-    createToken(res, newUser._id);
 
     res.status(201).json({
       _id: newUser._id,
@@ -54,7 +53,19 @@ const loginUser = asyncHandler(async (req, res) => {
     );
 
     if (isPasswordValid) {
-      createToken(res, existingUser._id);
+      //Generate token (jwt)
+      const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
+        expiresIn: "7d", //token expires in 7 days
+      });
+      console.log(token);
+      //set the token into cookie (http only)
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, //1 day
+      });
+    
 
       res.status(201).json({
         _id: existingUser._id,
@@ -71,11 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/logout
 // @access  Private
 const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", {
-    httyOnly: true,
-    expires: new Date(0),
-  });
-
+  res.cookie("token", "", { maxAge: 1 });
   res.status(200).json({ message: "Logged out successfully" });
 });
 
