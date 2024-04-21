@@ -1,4 +1,4 @@
-export const BASE_URL = "";
+export const BASE_URL = "https://eshop-yn0p.onrender.com";
 
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
