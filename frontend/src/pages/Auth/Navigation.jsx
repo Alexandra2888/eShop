@@ -211,7 +211,7 @@ function Navigation() {
                               <li>
                                 <NavLink to="/admin/dashboard">
                                   <span className="sr-only">admin</span>
-                                  {userInfo && userInfo.user.isAdmin && (
+                                  {userInfo && userInfo.isAdmin && (
                                     <span className="text-white mx-4 dark:text-gray-900">
                                       {t("admin")}
                                     </span>
@@ -466,7 +466,7 @@ function Navigation() {
         </Button>
         <a href="#">
           <span className="sr-only">Admin</span>
-          {userInfo && userInfo.user.isAdmin && <span>{t("admin")}</span>}
+          {userInfo && userInfo.isAdmin && <span>{t("admin")}</span>}
         </a>
       </div>
     </>
