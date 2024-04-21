@@ -1,10 +1,6 @@
 import Category from "../models/categoryModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
-
-// @desc    Create category
-// @route   POST /api/category
-// @access  Private/Admin
 const createCategory = asyncHandler(async (req, res) => {
   try {
     const { name } = req.body;
@@ -27,9 +23,6 @@ const createCategory = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update category
-// @route   PUT /api/category/:categoryId
-// @access  Private/Admin
 const updateCategory = asyncHandler(async (req, res) => {
   try {
     const { name } = req.body;
@@ -51,13 +44,9 @@ const updateCategory = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Remove category
-// @route   DELETE /api/category/:categoryId
-// @access  Private/Admin
 const removeCategory = asyncHandler(async (req, res) => {
   try {
-    const removed = await Category.findByIdAndDelete(req.params.categoryId);
+    const removed = await Category.findByIdAndRemove(req.params.categoryId);
     res.json(removed);
   } catch (error) {
     console.error(error);
@@ -65,10 +54,6 @@ const removeCategory = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    List category
-// @route   GET /api/categories
-// @access  Public
 const listCategory = asyncHandler(async (req, res) => {
   try {
     const all = await Category.find({});
@@ -79,9 +64,6 @@ const listCategory = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Read category
-// @route   GET /api/category/:id
-// @access  Public
 const readCategory = asyncHandler(async (req, res) => {
   try {
     const category = await Category.findOne({ _id: req.params.id });

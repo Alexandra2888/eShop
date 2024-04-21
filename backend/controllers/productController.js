@@ -1,10 +1,6 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 
-
-// @desc   Add product
-// @route   POST /api/products
-// @access  Private/Admin
 const addProduct = asyncHandler(async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
@@ -34,11 +30,6 @@ const addProduct = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-// @desc    Update product details
-// @route   PUT /api/products/:id
-// @access  Private/Admin
 const updateProductDetails = asyncHandler(async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
@@ -74,10 +65,6 @@ const updateProductDetails = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Remove product
-// @route   DELETE /api/products/:id
-// @access  Private/Admin
 const removeProduct = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
@@ -88,10 +75,6 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Fetch products
-// @route   GET /api/products/allproducts
-// @access  Public
 const fetchProducts = asyncHandler(async (req, res) => {
   try {
     const pageSize = 6;
@@ -120,10 +103,6 @@ const fetchProducts = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Fetch products by id
-// @route   GET /api/products/:id
-// @access  Public
 const fetchProductById = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -139,9 +118,6 @@ const fetchProductById = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
 const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
@@ -156,11 +132,6 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-// @desc    Add product review
-// @route   POST /api/products/:id/reviews
-// @access  Private
 const addProductReview = asyncHandler(async (req, res) => {
   try {
     const { rating, comment } = req.body;
@@ -203,11 +174,6 @@ const addProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-// @desc    Fetch top products
-// @route   GET /api/products/top
-// @access  Public
 const fetchTopProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({}).sort({ rating: -1 }).limit(4);
@@ -218,10 +184,6 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Fetch new products
-// @route   GET /api/products/new
-// @access  Public
 const fetchNewProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find().sort({ _id: -1 }).limit(5);
@@ -232,10 +194,6 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
   }
 });
 
-
-// @desc    Filter products
-// @route   GET /api/products/filtered-products
-// @access  Public
 const filterProducts = asyncHandler(async (req, res) => {
   try {
     const { checked, radio } = req.body;
