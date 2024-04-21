@@ -24,7 +24,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://eshop-1-xj6m.onrender.com/', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, 
+  allowedHeaders: 'Content-Type,Authorization',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
