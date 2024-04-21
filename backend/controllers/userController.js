@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import createToken from "../utils/createToken.js";
+import { token } from "morgan";
 
 // @desc    Create user
 // @route   POST /api/users
@@ -54,24 +55,14 @@ const loginUser = asyncHandler(async (req, res) => {
 
     if (isPasswordValid) {
       //Generate token (jwt)
-      const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
-        expiresIn: "7d", //token expires in 7 days
-      });
-      console.log(token);
-      //set the token into cookie (http only)
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 24 * 60 * 60 * 1000, //1 day
-      });
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     
-
       res.status(201).json({
         _id: existingUser._id,
         username: existingUser.username,
         email: existingUser.email,
         isAdmin: existingUser.isAdmin,
+        token:token
       });
       return;
     }
@@ -82,7 +73,6 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users/logout
 // @access  Private
 const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.cookie("token", "", { maxAge: 1 });
   res.status(200).json({ message: "Logged out successfully" });
 });
 

@@ -4,7 +4,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import bodyParser from "body-parser"
+import bodyParser from "body-parser";
+import helmet from "helmet";
+import morgan from "morgan";
 
 // Utiles
 import connectDB from "./config/db.js";
@@ -18,6 +20,10 @@ import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 const port = process.env.PORT || 5000;
+
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("common"));
 
 connectDB();
 
