@@ -24,15 +24,30 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+
 const corsOptions = {
   origin: 'https://eshop-1-xj6m.onrender.com/', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, 
   allowedHeaders: 'Content-Type,Authorization',
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
+  allowedHeaders: [
+    “Origin”,
+    “Content-Type”,
+    “Accept”,
+    “Authorization”,
+    “X-Request-With”,
+    ],
 };
 
 app.use(cors(corsOptions));
+
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
