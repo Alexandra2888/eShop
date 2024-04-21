@@ -31,13 +31,6 @@ const corsOptions = {
   credentials: true, 
   allowedHeaders: 'Content-Type,Authorization',
   optionsSuccessStatus: 200,
-  allowedHeaders: [
-    “Origin”,
-    “Content-Type”,
-    “Accept”,
-    “Authorization”,
-    “X-Request-With”,
-    ],
 };
 
 app.use(cors(corsOptions));
