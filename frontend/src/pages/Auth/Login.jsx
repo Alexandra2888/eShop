@@ -53,14 +53,25 @@ const Login = () => {
       return;
     }
 
+    // try {
+    //   const res = await login({ email, password }).unwrap();
+    //   console.log(res);
+    //   dispatch(setCredentials({ ...res }));
+    //   navigate("/");
+    // } catch (err) {
+    //   toast.error(err?.data?.message || err.error);
+    // }
+
     try {
-      const res = await login({ email, password }).unwrap();
-      console.log(res);
-      dispatch(setCredentials({ ...res }));
+      const userData = await login({ email, password }).unwrap();
+      dispatch(setCredentials({
+        user: userData.user,
+        token: userData.token,
+      }));
       navigate("/");
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
-    }
+       toast.error(err?.data?.message || err.error);
+  }
   };
 
   return (
