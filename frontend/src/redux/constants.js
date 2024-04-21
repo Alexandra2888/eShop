@@ -1,4 +1,4 @@
-export const BASE_URL = "https://e-shop-d4oaqv83k-alexandra2888s-projects.vercel.app";
+export const BASE_URL = "https://e-shop-rust-five.vercel.app/";
 
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";

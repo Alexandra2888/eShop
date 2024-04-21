@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-  origin: 'https://e-shop-4bls-jcsnozro8-alexandra2888s-projects.vercel.app/', 
+  origin: 'https://e-shop-4bls.vercel.app/', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, 
   allowedHeaders: 'Content-Type,Authorization',

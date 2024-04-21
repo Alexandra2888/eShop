@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": "https://e-shop-d4oaqv83k-alexandra2888s-projects.vercel.app",
-      "/uploads/": "https://e-shop-d4oaqv83k-alexandra2888s-projects.vercel.app",
+      "/api/": "https://e-shop-rust-five.vercel.app/",
+      "/uploads/": "https://e-shop-rust-five.vercel.app/",
 
       
       // "/api/": "http://localhost:5000",
