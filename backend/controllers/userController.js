@@ -55,7 +55,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     if (isPasswordValid) {
       //Generate token (jwt)
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
     
       res.status(201).json({
         _id: existingUser._id,
