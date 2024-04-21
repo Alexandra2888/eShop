@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": "https://eshop-yn0p.onrender.com",
-      "/uploads/": "https://eshop-yn0p.onrender.com",
+      "/api/": "https://e-shop-d4oaqv83k-alexandra2888s-projects.vercel.app",
+      "/uploads/": "https://e-shop-d4oaqv83k-alexandra2888s-projects.vercel.app",
 
       
       // "/api/": "http://localhost:5000",
