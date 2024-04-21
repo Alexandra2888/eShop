@@ -1,8 +1,9 @@
 import User from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs";
-import createToken from "../utils/createToken.js";
-import { token } from "morgan";
+import jwt from "jsonwebtoken";
+
+
 
 // @desc    Create user
 // @route   POST /api/users
