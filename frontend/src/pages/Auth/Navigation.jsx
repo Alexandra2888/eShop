@@ -32,6 +32,8 @@ function Navigation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const isAdmin = localStorage.getItem(userInfo.isAdmin);
+
   const [logoutApiCall] = useLogoutMutation();
 
   const logoutHandler = async () => {
@@ -210,7 +212,7 @@ function Navigation() {
                               <li>
                                 <NavLink to="/admin/dashboard">
                                   <span className="sr-only">admin</span>
-                                  {userInfo && userInfo.isAdmin && (
+                                  {userInfo && isAdmin && (
                                     <span className="text-white mx-4 dark:text-gray-900">
                                       {t("admin")}
                                     </span>
