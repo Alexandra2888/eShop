@@ -56,22 +56,13 @@ const Login = () => {
     try {
       const res = await login({ email, password }).unwrap();
       console.log(res);
-      dispatch(setCredentials({ ...res }));
+      dispatch(setCredentials({ user: res.user, token: res.token }));
       navigate("/");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
 
-  //   try {
-  //     const userData = await login({ email, password }).unwrap();
-  //     dispatch(setCredentials({
-  //       user: userData.user,
-  //       token: userData.token,
-  //     }));
-  //     navigate("/");
-  //   } catch (err) {
-  //      toast.error(err?.data?.message || err.error);
-  // }
+ 
   };
 
   return (
