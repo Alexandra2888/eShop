@@ -29,7 +29,13 @@ const corsOptions = {
   origin: 'https://e-shop-4bls.vercel.app/', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, 
-  allowedHeaders: 'Content-Type,Authorization',
+  allowedHeaders: [
+    'Origin',
+    'Content-Type',
+    'Accept',
+    'Authorization',
+    'X-Requested-With',
+  ],
   optionsSuccessStatus: 200,
 };
 
