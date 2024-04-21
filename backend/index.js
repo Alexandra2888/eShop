@@ -21,9 +21,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 dotenv.config();
 const port = process.env.PORT || 5000;
 
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(morgan("common"));
+
 
 connectDB();
 
@@ -34,6 +32,10 @@ app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("common"));
 
 const corsOptions = {
   origin: 'https://main--eshop28.netlify.app',
