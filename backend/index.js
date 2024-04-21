@@ -26,18 +26,8 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-  origin: 'https://e-shop-4bls.vercel.app/', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, 
-  allowedHeaders: [
-    'Origin',
-    'Content-Type',
-    'Accept',
-    'Authorization',
-    'X-Requested-With',
-  ],
-  optionsSuccessStatus: 200,
-};
+  origin: "*"
+}
 
 app.use(cors(corsOptions));
 
