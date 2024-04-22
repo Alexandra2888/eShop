@@ -79,6 +79,13 @@ npm run frontend
 
 ## Preview 📸
 
+![image](https://github.com/Alexandra2888/eShop/assets/76844097/3dc36ba1-b8a6-42d0-ac28-1490e263193d)
+
+![image](https://github.com/Alexandra2888/eShop/assets/76844097/fcc98db1-319d-4650-82eb-a8fa8087f113)
+
+![image](https://github.com/Alexandra2888/eShop/assets/76844097/59064768-2793-4db7-962f-60f35a69fe7c)
+
+
 ## Demo Video 🎥
 
 
