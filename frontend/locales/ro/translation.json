@@ -141,5 +141,10 @@
     "cancel": "Anuleaza",
     "confirm": "Confirma",
     "delete_user":"Sigur vrei sa stergi acest utilizator?",
-    "customers":"Clienti"
+    "customers":"Clienti",
+    "copyright":"&copy; 2024 eShop, Inc. Toate drepturile rezervate.",
+    "solutions":"Solutii",
+    "support":"Suport",
+    "company":"Companie",
+    "legal":"Legal"
 }
