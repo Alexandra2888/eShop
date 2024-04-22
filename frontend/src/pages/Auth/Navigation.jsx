@@ -107,18 +107,18 @@ function Navigation() {
                     </div>
                   </Transition.Child>
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-[#172A45] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 pb-2">
-                    <div className="flex h-16 shrink-0 items-center">eShop</div>
+                    <div className="flex h-16 shrink-0 items-center text-white dark:text-gray-900">eShop</div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul
                             role="list"
-                            className="-mx-2 space-y-1 dark:text-gray-900"
+                            className="-mx-2 space-y-1 text-white dark:text-gray-900"
                           >
                             <li>
                               <select
                                 onChange={(e) => changeLanguage(e.target.value)}
-                                className="bg-inherit text-black p-2 rounded cursor-pointer"
+                                className="bg-inherit text-white dark:text-gray-900 p-2 rounded cursor-pointer"
                                 value={i18n.language}
                               >
                                 <option value="de">DE</option>
@@ -263,7 +263,7 @@ function Navigation() {
                               onClick={logoutHandler}
                               className="block -mt-2 w-full px-4 py-2 text-left"
                             >
-                              <span className="dark:text-gray-900">
+                              <span className="text-white dark:text-gray-900">
                                 {" "}
                                 {t("logout")}
                               </span>
@@ -464,10 +464,6 @@ function Navigation() {
           <span className="sr-only">Open sidebar</span>
           <FaBars className="h-6 w-6" aria-hidden="true" />
         </Button>
-        <a href="#">
-          <span className="sr-only">Admin</span>
-          {userInfo && userInfo.isAdmin && <span>{t("admin")}</span>}
-        </a>
       </div>
     </>
   );

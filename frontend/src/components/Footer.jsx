@@ -103,13 +103,12 @@ const Footer = () => {
         <div className="space-y-8 mt-16">
             <p className="text-sm leading-6   ">
             {t("footer_description")}
-          Enhancing everyday life with innovative IT solutions.
           </p>
           <div className="flex space-x-6">
             {navigation.social.map((item) => (
               <a key={item.name} href={item.href} className=" ">
                 <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6 text-slate-50" aria-hidden="true" />
+                <item.icon className="h-6 w-6 text-gray-900 dark:text-slate-50" aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -129,7 +128,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="mt-10 md:mt-0">
-              <h3 className="text-sm font-semibold leading-6  ">Support</h3>
+              <h3 className="text-sm font-semibold leading-6">Support</h3>
               <ul role="list" className="mt-6 space-y-4">
                 {navigation.support.map((item) => (
                   <li key={item.name}>
@@ -155,7 +154,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="mt-10 md:mt-0">
-              <h3 className="text-sm font-semibold leading-6  ">Legal</h3>
+              <h3 className="text-sm font-semibold leading-6">Legal</h3>
               <ul role="list" className="mt-6 space-y-4">
                 {navigation.legal.map((item) => (
                   <li key={item.name}>
