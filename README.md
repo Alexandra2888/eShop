@@ -67,7 +67,7 @@ npm run frontend
 
 ## Contributing 🤝
 
-# Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+### Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 ## License 📄
 
@@ -75,11 +75,11 @@ npm run frontend
 
 ## Author 👤
 
-# Alexandra2888
+### Alexandra2888
 
 ## Preview 📸
 
 ## Demo Video 🎥
 
 
-# Feel free to star ⭐ this repository if you like what you see and want to follow along with the project's progress!
+### Feel free to star ⭐ this repository if you like what you see and want to follow along with the project's progress!
