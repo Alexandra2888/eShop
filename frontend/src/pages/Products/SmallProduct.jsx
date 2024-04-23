@@ -24,7 +24,7 @@ const SmallProduct = ({ product }) => {
           <h2 className="text-center py-3 text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors">{product.name}</h2>
         </Link>
         <div className="flex justify-between items-end mt-4">
-          <span className="text-sm font-medium text-gray-500">{t('price')}:</span>
+          <span className="text-sm font-medium text-gray-800">{t('price')}:</span>
           <span className="text-lg font-semibold text-gray-900">${product.price}</span>
         </div>
       </div>

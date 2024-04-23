@@ -65,7 +65,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <section>
       <Metadata title={"Contact"} />
       <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 0 ">
         <div
@@ -91,56 +91,69 @@ const Contact = () => {
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div className="sm:col-span-2">
+            
+              <div className="mt-2.5">
               <label
                 htmlFor="name"
+                aria-label="name" aria-labelledby="name" id="name" title="name"
                 className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
               >
                 {t("name")}
-              </label>
-              <div className="mt-2.5">
+             
                 <Input
                   type="text"
                   name="name"
+                  aria-label="name"
+                  aria-labeledby="name"
                   value={form.name}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
-                />
+                  />
+                   </label>
                 {validationErrors.name && (
                 <div className="text-red-500">{validationErrors.name}</div>
-              )}
+                  )}
               </div>
+              
             </div>
 
             <div className="sm:col-span-2">
+              
+              <div className="mt-2.5">
               <label
                 htmlFor="email"
                 className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+                aria-label="email" aria-labelledby="email" id="email" title="email"
               >
                 {t("email")}
-              </label>
-              <div className="mt-2.5">
+              
                 <Input
                   type="email"
                   name="email"
+                  aria-label="email"
+                  aria-labeledby="email"
                   value={form.email}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
-                />
+                  />
+                  </label>
                   {validationErrors.email && (
                 <div className="text-red-500">{validationErrors.email}</div>
               )}
               </div>
             </div>
             <div className="sm:col-span-2">
+              <div className="mt-2.5">
               <label
                 htmlFor="message"
+                aria-label="message" id="message" title="message"
                 className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
               >
                 {t("message")}
               </label>
-              <div className="mt-2.5">
                 <textarea
                   name="message"
+                  aria-label="message"
                   value={form.message}
                   onChange={handleChange}
                   rows={4}
@@ -173,7 +186,7 @@ const Contact = () => {
               </div>
               <Switch.Label className="text-sm leading-6 text-gray-600 dark:text-white">
                 By selecting this, you agree to our{" "}
-                <a href="#" className="font-semibold text-blue-800">
+                <a href="#" className="font-normal text-gray-900 dark:text-slate-50 underline">
                   privacy&nbsp;policy
                 </a>
                 .
@@ -191,7 +204,7 @@ const Contact = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

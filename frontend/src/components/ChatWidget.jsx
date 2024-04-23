@@ -134,6 +134,11 @@ const ChatWidget = () => {
       <Button
         onClick={toggleChat}
         className="text-3xl p-2 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white rounded-full"
+        aria-label="Toggle chat"
+        aria-labelledby ="Toggle chat"
+        id="chat"
+        name="Toggle chat"
+        role="toggle"
       >
         <FiMessageCircle />
       </Button>

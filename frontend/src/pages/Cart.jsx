@@ -74,7 +74,7 @@ const Cart = () => {
                     <div className="flex-1 ml-4">
                       <Link
                         to={`/product/${item._id}`}
-                        className="text-blue-500"
+                        className="text-gray-900 dark:text-slate-100"
                       >
                         {item.name}
                       </Link>
@@ -86,8 +86,13 @@ const Cart = () => {
                     </div>
                     <div className="flex space-x-2 ml-12 md:flex-row">
                       <div className="w-24">
+                        <label htmlFor="select">
                         <select
                           className="w-full p-1 border rounded text-black"
+                            id="select"
+                            title="select"
+                            aria-label="select"
+                            aria-labelledby="select-label"
                           value={item.qty}
                           onChange={(e) =>
                             addToCartHandler(item, Number(e.target.value))
@@ -98,12 +103,19 @@ const Cart = () => {
                               {x + 1}
                             </option>
                           ))}
-                        </select>
+                          </select>
+                          </label>
                       </div>
 
                       <div>
                         <Button
                           className="text-red-500 mr-[5rem]"
+                          aria-label="delete"
+                          aria-labeledby="delete"
+                          role="delete"
+                          id="delete"
+                          title="delete"
+                          aria-labelledby="delete-icon"
                           onClick={() => removeFromCartHandler(item._id)}
                         >
                           <FaTrash className="ml-[1rem] mt-[.5rem]" />
