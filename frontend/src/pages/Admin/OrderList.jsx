@@ -28,11 +28,11 @@ const OrderList = () => {
           <Metadata title={"Orders"} />
           <thead className="max-w-sm md:w-full border text-xs md:text-sm">
             <tr className="mb-[5rem]">
-              <th className="text-left pl-1">{t('user')}</th>
-              <th className="text-left pl-1">{t('data')}</th>
-              <th className="text-left pl-1">{t('total')}</th>
-              <th className="text-left pl-1">{t('paid')}</th>
-              <th className="text-left pl-1">{t('delivered')}</th>
+              <th className="text-left pl-1">{t("user")}</th>
+              <th className="text-left pl-1">{t("data")}</th>
+              <th className="text-left pl-1">{t("total")}</th>
+              <th className="text-left pl-1">{t("paid")}</th>
+              <th className="text-left pl-1">{t("delivered")}</th>
               <th></th>
             </tr>
           </thead>
@@ -50,11 +50,11 @@ const OrderList = () => {
                 <td className="py-2">
                   {order.isPaid ? (
                     <p className="p-1 text-center bg-green-400 w-fit md:w-[6rem] rounded-full">
-                       {t('completed')} 
+                      {t("completed")}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-fit md:w-[6rem] rounded-full">
-                       {t('pending')} 
+                      {t("pending")}
                     </p>
                   )}
                 </td>
@@ -62,18 +62,18 @@ const OrderList = () => {
                 <td className="px-2 py-2">
                   {order.isDelivered ? (
                     <p className="p-1 text-center bg-green-400 w-fit md:w-[6rem] rounded-full">
-                       {t('completed')}
+                      {t("completed")}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-fit md:w-[6rem] rounded-full">
-                       {t('pending')}
+                      {t("pending")}
                     </p>
                   )}
                 </td>
 
                 <td>
                   <Link to={`/order/${order._id}`}>
-                    <Button>  {t('more')}</Button>
+                    <Button> {t("more")}</Button>
                   </Link>
                 </td>
               </tr>

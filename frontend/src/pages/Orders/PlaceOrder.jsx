@@ -81,8 +81,7 @@ const PlaceOrder = () => {
   return (
     <>
       <ProgressSteps step1 step2 step3 />
-
-      <div className="container mt-8 md:ml-[15rem] max-w-6xl">
+      <section className="container mt-8 md:ml-[15rem] max-w-6xl">
         {cart.cartItems.length === 0 ? (
           <Message>{t("empty_cart")}</Message>
         ) : (
@@ -178,7 +177,7 @@ const PlaceOrder = () => {
 
           {isLoading && <Loader />}
         </div>
-      </div>
+      </section>
     </>
   );
 };

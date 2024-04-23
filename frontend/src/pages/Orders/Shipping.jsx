@@ -12,7 +12,6 @@ import ProgressSteps from "../../components/ProgressSteps";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
-
 const Shipping = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -28,7 +27,6 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -46,13 +44,13 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <div className="container mx-auto mt-10 max-w-sm md:w-full">
+    <section className="container mx-auto mt-10 max-w-sm md:w-full">
       <ProgressSteps step1 step2 />
       <div className="mt-[10rem] flex justify-around items-center flex-wrap">
         <form onSubmit={submitHandler} className="w-fit md:w-[40rem]">
-          <h1 className="text-2xl font-semibold mb-4">{t('shipping')}</h1>
+          <h1 className="text-2xl font-semibold mb-4">{t("shipping")}</h1>
           <div className="mb-4">
-            <label className="block text-white mb-2">{t('address')}</label>
+            <label className="block text-white mb-2">{t("address")}</label>
             <Input
               type="text"
               className="w-full p-2 border rounded"
@@ -63,7 +61,7 @@ const Shipping = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-white mb-2">{t('city')}</label>
+            <label className="block text-white mb-2">{t("city")}</label>
             <Input
               type="text"
               className="w-full p-2 border rounded"
@@ -74,7 +72,7 @@ const Shipping = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-white mb-2">{t('postal_code')}</label>
+            <label className="block text-white mb-2">{t("postal_code")}</label>
             <Input
               type="text"
               className="w-full p-2 border rounded"
@@ -85,7 +83,7 @@ const Shipping = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-white mb-2">{t('country')}</label>
+            <label className="block text-white mb-2">{t("country")}</label>
             <Input
               type="text"
               className="w-full p-2 border rounded"
@@ -96,7 +94,7 @@ const Shipping = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-400">{t('select_method')}</label>
+            <label className="block text-gray-400">{t("select_method")}</label>
             <div className="mt-2">
               <label className="inline-flex items-center">
                 <Input
@@ -108,7 +106,7 @@ const Shipping = () => {
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 />
 
-                <span className="ml-2">{t('paypal_or_credit_card')}</span>
+                <span className="ml-2">{t("paypal_or_credit_card")}</span>
               </label>
             </div>
           </div>
@@ -117,11 +115,11 @@ const Shipping = () => {
             className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white px-5 py-3 md:py-2 md:px-4 rounded-full text-md md:text-lg w-fit flex justify-center items-center md:w-full"
             type="submit"
           >
-            {t('continue')}
+            {t("continue")}
           </Button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

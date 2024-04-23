@@ -21,7 +21,6 @@ const Order = () => {
 
   const { t } = useTranslation();
 
-
   const {
     data: order,
     refetch,
@@ -73,7 +72,7 @@ const Order = () => {
         toast.error(error?.data?.message || error.message);
       }
     });
-  }
+  };
 
   const createOrder = (data, actions) => {
     return actions.order
@@ -83,11 +82,11 @@ const Order = () => {
       .then((orderID) => {
         return orderID;
       });
-  }
+  };
 
   const onError = (err) => {
     toast.error(err.message);
-  }
+  };
 
   const deliverHandler = async () => {
     await deliverOrder(orderId);
@@ -99,21 +98,21 @@ const Order = () => {
   ) : error ? (
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
-    <div className="container flex flex-col md:ml-[10rem] md:flex-row">
+    <section className="container flex flex-col md:ml-[10rem] md:flex-row">
       <div className="md:w-2/3 pr-4">
         <div className="border gray-300 mt-5 pb-4 mb-5">
           {order.orderItems.length === 0 ? (
-            <Messsage>{t('order_is_empty')}</Messsage>
+            <Messsage>{t("order_is_empty")}</Messsage>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-[80%]">
                 <thead className="border-b-2">
                   <tr>
-                    <th className="p-2">  {t('image')}</th>
-                    <th className="p-2">  {t('product')}</th>
-                    <th className="p-2 text-center">   {t('quantity')}</th>
-                    <th className="p-2">  {t('unit_price')}</th>
-                    <th className="p-2">   {t('total')}</th>
+                    <th className="p-2"> {t("image")}</th>
+                    <th className="p-2"> {t("product")}</th>
+                    <th className="p-2 text-center"> {t("quantity")}</th>
+                    <th className="p-2"> {t("unit_price")}</th>
+                    <th className="p-2"> {t("total")}</th>
                   </tr>
                 </thead>
 
@@ -143,67 +142,75 @@ const Order = () => {
               </table>
             </div>
           )}
-            </div>
-            <Link to={`/order/${order._id}/invoice`}
-              type="button"
-              className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit  py-3 px-4 mx-36 md:mx-96"
-            >
-                {t('invoice')}
-            </Link>
+        </div>
+        <Link
+          to={`/order/${order._id}/invoice`}
+          type="button"
+          className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit  py-3 px-4 mx-36 md:mx-96"
+        >
+          {t("invoice")}
+        </Link>
       </div>
 
       <div className="md:w-1/3">
         <div className="mt-5 border-gray-300 pb-4 mb-4">
-          <h2 className="text-xl font-bold mb-2">  {t('shipping')}</h2>
+          <h2 className="text-xl font-bold mb-2"> {t("shipping")}</h2>
           <p className="mb-4 mt-4">
-            <strong className="text-blue-600">  {t('order')}:</strong> {order._id}
+            <strong className="text-blue-600"> {t("order")}:</strong>{" "}
+            {order._id}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600">  {t('name')}:</strong>{" "}
+            <strong className="text-blue-600"> {t("name")}:</strong>{" "}
             {order.user.username}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600">  {t('email')}:</strong> {order.user.email}
+            <strong className="text-blue-600"> {t("email")}:</strong>{" "}
+            {order.user.email}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600">  {t('address')}:</strong>{" "}
+            <strong className="text-blue-600"> {t("address")}:</strong>{" "}
             {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600">  {t('method')}:</strong>{" "}
+            <strong className="text-blue-600"> {t("method")}:</strong>{" "}
             {order.paymentMethod}
           </p>
 
           {order.isPaid ? (
-            <Messsage variant="success">  {t('paid_on')} {order.paidAt}</Messsage>
+            <Messsage variant="success">
+              {" "}
+              {t("paid_on")} {order.paidAt}
+            </Messsage>
           ) : (
-            <Messsage variant="danger">  {t('not_paid')}</Messsage>
+            <Messsage variant="danger"> {t("not_paid")}</Messsage>
           )}
         </div>
 
-        <h2 className="text-xl font-bold mb-2 mt-[3rem]">  {t('order_summary')}</h2>
+        <h2 className="text-xl font-bold mb-2 mt-[3rem]">
+          {" "}
+          {t("order_summary")}
+        </h2>
         <div className="flex justify-between mb-2">
-          <span>  {t('items')}</span>
+          <span> {t("items")}</span>
           <span>$ {order.itemsPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>  {t('shipping')}</span>
+          <span> {t("shipping")}</span>
           <span>$ {order.shippingPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>  {t('tax')}</span>
+          <span> {t("tax")}</span>
           <span>$ {order.taxPrice}</span>
         </div>
         <div className="flex justify-between mb-2">
-          <span>  {t('total')}</span>
+          <span> {t("total")}</span>
           <span>$ {order.totalPrice}</span>
         </div>
-      
 
         {!order.isPaid && (
           <div>
@@ -232,12 +239,12 @@ const Order = () => {
               className="bg-blue-600 text-white w-full py-2"
               onClick={deliverHandler}
             >
-                {t('mark_as_delivered')}
+              {t("mark_as_delivered")}
             </Button>
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

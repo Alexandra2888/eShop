@@ -9,7 +9,6 @@ import {
   useFetchCategoriesQuery,
 } from "../../redux/api/categoryApiSlice";
 
-
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import AdminMenu from "./AdminMenu";
@@ -98,13 +97,11 @@ const CategoryList = () => {
   };
 
   return (
-    <div className="md:ml-[15rem] my-12 flex flex-col md:flex-row h-screen">
+    <section className="md:ml-[15rem] my-12 flex flex-col md:flex-row h-screen">
       <Metadata title={"Categories"} />
       <AdminMenu />
       <div className="md:w-3/4 p-3">
-        <div className="h-12 text-center">
-        {t('manage_categories')}
-          </div>
+        <div className="h-12 text-center">{t("manage_categories")}</div>
         <CategoryForm
           value={name}
           setValue={setName}
@@ -142,7 +139,7 @@ const CategoryList = () => {
           />
         </Modal>
       </div>
-    </div>
+    </section>
   );
 };
 

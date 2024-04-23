@@ -119,7 +119,6 @@ const AdminProductUpdate = () => {
     }
   };
 
-
   const confirmDelete = async () => {
     try {
       const { data } = await deleteProduct(params._id);
@@ -135,7 +134,7 @@ const AdminProductUpdate = () => {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
-      
+
       setIsModalOpen(false);
     }
   };
@@ -146,7 +145,7 @@ const AdminProductUpdate = () => {
 
   return (
     <>
-      <div className="container my-12 md:ml-[10rem] xl:mx-[9rem] sm:mx-[0]">
+      <section className="container my-12 md:ml-[10rem] xl:mx-[9rem] sm:mx-[0]">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
@@ -278,19 +277,25 @@ const AdminProductUpdate = () => {
                 >
                   <p className="text-black"> {t("delete_product")} </p>
                   <div className="flex justify-between">
-                  <Button onClick={confirmDelete} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600">
-                  {t("confirm")}
-                  </Button>
-                  <Button onClick={() => setIsModalOpen(false)} className="p2-4 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600">
-                  {t("cancel")}
+                    <Button
+                      onClick={confirmDelete}
+                      className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600"
+                    >
+                      {t("confirm")}
                     </Button>
-                    </div>
+                    <Button
+                      onClick={() => setIsModalOpen(false)}
+                      className="p2-4 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600"
+                    >
+                      {t("cancel")}
+                    </Button>
+                  </div>
                 </Modal>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

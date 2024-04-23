@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
@@ -28,7 +28,6 @@ const Register = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
-
 
   useEffect(() => {
     if (userInfo) {
@@ -77,7 +76,7 @@ const Register = () => {
   return (
     <>
       <Metadata title={"Register"} />
-      <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 ">
+      <section className="isolate  px-6 py-24 sm:py-32 lg:px-8 ">
         <div
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
           aria-hidden="true"
@@ -192,23 +191,20 @@ const Register = () => {
               type="submit"
               className="block w-full rounded-md bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800"
             >
-               {isLoading ? "Registering..." : "Register"}
+              {isLoading ? "Registering..." : "Register"}
             </Button>
             {isLoading && <Loader />}
           </div>
           <div className="mt-2.5">
             <p className="text-gray-800 dark:text-slate-50">
-            {t('have_account')}{" "}
-            <Link
-              to={ "/login"}
-              className="text-blue-500 hover:underline"
-            >
-                {t('login')}
-                </Link>
+              {t("have_account")}{" "}
+              <Link to={"/login"} className="text-blue-500 hover:underline">
+                {t("login")}
+              </Link>
             </p>
           </div>
         </form>
-      </div>
+      </section>
     </>
   );
 };

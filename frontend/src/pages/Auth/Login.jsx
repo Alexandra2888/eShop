@@ -29,13 +29,11 @@ const Login = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
 
-
-
   useEffect(() => {
     if (userInfo) {
       navigate("/");
     }
-  }, [navigate,  userInfo]);
+  }, [navigate, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -61,14 +59,11 @@ const Login = () => {
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
-
- 
   };
 
   return (
-    <div>
+    <section>
       <Metadata title={"Login"} />
-
       <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 ">
         <div
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -148,17 +143,14 @@ const Login = () => {
           <div className="mt-2.5">
             <p className="text-gray-800 dark:text-slate-50">
               {t("new_customer")}?{" "}
-              <Link
-                to={ "/register"}
-                className="text-blue-800 hover:underline"
-              >
+              <Link to={"/register"} className="text-blue-800 hover:underline">
                 {t("register")}
               </Link>
             </p>
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

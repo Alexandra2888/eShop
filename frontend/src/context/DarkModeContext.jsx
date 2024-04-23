@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-
 const AppContext = createContext();
 
 const getInitialDarkMode = () => {
@@ -12,7 +11,7 @@ const getInitialDarkMode = () => {
   return storedDarkMode || prefersDarkMode;
 };
 
-export const AppProvider= ({ children }) => {
+export const AppProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkMode());
 
   const toggleDarkTheme = () => {
@@ -23,13 +22,12 @@ export const AppProvider= ({ children }) => {
 
   useEffect(() => {
     if (isDarkTheme) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkTheme]);
-  
-  
+
   const contextValue = {
     isDarkTheme,
     toggleDarkTheme,

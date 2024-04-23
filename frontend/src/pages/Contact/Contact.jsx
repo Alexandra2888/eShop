@@ -91,66 +91,71 @@ const Contact = () => {
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div className="sm:col-span-2">
-            
               <div className="mt-2.5">
-              <label
-                htmlFor="name"
-                aria-label="name" aria-labelledby="name" id="name" title="name"
-                className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
-              >
-                {t("name")}
-             
-                <Input
-                  type="text"
-                  name="name"
+                <label
+                  htmlFor="name"
                   aria-label="name"
-                  aria-labeledby="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                  aria-labelledby="name"
+                  id="name"
+                  title="name"
+                  className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+                >
+                  {t("name")}
+
+                  <Input
+                    type="text"
+                    name="name"
+                    aria-label="name"
+                    aria-labeledby="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
                   />
-                   </label>
+                </label>
                 {validationErrors.name && (
-                <div className="text-red-500">{validationErrors.name}</div>
-                  )}
+                  <div className="text-red-500">{validationErrors.name}</div>
+                )}
               </div>
-              
             </div>
 
             <div className="sm:col-span-2">
-              
               <div className="mt-2.5">
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
-                aria-label="email" aria-labelledby="email" id="email" title="email"
-              >
-                {t("email")}
-              
-                <Input
-                  type="email"
-                  name="email"
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
                   aria-label="email"
-                  aria-labeledby="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                  aria-labelledby="email"
+                  id="email"
+                  title="email"
+                >
+                  {t("email")}
+
+                  <Input
+                    type="email"
+                    name="email"
+                    aria-label="email"
+                    aria-labeledby="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
                   />
-                  </label>
-                  {validationErrors.email && (
-                <div className="text-red-500">{validationErrors.email}</div>
-              )}
+                </label>
+                {validationErrors.email && (
+                  <div className="text-red-500">{validationErrors.email}</div>
+                )}
               </div>
             </div>
             <div className="sm:col-span-2">
               <div className="mt-2.5">
-              <label
-                htmlFor="message"
-                aria-label="message" id="message" title="message"
-                className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
-              >
-                {t("message")}
-              </label>
+                <label
+                  htmlFor="message"
+                  aria-label="message"
+                  id="message"
+                  title="message"
+                  className="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+                >
+                  {t("message")}
+                </label>
                 <textarea
                   name="message"
                   aria-label="message"
@@ -159,9 +164,9 @@ const Contact = () => {
                   rows={4}
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
                 />
-                   {validationErrors.message && (
-                <div className="text-red-500">{validationErrors.message}</div>
-              )}
+                {validationErrors.message && (
+                  <div className="text-red-500">{validationErrors.message}</div>
+                )}
               </div>
             </div>
             <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
@@ -186,7 +191,10 @@ const Contact = () => {
               </div>
               <Switch.Label className="text-sm leading-6 text-gray-600 dark:text-white">
                 By selecting this, you agree to our{" "}
-                <a href="#" className="font-normal text-gray-900 dark:text-slate-50 underline">
+                <a
+                  href="#"
+                  className="font-normal text-gray-900 dark:text-slate-50 underline"
+                >
                   privacy&nbsp;policy
                 </a>
                 .

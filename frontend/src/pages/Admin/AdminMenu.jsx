@@ -44,7 +44,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('admin_dashboard')}
+                {t("admin_dashboard")}
               </NavLink>
             </li>
             <li>
@@ -55,7 +55,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('create_category')}
+                {t("create_category")}
               </NavLink>
             </li>
             <li>
@@ -66,7 +66,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('create_product')}
+                {t("create_product")}
               </NavLink>
             </li>
             <li>
@@ -77,7 +77,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('all_products')}
+                {t("all_products")}
               </NavLink>
             </li>
             <li>
@@ -88,7 +88,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('manage_users')}
+                {t("manage_users")}
               </NavLink>
             </li>
             <li>
@@ -99,7 +99,7 @@ const AdminMenu = () => {
                   color: isActive ? "lightblue" : "white",
                 })}
               >
-                {t('manage_orders')}
+                {t("manage_orders")}
               </NavLink>
             </li>
           </ul>

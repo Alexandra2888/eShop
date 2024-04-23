@@ -39,7 +39,7 @@ const Cart = () => {
   return (
     <>
       <Metadata title={"Cart"} />
-      <div className="flex justify-center items-center my-8 h-screen ">
+      <section className="flex justify-center items-center my-8 h-screen ">
         {cartItems.length === 0 ? (
           <div className="font-bold">
             {t("cart_empty")}{" "}
@@ -87,24 +87,24 @@ const Cart = () => {
                     <div className="flex space-x-2 ml-12 md:flex-row">
                       <div className="w-24">
                         <label htmlFor="select">
-                        <select
-                          className="w-full p-1 border rounded text-black"
+                          <select
+                            className="w-full p-1 border rounded text-black"
                             id="select"
                             title="select"
                             aria-label="select"
                             aria-labelledby="select-label"
-                          value={item.qty}
-                          onChange={(e) =>
-                            addToCartHandler(item, Number(e.target.value))
-                          }
-                        >
-                          {[...Array(item.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
+                            value={item.qty}
+                            onChange={(e) =>
+                              addToCartHandler(item, Number(e.target.value))
+                            }
+                          >
+                            {[...Array(item.countInStock).keys()].map((x) => (
+                              <option key={x + 1} value={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
                           </select>
-                          </label>
+                        </label>
                       </div>
 
                       <div>
@@ -160,7 +160,7 @@ const Cart = () => {
             </div>
           </>
         )}
-      </div>
+      </section>
     </>
   );
 };

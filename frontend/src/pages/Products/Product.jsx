@@ -3,12 +3,12 @@ import HeartIcon from "./HeartIcon";
 
 const Product = ({ product }) => {
   return (
-    <div className="flex flex-col md:w-[30rem] md:ml-[2rem] p-3 relative">
+    <section className="flex flex-col md:w-[20rem] md:ml-[5rem] p-3 relative">
       <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className=" w-[15rem] md:w-[30rem] rounded"
+          className=" w-[15rem] md:w-[20rem] rounded"
         />
         <HeartIcon product={product} />
       </div>
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
           </h2>
         </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

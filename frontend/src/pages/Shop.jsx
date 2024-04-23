@@ -91,7 +91,7 @@ const Shop = () => {
   return (
     <>
       <Metadata title={"Shop"} />
-      <div className="flex justify-between md:ml-[10rem] flex-col md:flex-row min-h-screen">
+      <section className="flex justify-between md:ml-[10rem] flex-col md:flex-row min-h-screen">
         <div className="w-full md:w-68 p-4 border-r">
           <div className="p-3 mt-2 mb-2 flex flex-col md:flex-row ">
             <div>
@@ -189,7 +189,7 @@ const Shop = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

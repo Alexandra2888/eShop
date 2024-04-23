@@ -104,7 +104,7 @@ const ChatWidget = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-12 flex flex-col items-end">
+    <section className="fixed bottom-6 right-12 flex flex-col items-end">
       {isOpen && (
         <div className="bg-white p-4 rounded-lg shadow max-w-xs w-full">
           <div className="message-container h-40 overflow-y-auto">
@@ -135,14 +135,14 @@ const ChatWidget = () => {
         onClick={toggleChat}
         className="text-3xl p-2 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white rounded-full"
         aria-label="Toggle chat"
-        aria-labelledby ="Toggle chat"
+        aria-labelledby="Toggle chat"
         id="chat"
         name="Toggle chat"
         role="toggle"
       >
         <FiMessageCircle />
       </Button>
-    </div>
+    </section>
   );
 };
 

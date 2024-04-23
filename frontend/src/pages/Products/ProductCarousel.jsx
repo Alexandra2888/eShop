@@ -51,7 +51,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 md:ml-[10rem] max-w-screen-lg">
+    <section className="mb-4 md:ml-[10rem] max-w-screen-lg">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data?.message || error.error}
@@ -63,46 +63,50 @@ const ProductCarousel = () => {
               {t("featured_products")}
             </h3>
             <Slider {...settings} className="">
-            {products.map(({ image, _id, name, price, brand, numReviews, rating }) => (
-  <div key={_id} className="flex flex-col justify-between p-4 h-full">
-    <div className="flex-grow">
-      <div className="aspect-w-1 aspect-h-1 w-full">
-        <img
-          src={image}
-          alt={name}
-          className="object-contain w-full h-full"
-        />
-      </div>
-    </div>
-    <div className="text-center space-y-2">
-      <h2 className="text-lg font-bold">{name}</h2>
-      <p className="text-gray-900 text-bold">$ {price}</p>
-    </div>
-    <div className="text-sm space-y-1">
-      <div className="flex items-center justify-between">
-        <h1 className="flex items-center">
-          <FaStore className="mr-1 text-blue-900" /> {brand}
-        </h1>
-      </div>
-      <div className="flex items-center justify-between">
-        <h1 className="flex items-center">
-          <FaStar className="mr-1 text-yellow-300" /> {numReviews}{" "}
-          {t("reviews")}
-        </h1>
-        <h1 className="flex items-center">
-          <FaBox className="mr-1 text-blue-900" /> {rating}{" "}
-          {t("rating")}
-        </h1>
-      </div>
-    </div>
-  </div>
-))}
-
+              {products.map(
+                ({ image, _id, name, price, brand, numReviews, rating }) => (
+                  <div
+                    key={_id}
+                    className="flex flex-col justify-between p-4 h-full"
+                  >
+                    <div className="flex-grow">
+                      <div className="aspect-w-1 aspect-h-1 w-full">
+                        <img
+                          src={image}
+                          alt={name}
+                          className="object-contain w-full h-full"
+                        />
+                      </div>
+                    </div>
+                    <div className="text-center space-y-2">
+                      <h2 className="text-lg font-bold">{name}</h2>
+                      <p className="text-gray-900 text-bold">$ {price}</p>
+                    </div>
+                    <div className="text-sm space-y-1">
+                      <div className="flex items-center justify-between">
+                        <h1 className="flex items-center">
+                          <FaStore className="mr-1 text-blue-900" /> {brand}
+                        </h1>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <h1 className="flex items-center">
+                          <FaStar className="mr-1 text-yellow-300" />{" "}
+                          {numReviews} {t("reviews")}
+                        </h1>
+                        <h1 className="flex items-center">
+                          <FaBox className="mr-1 text-blue-900" /> {rating}{" "}
+                          {t("rating")}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
             </Slider>
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 };
 

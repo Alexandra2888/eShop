@@ -11,11 +11,10 @@ const CategoryForm = ({
   buttonText = "Submit",
   handleDelete,
 }) => {
-
   const { t } = useTranslation();
 
   return (
-    <div className="p-3">
+    <section className="p-3">
       <form onSubmit={handleSubmit} className="space-y-3">
         <Input
           type="text"
@@ -35,12 +34,12 @@ const CategoryForm = ({
               onClick={handleDelete}
               className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 foucs:ring-red-500 focus:ring-opacity-50"
             >
-              {t('delete')}
+              {t("delete")}
             </Button>
           )}
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 

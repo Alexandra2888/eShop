@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 import { useTranslation } from "react-i18next";
 
-
 const SmallProduct = ({ product }) => {
   const { t } = useTranslation();
 
@@ -21,11 +20,17 @@ const SmallProduct = ({ product }) => {
 
       <div className="p-4 h-2/5 flex flex-col justify-between">
         <Link to={`/product/${product._id}`} className="mb-2">
-          <h2 className="text-center py-3 text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors">{product.name}</h2>
+          <h2 className="text-center py-3 text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors">
+            {product.name}
+          </h2>
         </Link>
         <div className="flex justify-between items-end mt-4">
-          <span className="text-sm font-medium text-gray-800">{t('price')}:</span>
-          <span className="text-lg font-semibold text-gray-900">${product.price}</span>
+          <span className="text-sm font-medium text-gray-800">
+            {t("price")}:
+          </span>
+          <span className="text-lg font-semibold text-gray-900">
+            ${product.price}
+          </span>
         </div>
       </div>
     </div>

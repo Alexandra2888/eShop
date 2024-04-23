@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { useTranslation } from "react-i18next";
 
-
 import { useGetUsersQuery } from "../../redux/api/usersApiSlice";
 import {
   useGetTotalOrdersQuery,
   useGetTotalSalesByDateQuery,
   useGetTotalSalesQuery,
 } from "../../redux/api/orderApiSlice";
-
 
 import AdminMenu from "./AdminMenu";
 import OrderList from "./OrderList";
@@ -23,7 +21,6 @@ const AdminDashboard = () => {
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
 
   const { t } = useTranslation();
-
 
   const [state, setState] = useState({
     options: {
@@ -107,7 +104,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">{t('sales')}</p>
+            <p className="mt-5">{t("sales")}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}
             </h1>
@@ -117,7 +114,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">{t('customers')}</p>
+            <p className="mt-5">{t("customers")}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : customers?.length}
             </h1>
@@ -127,7 +124,7 @@ const AdminDashboard = () => {
               $
             </div>
 
-            <p className="mt-5">{t('all_orders')}</p>
+            <p className="mt-5">{t("all_orders")}</p>
             <h1 className="text-xl font-bold">
               $ {isLoading ? <Loader /> : orders?.totalOrders}
             </h1>

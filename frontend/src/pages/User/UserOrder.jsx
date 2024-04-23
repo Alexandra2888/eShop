@@ -11,10 +11,9 @@ const UserOrder = () => {
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
   const { t } = useTranslation();
 
-
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-semibold mb-4"> {t('my_orders')} </h2>
+      <h2 className="text-2xl font-semibold mb-4"> {t("my_orders")} </h2>
 
       {isLoading ? (
         <Loader />
@@ -24,12 +23,12 @@ const UserOrder = () => {
         <table className="w-full">
           <thead>
             <tr>
-              <td className="py-2"> {t('image')}</td>
-              <td className="py-2"> {t('id')}</td>
-              <td className="py-2"> {t('date')}</td>
-              <td className="py-2"> {t('total')}</td>
-              <td className="py-2"> {t('paid')}</td>
-              <td className="py-2"> {t('delivered')}</td>
+              <td className="py-2"> {t("image")}</td>
+              <td className="py-2"> {t("id")}</td>
+              <td className="py-2"> {t("date")}</td>
+              <td className="py-2"> {t("total")}</td>
+              <td className="py-2"> {t("paid")}</td>
+              <td className="py-2"> {t("delivered")}</td>
               <td className="py-2"></td>
             </tr>
           </thead>
@@ -50,11 +49,11 @@ const UserOrder = () => {
                 <td className="py-2">
                   {order.isPaid ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                       {t('completed')}
+                      {t("completed")}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                       {t('pending')}
+                      {t("pending")}
                     </p>
                   )}
                 </td>
@@ -62,11 +61,11 @@ const UserOrder = () => {
                 <td className="px-2 py-2">
                   {order.isDelivered ? (
                     <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
-                       {t('completed')}
+                      {t("completed")}
                     </p>
                   ) : (
                     <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
-                      {t('pending')}
+                      {t("pending")}
                     </p>
                   )}
                 </td>
@@ -74,7 +73,7 @@ const UserOrder = () => {
                 <td className="px-2 py-2">
                   <Link to={`/order/${order._id}`}>
                     <Button className="bg-pink-400 text-back py-2 px-3 rounded">
-                    {t('view_details')}
+                      {t("view_details")}
                     </Button>
                   </Link>
                 </td>

@@ -31,13 +31,9 @@ const UserList = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
 
-
-
-
   useEffect(() => {
     refetch();
   }, [refetch]);
-
 
   const deleteHandler = (user) => {
     setUserToDelete(user);
@@ -49,7 +45,7 @@ const UserList = () => {
       try {
         await deleteUser(userToDelete._id).unwrap();
         toast.success("User deleted successfully");
-        refetch(); 
+        refetch();
         setIsDeleteModalOpen(false);
         setUserToDelete(null);
       } catch (err) {
@@ -81,7 +77,7 @@ const UserList = () => {
   };
 
   return (
-    <div className="p-4 my-12 md:ml-[10rem]">
+    <section className="p-4 my-12 md:ml-[10rem]">
       <h1 className="text-2xl font-semibold my-4 text-black dark:text-slate-50 text-center">
         {t("users")}
       </h1>
@@ -95,7 +91,7 @@ const UserList = () => {
           <div className="overflow-x-auto h-screen">
             <table className="min-w-full">
               <thead>
-                <tr className="bg-gray-100 dark:bg-inherit" >
+                <tr className="bg-gray-100 dark:bg-inherit">
                   <th className="px-4 py-2 text-left">{t("name")}</th>
                   <th className="px-4 py-2 text-left">{t("email")}</th>
                   <th className="px-4 py-2 text-left">{t("admin")}</th>
@@ -165,15 +161,21 @@ const UserList = () => {
                             isOpen={isDeleteModalOpen}
                             onClose={() => setIsDeleteModalOpen(false)}
                           >
-                              <p className="text-black">{t("delete_user")}</p>
-                              <div className="flex justify-between">
-                            <Button onClick={confirmDelete} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600">
-                            {t("confirm")}
-                            </Button>
-                            <Button onClick={() => setIsDeleteModalOpen(false)} className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600">
-                            {t("cancel")}
-                                </Button>
-                                </div>
+                            <p className="text-black">{t("delete_user")}</p>
+                            <div className="flex justify-between">
+                              <Button
+                                onClick={confirmDelete}
+                                className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-red-600"
+                              >
+                                {t("confirm")}
+                              </Button>
+                              <Button
+                                onClick={() => setIsDeleteModalOpen(false)}
+                                className="py-2 px-5 mt-5 rounded-lg text-lg font-bold  bg-gray-600"
+                              >
+                                {t("cancel")}
+                              </Button>
+                            </div>
                           </Modal>
                         </>
                       )}
@@ -185,7 +187,7 @@ const UserList = () => {
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

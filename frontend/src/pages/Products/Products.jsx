@@ -31,7 +31,6 @@ const Product = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -76,7 +75,7 @@ const Product = () => {
           className="text-white font-semibold hover:underline ml-[10rem]"
           to="/"
         >
-          {t('go_back')}
+          {t("go_back")}
         </Link>
       </div>
       {isLoading ? (
@@ -108,29 +107,30 @@ const Product = () => {
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> {t('brand')}:{" "}
+                    <FaStore className="mr-2 text-white" /> {t("brand")}:{" "}
                     {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaClock className="mr-2 text-white" /> {t('added')}:{" "}
+                    <FaClock className="mr-2 text-white" /> {t("added")}:{" "}
                     {moment(product.createdAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> {t('reviews')}:
+                    <FaStar className="mr-2 text-white" /> {t("reviews")}:
                     {product.numReviews}
                   </h1>
                 </div>
 
                 <div className="two">
                   <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> {t('ratings')}: {rating}
+                    <FaStar className="mr-2 text-white" /> {t("ratings")}:{" "}
+                    {rating}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaShoppingCart className="mr-2 text-white" /> {t('quantity')}:{" "}
-                    {product.quantity}
+                    <FaShoppingCart className="mr-2 text-white" />{" "}
+                    {t("quantity")}: {product.quantity}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <FaBox className="mr-2 text-white" /> {t('in_stock')}:{" "}
+                    <FaBox className="mr-2 text-white" /> {t("in_stock")}:{" "}
                     {product.countInStock}
                   </h1>
                 </div>
