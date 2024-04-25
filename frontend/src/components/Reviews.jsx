@@ -146,7 +146,7 @@ const Reviews = () => {
                       <p className="sr-only">{review.rating} out of 5 stars</p>
                     </div>
                   </div>
-
+                  { /*same as inner HTML in Js*/ }
                   <div
                     className="mt-4 space-y-6 text-base italic"
                     dangerouslySetInnerHTML={{ __html: review.content }}
