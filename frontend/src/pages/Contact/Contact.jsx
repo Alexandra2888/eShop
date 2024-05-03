@@ -109,7 +109,7 @@ const Contact = () => {
                     aria-labeledby="name"
                     value={form.name}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-sm sm:leading-6"
                   />
                 </label>
                 {validationErrors.name && (
@@ -137,7 +137,7 @@ const Contact = () => {
                     aria-labeledby="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-sm sm:leading-6"
                   />
                 </label>
                 {validationErrors.email && (
@@ -162,7 +162,7 @@ const Contact = () => {
                   value={form.message}
                   onChange={handleChange}
                   rows={4}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-sm sm:leading-6"
                 />
                 {validationErrors.message && (
                   <div className="text-red-500">{validationErrors.message}</div>
@@ -175,8 +175,8 @@ const Contact = () => {
                   checked={agreed}
                   onChange={setAgreed}
                   className={classNames(
-                    agreed ? "bg-blue-800" : "bg-gray-200",
-                    "flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800"
+                    agreed ? "bg-green-800" : "bg-gray-200",
+                    "flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-800"
                   )}
                 >
                   <span className="sr-only">Agree to policies</span>
@@ -204,7 +204,7 @@ const Contact = () => {
           <div className="mt-10">
             <Button
               type="submit"
-              className="block w-full rounded-md bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800"
+              className="block w-full rounded-md bg-green-700 text-slate-50 px-3.5 py-2.5 text-center text-sm font-semibold  shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-800"
             >
               {isLoading ? "Sending message" : "Send message"}
             </Button>

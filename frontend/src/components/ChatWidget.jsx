@@ -6,10 +6,10 @@ import Button from "../components/Button";
 const TypingIndicator = ({ content }) => {
   return (
     <div className="flex items-center justify-start mb-2 pl-2">
-      <div className="animate-ping h-2 w-2 bg-blue-400 rounded-full mr-1"></div>
-      <div className="animate-ping h-2 w-2 bg-blue-400 rounded-full mr-1"></div>
-      <div className="animate-ping h-2 w-2 bg-blue-400 rounded-full"></div>
-      <span className="ml-2 text-sm text-blue-600">{content}</span>
+      <div className="animate-ping h-2 w-2 bg-green-400 rounded-full mr-1"></div>
+      <div className="animate-ping h-2 w-2 bg-green-400 rounded-full mr-1"></div>
+      <div className="animate-ping h-2 w-2 bg-green-400 rounded-full"></div>
+      <span className="ml-2 text-sm text-green-600">{content}</span>
     </div>
   );
 };
@@ -112,7 +112,7 @@ const ChatWidget = () => {
               <div
                 key={index}
                 className={`message mb-2 p-2 rounded-md text-black ${
-                  message.sender === "user" ? "bg-blue-50" : "bg-blue-100"
+                  message.sender === "user" ? "bg-green-100" : "bg-green-200"
                 }`}
               >
                 {message.message}
@@ -133,7 +133,7 @@ const ChatWidget = () => {
       )}
       <Button
         onClick={toggleChat}
-        className="text-3xl p-2 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white rounded-full"
+        className="text-3xl p-2 bg-green-700 text-slate-50 rounded-full"
         aria-label="Toggle chat"
         aria-labelledby="Toggle chat"
         id="chat"

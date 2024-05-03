@@ -24,7 +24,7 @@ const TopBtn = () => {
 
   return (
     <section
-      className={`fixed bottom-8 right-8 items-center h-10 w-10 justify-center z-40 cursor-pointer bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 rounded-full transition-transform duration-300 scale-100 hover:scale-110 ${
+      className={`fixed bottom-8 right-8 items-center h-10 w-10 justify-center z-40 cursor-pointer bg-green-700 rounded-full transition-transform duration-300 scale-100 hover:scale-110 ${
         isScrollButtonVisible ? "flex" : "hidden"
       }`}
       onClick={scrollToTop}

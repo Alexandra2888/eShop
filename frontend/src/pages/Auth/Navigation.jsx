@@ -52,7 +52,7 @@ function Navigation() {
 
   return (
     <>
-      <div>
+      <nav>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -68,7 +68,7 @@ function Navigation() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-900/80" />
+              <div className="fixed inset-0 bg-slate-50 text-black dark:bg-[#3A3A3A] dark:text-slate-50" />
             </Transition.Child>
 
             <div className="fixed inset-0 flex">
@@ -99,175 +99,155 @@ function Navigation() {
                       >
                         <span className="sr-only">Close sidebar</span>
                         <FaTimes
-                          className="h-6 w-6 text-white"
+                          className="h-6 w-6 text-green-700"
                           aria-hidden="true"
                         />
                       </Button>
                     </div>
                   </Transition.Child>
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-[#172A45] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 pb-2">
-                    <div className="flex h-16 shrink-0 items-center text-white dark:text-gray-900">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-[#3A3A3A] bg-gray-50 px-6 pb-2">
+                    <div className="flex h-16 shrink-0 items-center dark:text-slate-50">
                       eShop
                     </div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
-                          <ul
-                            role="list"
-                            className="-mx-2 space-y-1 text-white dark:text-gray-900"
+                          <select
+                            onChange={(e) => changeLanguage(e.target.value)}
+                            className="text-gray-900 dark:text-slate-50 dark:bg-[#3A3A3A] p-2 rounded cursor-pointer"
+                            value={i18n.language}
                           >
-                            <li>
-                              <select
-                                onChange={(e) => changeLanguage(e.target.value)}
-                                className="bg-inherit text-white dark:text-gray-900 p-2 rounded cursor-pointer"
-                                value={i18n.language}
-                              >
-                                <option value="de">DE</option>
-                                <option value="en">EN</option>
-                                <option value="ro">RO</option>
-                              </select>
-                            </li>
-                            <li>
-                              <NavLink
-                                to="/"
-                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                              >
-                                <FaHome
-                                  className="h-5 w-5 text-white dark:text-gray-900"
-                                  aria-hidden="true"
-                                />
-                                <span className="dark:text-gray-900">
-                                  {t("home")}
-                                </span>
-                              </NavLink>
-                            </li>
-                            <li>
-                              <NavLink
-                                to="/shop"
-                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold dark:text-gray-900"
-                              >
-                                <FaShoppingBag
-                                  className="h-5 w-5  dark:text-gray-900 "
-                                  aria-hidden="true"
-                                />
-                                <span className="dark:text-gray-900">
-                                  {" "}
-                                  {t("shop")}
-                                </span>
-                              </NavLink>
-                            </li>
-                            <li>
-                              <NavLink
-                                to="/contact"
-                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                              >
-                                <FaEnvelopeOpen
-                                  className="h-5 w-5 text-white dark:text-gray-900"
-                                  aria-hidden="true"
-                                />
-                                <span className="dark:text-gray-900">
-                                  {" "}
-                                  {t("contact")}
-                                </span>
-                              </NavLink>
-                            </li>
-                            <li>
-                              <NavLink
-                                to="/cart"
-                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                              >
-                                <FaShoppingCart
-                                  className="h-5 w-5 text-white dark:text-gray-900"
-                                  aria-hidden="true"
-                                />
-                                <span className="dark:text-gray-900">
-                                  {" "}
-                                  {t("cart")}
-                                </span>
-                                {cartItems.length > 0 && (
-                                  <span>
-                                    <span className="px-1 py-0 text-sm text-white dark:bg-[#172A45] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 rounded-full">
-                                      {cartItems.reduce((a, c) => a + c.qty, 0)}
-                                    </span>
-                                  </span>
-                                )}
-                              </NavLink>
-                            </li>
-                            <li>
-                              <NavLink
-                                to="/favorite"
-                                className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                              >
-                                <FaHeart
-                                  className="h-5 w-5  dark:text-gray-900 "
-                                  aria-hidden="true"
-                                />
-                                <span className="dark:text-gray-900">
-                                  {t("favorites")}
-                                </span>
-                                <FavoritesCount />
-                              </NavLink>
-                            </li>
-                            <li>
-                              <li>
-                                <NavLink to="/admin/dashboard">
-                                  <span className="sr-only">admin</span>
-                                  {userInfo && userInfo.isAdmin && (
-                                    <span className="text-white mx-4 dark:text-gray-900">
-                                      {t("admin")}
-                                    </span>
-                                  )}
-                                </NavLink>
-                              </li>
-                            </li>
-                            <li>
-                              {!userInfo && (
-                                <ul>
-                                  <li>
-                                    <NavLink
-                                      to="/login"
-                                      className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
-                                    >
-                                      <FaSignInAlt className=" h-6 w-6 text-white mr-2 mt-[4px] dark:text-gray-900" />
+                            <option value="de">DE</option>
+                            <option value="en">EN</option>
+                            <option value="ro">RO</option>
+                          </select>
+                        </li>
 
-                                      <span className="dark:text-gray-900">
-                                        {" "}
-                                        {t("login")}
-                                      </span>
-                                    </NavLink>
-                                  </li>
-                                  <li>
-                                    <NavLink
-                                      to="/register"
-                                      className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
-                                    >
-                                      <FaSignOutAlt className="h-6 w-6 text-white mr-2 dark:text-gray-900" />
+                        <li>
+                          <NavLink
+                            to="/"
+                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          >
+                            <FaHome
+                              className="h-5 w-5 text-gray-900 dark:text-slate-50"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-900 dark:text-slate-50">
+                              {t("home")}
+                            </span>
+                          </NavLink>
+                        </li>
 
-                                      <span className="dark:text-gray-900">
-                                        {" "}
-                                        {t("register")}
-                                      </span>
-                                    </NavLink>
-                                  </li>
-                                </ul>
-                              )}
+                        <li>
+                          <NavLink
+                            to="/shop"
+                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold "
+                          >
+                            <FaShoppingBag
+                              className="h-5 w-5 text-gray-900 dark:text-slate-50 "
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-900 dark:text-slate-50">
+                              {" "}
+                              {t("shop")}
+                            </span>
+                          </NavLink>
+                        </li>
+
+                        <li>
+                          <NavLink
+                            to="/contact"
+                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          >
+                            <FaEnvelopeOpen
+                              className="h-5 w-5 text-gray-900 dark:text-slate-50"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-900 dark:text-slate-50">
+                              {" "}
+                              {t("contact")}
+                            </span>
+                          </NavLink>
+                        </li>
+
+                        <li>
+                          <NavLink
+                            to="/cart"
+                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          >
+                            <FaShoppingCart
+                              className="h-5 w-5 text-gray-900 dark:text-slate-50"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-900 dark:text-slate-50">
+                              {" "}
+                              {t("cart")}
+                            </span>
+                            {cartItems.length > 0 && (
+                              <span>
+                                <span className="px-1 py-0 text-sm rounded-full text-green-700">
+                                  {cartItems.reduce((a, c) => a + c.qty, 0)}
+                                </span>
+                              </span>
+                            )}
+                          </NavLink>
+                        </li>
+
+                        <li>
+                          <NavLink
+                            to="/favorite"
+                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          >
+                            <FaHeart
+                              className="h-5 w-5 text-gray-900 dark:text-slate-50"
+                              aria-hidden="true"
+                            />
+                            <span className="text-gray-900 dark:text-slate-50">
+                              {t("favorites")}
+                            </span>
+                            <FavoritesCount />
+                          </NavLink>
+                        </li>
+
+                        <li>
+                          <NavLink to="/admin/dashboard">
+                            <span className="sr-only">admin</span>
+                            {userInfo && userInfo.isAdmin && (
+                              <span className="text-gray-900 dark:text-slate-50">
+                                {t("admin")}
+                              </span>
+                            )}
+                          </NavLink>
+                        </li>
+
+                        {!userInfo && (
+                          <ul>
+                            <li>
+                              <NavLink
+                                to="/login"
+                                className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
+                              >
+                                <FaSignInAlt className=" h-6 w-6 text-gray-900 dark:text-slate-50 mr-2 mt-[4px] " />
+
+                                <span className="text-gray-900 dark:text-slate-50">
+                                  {" "}
+                                  {t("login")}
+                                </span>
+                              </NavLink>
                             </li>
                           </ul>
-                        </li>
+                        )}
 
                         {userInfo && (
                           <li className="flex ">
                             <span>
-                              <FaSignOutAlt className="h-6 w-6 text-white dark:text-gray-900" />
+                              <FaSignOutAlt className="h-6 w-6 " />
                             </span>
                             <Button
                               onClick={logoutHandler}
                               className="block -mt-2 w-full px-4 py-2 text-left"
                             >
-                              <span className="text-white dark:text-gray-900">
-                                {" "}
-                                {t("logout")}
-                              </span>
+                              <span className=""> {t("logout")}</span>
                             </Button>
                           </li>
                         )}
@@ -284,179 +264,124 @@ function Navigation() {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-fit lg:flex-col ">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-navy-900 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  text-white px-6">
-            <Link
-              to="/"
-              className="flex h-16 shrink-0 items-center dark:text-gray-900"
-            >
-              eShop
-            </Link>
-            <nav className="flex flex-1 flex-col">
-              <ul
-                role="list"
-                className="flex flex-1 flex-col gap-y-7 dark:text-gray-900"
+        <nav className="hidden bg-gray-50 lg:sticky lg:top-0 lg:z-40 lg:flex lg:min-w-full lg:justify-between px-12 dark:bg-[#3A3A3A]">
+          <ul>
+            <li>
+              <Link
+                to="/"
+                className="flex h-16 shrink-0 items-center text-grey-900 dark:text-slate-50 dark:bg-[#3A3A3A] hover:text-green-700"
               >
-                {/* Language Selector */}
-                <li>
-                  <select
-                    onChange={(e) => changeLanguage(e.target.value)}
-                    className="bg-inherit text-black p-2 rounded cursor-pointer"
-                    value={i18n.language}
-                  >
-                    <option value="de">DE</option>
-                    <option value="en">EN</option>
-                    <option value="ro">RO</option>
-                  </select>
-                </li>
+                eShop
+              </Link>
+            </li>
+          </ul>
 
-                <li>
-                  <NavLink
-                    to="/"
-                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                  >
-                    <FaHome
-                      className="h-5 w-5 text-white dark:text-gray-900"
-                      aria-hidden="true"
-                    />
-                    <span className="dark:text-gray-900"> {t("home")}</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/shop"
-                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                  >
-                    <FaShoppingBag
-                      className="h-5 w-5  dark:text-gray-900"
-                      aria-hidden="true"
-                    />
-                    <span className="dark:text-gray-900"> {t("shop")}</span>
-                  </NavLink>
-                </li>
+          <div className="flex  text-gray-900 dark:bg-[#3A3A3A] dark:text-slate-50">
+            <ul className="flex text-center justify-center items-center">
+              <li>
+                <select
+                  onChange={(e) => changeLanguage(e.target.value)}
+                  className="bg-inherit text-black p-2 rounded cursor-pointer dark:text-slate-50"
+                  value={i18n.language}
+                >
+                  <option value="de">DE</option>
+                  <option value="en">EN</option>
+                  <option value="ro">RO</option>
+                </select>
+              </li>
+              <li>
+                <NavLink
+                  to="/shop"
+                  className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold "
+                >
+                  <FaShoppingBag
+                    className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
+                    aria-hidden="true"
+                  />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/favorite"
+                  className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                >
+                  <FaHeart
+                    className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
+                    aria-hidden="true"
+                  />
 
-                <li>
-                  <NavLink
-                    to="/favorite"
-                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                  >
-                    <FaHeart
-                      className="h-5 w-5  dark:text-gray-900"
-                      aria-hidden="true"
-                    />
-                    <span className="dark:text-gray-900">
-                      {" "}
-                      {t("favorites")}
-                    </span>
-                    <FavoritesCount />
-                  </NavLink>
-                </li>
+                  <FavoritesCount />
+                </NavLink>
+              </li>
 
-                <li>
-                  <NavLink
-                    to="/cart"
-                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                  >
-                    <FaShoppingCart
-                      className="h-5 w-5 text-white dark:text-gray-900"
-                      aria-hidden="true"
-                    />
-                    <span className="dark:text-gray-900"> {t("cart")}</span>
-                    {cartItems.length > 0 && (
-                      <span>
-                        <span className="px-1 py-0 text-sm text-white bg-gray-700 rounded-full">
-                          {cartItems.reduce((a, c) => a + c.qty, 0)}
-                        </span>
-                      </span>
-                    )}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/contact"
-                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                  >
-                    <FaEnvelopeOpen
-                      className="h-5 w-5 text-white dark:text-gray-900"
-                      aria-hidden="true"
-                    />
-                    <span className="dark:text-gray-900"> {t("contact")}</span>
-                  </NavLink>
-                </li>
+              <li>
+                <NavLink
+                  to="/cart"
+                  className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                >
+                  <FaShoppingCart
+                    className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
+                    aria-hidden="true"
+                  />
 
-                {!userInfo && (
-                  <>
-                    <li>
-                      <NavLink
-                        to="/login"
-                        className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                      >
-                        <FaSignInAlt
-                          className="h-5 w-5 text-white dark:text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <span className="dark:text-gray-900">
-                          {" "}
-                          {t("login")}
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/register"
-                        className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                      >
-                        <FaSignInAlt
-                          className="h-5 w-5 text-white dark:text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <span className="dark:text-gray-900">
-                          {" "}
-                          {t("register")}
-                        </span>
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-
-                {userInfo && (
-                  <li className="flex ">
+                  {cartItems.length > 0 && (
                     <span>
-                      <FaSignOutAlt className="h-6 w-6 text-white dark:text-gray-900" />
-                    </span>
-                    <Button
-                      onClick={logoutHandler}
-                      className="block -mt-2 w-full px-4 py-2 text-left"
-                    >
-                      <span className="dark:text-gray-900"> {t("logout")}</span>
-                    </Button>
-                  </li>
-                )}
-                <li>
-                  <NavLink to="/admin/dashboard">
-                    <span className="sr-only">admin</span>
-                    {userInfo && userInfo.isAdmin && (
-                      <span className="text-white mx-4 dark:text-gray-900">
-                        {t("admin")}
+                      <span className="px-1 py-0 text-sm bg-green-700 absolute top-1 right-48 rounded-full">
+                        {cartItems.reduce((a, c) => a + c.qty, 0)}
                       </span>
-                    )}
-                  </NavLink>
-                </li>
-              </ul>
-              <ul>
-                <li className="mx-12 -mt-16 dark:text-gray-900">
-                  <ToggleTheme />
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+                    </span>
+                  )}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/dashboard">
+                  <span className="sr-only">admin</span>
+                  {userInfo && userInfo.isAdmin && (
+                    <span className="text-gray-900 dark:text-slate-50 mx-4 ">
+                      {t("admin")}
+                    </span>
+                  )}
+                </NavLink>
+              </li>
 
-      <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 dark:bg-navy-900 pb-2 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+              {!userInfo && (
+                <>
+                  <NavLink
+                    to="/login"
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <FaSignInAlt
+                      className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
+                      aria-hidden="true"
+                    />
+                  </NavLink>
+                </>
+              )}
+              <li className="mx-3 text-gray-900 dark:text-slate-50">
+                <ToggleTheme />
+              </li>
+              {userInfo && (
+                <>
+                  <Button
+                    onClick={logout}
+                    className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <FaSignInAlt
+                      className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
+                      aria-hidden="true"
+                    />
+                  </Button>
+                </>
+              )}
+            </ul>
+          </div>
+        </nav>
+      </nav>
+
+      <div className="sticky top-0 z-40 flex items-center gap-x-6 pb-2 px-4 py-4 shadow-sm sm:px-6 lg:hidden dark:bg-[#3A3A3A]">
         <Button
           type="button"
-          className="-m-2.5 p-2.5 text-indigo-200 lg:hidden"
+          className="-m-2.5 p-2.5 text-green-700 lg:hidden"
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>

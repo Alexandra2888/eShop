@@ -17,7 +17,7 @@ import {
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites) || [];
-  const isFavorite = favorites.some((p) => p._id === product._id);
+  const isFavorite = favorites.some((product) => product._id === product._id);
 
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
@@ -42,9 +42,9 @@ const HeartIcon = ({ product }) => {
       onClick={toggleFavorites}
     >
       {isFavorite ? (
-        <FaHeart className="text-pink-500" />
+        <FaHeart className="text-green-500" />
       ) : (
-        <FaRegHeart className="text-blue-600" />
+        <FaRegHeart className="text-green-600" />
       )}
     </div>
   );

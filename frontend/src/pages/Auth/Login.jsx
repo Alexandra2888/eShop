@@ -100,7 +100,7 @@ const Login = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-sm sm:leading-6"
                 />
                 {validationErrors.email && (
                   <div className="text-red-500">{validationErrors.email}</div>
@@ -121,7 +121,7 @@ const Login = () => {
                   name="passowrd"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 sm:text-sm sm:leading-6"
                 />
                 {validationErrors.password && (
                   <div className="text-red-500">
@@ -134,7 +134,7 @@ const Login = () => {
           <div className="mt-10">
             <Button
               type="submit"
-              className="block w-full rounded-md bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800"
+              className="block w-full rounded-md bg-green-700 text-slate-50 px-3.5 py-2.5 text-center text-sm font-semibold  shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-800"
             >
               {isLoading ? "Signing In..." : "Sign In"}
             </Button>
@@ -143,7 +143,7 @@ const Login = () => {
           <div className="mt-2.5">
             <p className="text-gray-800 dark:text-slate-50">
               {t("new_customer")}?{" "}
-              <Link to={"/register"} className="text-blue-800 hover:underline">
+              <Link to={"/register"} className="text-green-800 hover:underline">
                 {t("register")}
               </Link>
             </p>

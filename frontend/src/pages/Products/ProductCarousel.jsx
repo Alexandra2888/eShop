@@ -85,7 +85,7 @@ const ProductCarousel = () => {
                     <div className="text-sm space-y-1">
                       <div className="flex items-center justify-between">
                         <h1 className="flex items-center">
-                          <FaStore className="mr-1 text-blue-900" /> {brand}
+                          <FaStore className="mr-1 text-green-900" /> {brand}
                         </h1>
                       </div>
                       <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ const ProductCarousel = () => {
                           {numReviews} {t("reviews")}
                         </h1>
                         <h1 className="flex items-center">
-                          <FaBox className="mr-1 text-blue-900" /> {rating}{" "}
+                          <FaBox className="mr-1 text-green-900" /> {rating}{" "}
                           {t("rating")}
                         </h1>
                       </div>

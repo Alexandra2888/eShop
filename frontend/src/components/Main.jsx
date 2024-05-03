@@ -20,9 +20,11 @@ const Main = () => {
 
   return (
     <>
-      <main className="flex flex-col justify-center items-center">
-        <Banner />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <main className="flex flex-row justify-center items-center">
+      <Banner />
+        
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <h3 className="text-xl font-semibold text-center col-span-full">
             {t("latest_products")}
           </h3>
@@ -31,9 +33,9 @@ const Main = () => {
               <SmallProduct product={product} />
             </div>
           ))}
-        </div>
+        </div> */}
 
-        <ProductCarousel />
+        {/* <ProductCarousel /> */}
       </main>
     </>
   );

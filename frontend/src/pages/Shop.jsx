@@ -108,7 +108,7 @@ const Shop = () => {
                           type="checkbox"
                           id="red-checkbox"
                           onChange={(e) => handleCheck(e.target.checked, c._id)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
 
                         <label
@@ -135,7 +135,7 @@ const Shop = () => {
                           id={brand}
                           name="brand"
                           onChange={() => handleBrandClick(brand)}
-                          className="w-4 h-4 text-blue-400 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
 
                         <label
@@ -165,7 +165,7 @@ const Shop = () => {
 
                 <div className="p-5 pt-0">
                   <Button
-                    className="w-full border my-4  text-black bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
+                    className="w-full border my-4  bg-green-700 text-slate-50"
                     onClick={() => window.location.reload()}
                   >
                     {t("reset")}

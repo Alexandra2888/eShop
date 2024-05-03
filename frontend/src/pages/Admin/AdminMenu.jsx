@@ -35,13 +35,13 @@ const AdminMenu = () => {
 
       {isMenuOpen && (
         <section className="bg-[#151515] p-4 fixed right-7 top-5">
-          <ul className="list-none mt-2">
+          <ul className="list-none mt-6">
             <li>
               <NavLink
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/dashboard"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("admin_dashboard")}
@@ -52,7 +52,7 @@ const AdminMenu = () => {
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/categorylist"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("create_category")}
@@ -63,7 +63,7 @@ const AdminMenu = () => {
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/productlist"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("create_product")}
@@ -74,7 +74,7 @@ const AdminMenu = () => {
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/allproductslist"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("all_products")}
@@ -85,7 +85,7 @@ const AdminMenu = () => {
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/userlist"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("manage_users")}
@@ -96,7 +96,7 @@ const AdminMenu = () => {
                 className="list-item py-2 px-3  mb-5 hover:bg-[#2E2D2D] rounded-sm"
                 to="/admin/orderlist"
                 style={({ isActive }) => ({
-                  color: isActive ? "lightblue" : "white",
+                  color: isActive ? "lightgreen" : "white",
                 })}
               >
                 {t("manage_orders")}

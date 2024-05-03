@@ -100,7 +100,7 @@ const AdminDashboard = () => {
       <section className="md:ml-[8rem]">
         <div className="w-[80%] flex justify-around flex-wrap">
           <div className="rounded-lg bg-white text-black p-5 w-[20rem] mt-5 md:ml-[5rem] dark:bg-[#3A3A3A] dark:text-slate-50">
-            <div className="font-bold rounded-full w-[3rem] bg-blue-600 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-600 text-center p-3">
               $
             </div>
 
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
             </h1>
           </div>
           <div className="rounded-lg bg-white p-5 w-[20rem] mt-5 dark:bg-[#3A3A3A]  dark:text-slate-50">
-            <div className="font-bold rounded-full w-[3rem] bg-blue-600 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-600 text-center p-3">
               $
             </div>
 
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
             </h1>
           </div>
           <div className="rounded-lg bg-white p-5 w-[20rem] mt-5 dark:bg-[#3A3A3A] dark:text-slate-50">
-            <div className="font-bold rounded-full w-[3rem] bg-blue-600 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-600 text-center p-3">
               $
             </div>
 

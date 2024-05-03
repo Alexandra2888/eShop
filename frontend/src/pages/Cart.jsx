@@ -45,115 +45,58 @@ const Cart = () => {
             {t("cart_empty")}{" "}
             <Link
               to="/shop"
-              className="text-blue-800 font-normal hover:underline mx-2 dark:text-gray-300"
+              className="text-green-800 font-normal hover:underline mx-2 dark:text-gray-300"
             >
               {" "}
               {t("go_to_shop")}
             </Link>
           </div>
         ) : (
-          <>
-            <div className="flex flex-col my-8 xs:max-w-xs">
-              <h1 className="text-center text-2xl font-semibold my-12 uppercase">
-                {t("shopping_cart")}:
-              </h1>
-              <div>
-                {cartItems.map((item) => (
-                  <div
-                    key={item._id}
-                    className="flex flex-col md:flex-row items-enter my-3 pb-2 justify-center items-center"
-                  >
-                    <div className="w-[5rem] h-[5rem]">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover rounded"
-                      />
-                    </div>
-
-                    <div className="flex-1 ml-4">
-                      <Link
-                        to={`/product/${item._id}`}
-                        className="text-gray-900 dark:text-slate-100"
-                      >
-                        {item.name}
-                      </Link>
-
-                      <div className="mt-2 text-white">{item.brand}</div>
-                      <div className="mt-2 text-white font-bold">
-                        $ {item.price}
-                      </div>
-                    </div>
-                    <div className="flex space-x-2 ml-12 md:flex-row">
-                      <div className="w-24">
-                        <label htmlFor="select">
-                          <select
-                            className="w-full p-1 border rounded text-black"
-                            id="select"
-                            title="select"
-                            aria-label="select"
-                            aria-labelledby="select-label"
+            <>
+            <div className="flex justify-center  mt-8 min-h-screen w-full mx-12">
+              <div className="container p-5">
+                <div className="flex flex-col lg:flex-row justify-between overflow-hidden">
+                  {/* Product List */}
+                    <div className="w-full p-4">
+                    <h2 className="text-xl font-bold border-b pb-2">Shopping Cart</h2>
+                    {cartItems.length > 0 ? cartItems.map((item) => (
+                      <div key={item._id} className="flex items-center py-2 border-b">
+                        <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded mr-4" />
+                        <div className="flex-1">
+                          <Link to={`/product/${item._id}`} className="text-lg font-semibold">{item.name}</Link>
+                          <p className="text-gray-500">{item.brand}</p>
+                          <p className="font-bold text-green-700">${item.price}</p>
+                        </div>
+                        <div className="flex items-center">
+                          <select className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             value={item.qty}
-                            onChange={(e) =>
-                              addToCartHandler(item, Number(e.target.value))
-                            }
-                          >
-                            {[...Array(item.countInStock).keys()].map((x) => (
-                              <option key={x + 1} value={x + 1}>
-                                {x + 1}
-                              </option>
-                            ))}
+                            onChange={(e) => addToCartHandler(item, Number(e.target.value))}>
+                            {[...Array(item.countInStock).keys()].map(x => <option key={x + 1} value={x + 1}>{x + 1}</option>)}
                           </select>
-                        </label>
+                          <button className="p-2 text-red-500 ml-2" onClick={() => removeFromCartHandler(item._id)}><FaTrash /></button>
+                        </div>
                       </div>
-
-                      <div>
-                        <Button
-                          className="text-red-500 mr-[5rem]"
-                          aria-label="delete"
-                          aria-labeledby="delete"
-                          role="delete"
-                          id="delete"
-                          title="delete"
-                          aria-labelledby="delete-icon"
-                          onClick={() => removeFromCartHandler(item._id)}
-                        >
-                          <FaTrash className="ml-[1rem] mt-[.5rem]" />
-                        </Button>
+                    )) : (
+                      <div className="text-center py-8">
+                        <p>Your cart is empty.</p>
+                        <Link to="/shop" className="text-green-500 hover:underline">Go back to shop</Link>
+                      </div>
+                    )}
+                  </div>
+      
+                  {/* Summary Section */}
+                  <div className="w-full  p-4">
+                    <div className="sticky top-20">
+                      <h2 className="text-xl font-bold border-b pb-2">Summary</h2>
+                      <div className="py-2">
+                        <p>Total items: {cartItems.reduce((acc, item) => acc + item.qty, 0)}</p>
+                        <p>Total Price: ${cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)}</p>
+                      </div>
+                      <div className="mt-4 space-x-12">
+                        <Button className="w-fit bg-green-700 text-white py-2 px-4 rounded hover:bg-green-600" onClick={checkoutHandler}>Checkout</Button>
+                        <Button className="w-fit bg-red-500 text-white py-2 px-4  mt-2 rounded hover:bg-red-600" onClick={emptyCart}>Empty Cart</Button>
                       </div>
                     </div>
-                  </div>
-                ))}
-                <div className="mt-8 w-[40rem]">
-                  <div className="p-4 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-2">
-                      {t("items")} (
-                      {cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                    </h2>
-
-                    <div className="text-2xl font-bold">
-                      ${" "}
-                      {cartItems
-                        .reduce((acc, item) => acc + item.qty * item.price, 0)
-                        .toFixed(2)}
-                    </div>
-                  </div>
-                  <div className="flex justify-center -mt-16 md:mt-8 md:justify-around">
-                    <Button
-                      className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white md:-ml-24 rounded-full mx-4 md:mx-0 md:py-2 px-4 md:text-lg"
-                      disabled={cartItems.length === 0}
-                      onClick={checkoutHandler}
-                    >
-                      {t("proceed_to_checkout")}
-                    </Button>
-
-                    <Button
-                      className="bg-red-500 rounded-full md:py-2 px-4 md:text-lg mx-4 md:mx-0"
-                      disabled={cartItems.length === 0}
-                      onClick={emptyCart}
-                    >
-                      {t("empty_cart")}
-                    </Button>
                   </div>
                 </div>
               </div>

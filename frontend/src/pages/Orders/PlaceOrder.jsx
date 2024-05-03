@@ -168,7 +168,7 @@ const PlaceOrder = () => {
 
           <Button
             type="button"
-            className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
+            className="bg-green-700 text-slate-50 py-2 px-4 rounded-full text-lg w-full mt-4"
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >

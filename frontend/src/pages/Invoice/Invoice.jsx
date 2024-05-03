@@ -130,7 +130,7 @@ const Invoice = () => {
         <Button
           type="button"
           onClick={downloadInvoice}
-          className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit h-fit my-12 px-4 py-2"
+          className="bg-green-700 text-slate-50 text-center w-fit h-fit my-12 px-4 py-2"
         >
           {t("download_invoice")}
         </Button>

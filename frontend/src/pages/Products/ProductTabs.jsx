@@ -104,7 +104,7 @@ const ProductTabs = ({
                 <Button
                   type="submit"
                   disabled={loadingProductReview}
-                  className="ml-3 md:ml-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  text-white py-2 px-4 rounded-lg"
+                  className="ml-3 md:ml-0 bg-green-700 text-slate-50  py-2 px-4 rounded-lg"
                 >
                   {t("submit")}
                 </Button>

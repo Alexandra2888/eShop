@@ -146,7 +146,7 @@ const Order = () => {
         <Link
           to={`/order/${order._id}/invoice`}
           type="button"
-          className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white text-center w-fit  py-3 px-4 mx-36 md:mx-96"
+          className="bg-green-700 text-slate-50 text-center w-fit  py-3 px-4 mx-36 md:mx-96"
         >
           {t("invoice")}
         </Link>
@@ -156,28 +156,28 @@ const Order = () => {
         <div className="mt-5 border-gray-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2"> {t("shipping")}</h2>
           <p className="mb-4 mt-4">
-            <strong className="text-blue-600"> {t("order")}:</strong>{" "}
+            <strong className="text-green-600"> {t("order")}:</strong>{" "}
             {order._id}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600"> {t("name")}:</strong>{" "}
+            <strong className="text-green-600"> {t("name")}:</strong>{" "}
             {order.user.username}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600"> {t("email")}:</strong>{" "}
+            <strong className="text-green-600"> {t("email")}:</strong>{" "}
             {order.user.email}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600"> {t("address")}:</strong>{" "}
+            <strong className="text-green-600"> {t("address")}:</strong>{" "}
             {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-blue-600"> {t("method")}:</strong>{" "}
+            <strong className="text-green-600"> {t("method")}:</strong>{" "}
             {order.paymentMethod}
           </p>
 
@@ -236,7 +236,7 @@ const Order = () => {
           <div>
             <Button
               type="button"
-              className="bg-blue-600 text-white w-full py-2"
+              className="bg-green-600 text-white w-full py-2"
               onClick={deliverHandler}
             >
               {t("mark_as_delivered")}

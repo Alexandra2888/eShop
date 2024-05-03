@@ -188,7 +188,7 @@ const ProductList = () => {
               </div>
               <Button
                 onClick={handleSubmit}
-                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 "
+                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-green-700 text-slate-50"
               >
                 {t("submit")}
               </Button>

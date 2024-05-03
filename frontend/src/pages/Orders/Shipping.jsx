@@ -44,7 +44,7 @@ const Shipping = () => {
   }, [navigate, shippingAddress]);
 
   return (
-    <section className="container mx-auto mt-10 max-w-sm md:w-full">
+    <section className="container mx-auto mt-10 max-w-sm md:w-full pb-12">
       <ProgressSteps step1 step2 />
       <div className="mt-[10rem] flex justify-around items-center flex-wrap">
         <form onSubmit={submitHandler} className="w-fit md:w-[40rem]">
@@ -99,7 +99,7 @@ const Shipping = () => {
               <label className="inline-flex items-center">
                 <Input
                   type="radio"
-                  className="form-radio text-blue-500"
+                  className="form-radio text-green-500"
                   name="paymentMethod"
                   value="PayPal"
                   checked={paymentMethod === "PayPal"}
@@ -112,7 +112,7 @@ const Shipping = () => {
           </div>
 
           <Button
-            className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white px-5 py-3 md:py-2 md:px-4 rounded-full text-md md:text-lg w-fit flex justify-center items-center md:w-full"
+            className="bg-green-700 text-slate-50 px-5 py-3 md:py-2 md:px-4 rounded-full text-md md:text-lg w-fit flex justify-center items-center md:w-full"
             type="submit"
           >
             {t("continue")}

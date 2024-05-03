@@ -14,9 +14,9 @@ const Favorites = () => {
     <>
       <Metadata title={"Favorites"} />
       <div className="flex flex-col justify-center items-center h-screen ">
-        <h1 className="text-lg font-bold md:py-12">{t("favorite_products")}</h1>
+        <h1 className="text-lg font-bold">{t("favorite_products")}</h1>
 
-        <div className="flex flex-wrap max-w-xs md:max-3xl">
+        <div className="flex flex-wrap">
           {favorites.map((product) => (
             <Product key={product._id} product={product} />
           ))}

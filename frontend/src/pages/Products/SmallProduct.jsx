@@ -20,7 +20,7 @@ const SmallProduct = ({ product }) => {
 
       <div className="p-4 h-2/5 flex flex-col justify-between">
         <Link to={`/product/${product._id}`} className="mb-2">
-          <h2 className="text-center py-3 text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors">
+          <h2 className="text-center py-3 text-lg font-semibold text-gray-800 hover:text-green-600 transition-colors">
             {product.name}
           </h2>
         </Link>

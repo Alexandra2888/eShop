@@ -8,7 +8,9 @@ import Message from "../components/Message";
 import Main from "../components/Main";
 import Product from "./Products/Product";
 import ChatWidget from "../components/ChatWidget";
-import Reviews from "../components/Reviews";
+import Category from "../pages/User/Category";
+import ProductShowcase from "../components/ProductShowcase";
+import Reviews from "../components/Reviews"
 
 const Home = () => {
   const { keyword } = useParams();
@@ -25,15 +27,24 @@ const Home = () => {
           {isError?.data.message || isError.error}
         </Message>
       ) : (
-        <>
-          <div className="flex justify-center md:justify-between items-center ">
-            <h1 className="ml-[20rem] mt-[10rem] text-xl font-bold text-center">
-              {t("special_products")}
+            <>
+              
+              <div className="flex flex-col justify-center items-center space-x-12 my-12">
+            <h1 className="text-xl font-bold text-center py-5">
+              Latest categories
+            </h1>
+          <Category/>
+              </div>
+              
+
+          <div className="flex justify-center items-center space-x-12 my-24">
+            <h1 className="text-xl font-bold text-center">
+              {t("latest_products")}
             </h1>
 
             <Link
               to="/shop"
-              className="bg-blue-600 text-white font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem] mx-8"
+              className="bg-green-600 text-white font-bold rounded-full max-w-fit px-3 py-2"
             >
               {t("shop")}
             </Link>
@@ -46,10 +57,10 @@ const Home = () => {
                   <Product product={product} />
                 </div>
               ))}
-              <div>
-                <Reviews />
-              </div>
-            </div>
+                 
+                </div>
+                <ProductShowcase />
+                <Reviews/>
             <ChatWidget className="mr-0" />
           </div>
         </>

@@ -114,7 +114,7 @@ const CategoryList = () => {
           {categories?.map((category) => (
             <div key={category._id}>
               <Button
-                className="bg-white border border-blue-600 text-blue-500 py-2 px-4 rounded-lg m-3 hover:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800  hover:text-white focus:outline-none foucs:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="bg-white border border-green-700 text-green-600 py-2 px-4 rounded-lg m-3 hover:bg-green-700  hover:text-slate-50 focus:outline-none foucs:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                 onClick={() => {
                   {
                     setModalVisible(true);

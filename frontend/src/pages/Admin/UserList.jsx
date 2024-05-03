@@ -144,7 +144,7 @@ const UserList = () => {
                       ) : (
                         <>
                           <Button
-                            className="text-blue-600 px-2"
+                            className="text-green-600 px-2"
                             onClick={() =>
                               toggleEdit(user._id, user.username, user.email)
                             }

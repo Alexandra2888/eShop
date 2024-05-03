@@ -163,7 +163,7 @@ const Product = () => {
                 <Button
                   onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
-                  className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
+                  className="bg-green-700 text-slate-50 py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
                   {t("add_to_cart")}
                 </Button>

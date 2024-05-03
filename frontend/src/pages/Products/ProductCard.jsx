@@ -22,10 +22,10 @@ const ProductCard = ({ p }) => {
   };
 
   return (
-    <section className="flex flex-wrap md:w-[20rem] md:h-[20rem] border-gray-200 border-[1px] rounded-xl shadow-md space-x-5 shaodw-xl overflow-hidden ">
+    <section className="flex flex-wrap md:w-[20rem] md:h-[20rem] border-gray-200 border-[1px] rounded-xl shadow-md space-x-5  overflow-hidden ">
       <section className="relative">
         <Link to={`/product/${p._id}`}>
-          <span className="absolute bottom-3 right-3 bg-blue-800 text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full ">
+          <span className="absolute bottom-3 right-3 bg-green-800 text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full ">
             {p?.brand}
           </span>
           <img
@@ -60,7 +60,7 @@ const ProductCard = ({ p }) => {
           <div className="flex items-center space-x-24">
             <Link
               to={`/product/${p._id}`}
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 dark:focus:ring-blue-600"
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-green-700 text-slate-50"
             >
               {t("read_more")}
               <svg

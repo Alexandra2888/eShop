@@ -58,7 +58,7 @@ const AllProducts = () => {
                       <div className="flex justify-between">
                         <Link
                           to={`/admin/product/update/${product._id}`}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white  rounded-lg bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center  rounded-lg bg-green-700 text-slate-50"
                         >
                           {t("update_product")}
 
