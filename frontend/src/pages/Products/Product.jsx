@@ -7,67 +7,54 @@ const Product = ({ product }) => {
   const { t } = useTranslation();
 
   return (
-    <section className="flex flex-wrap md:w-[20rem] md:h-[20rem] border-gray-200 border-[1px] rounded-xl shadow-md space-x-8 md:mx-10 md:my-8 overflow-hidden">
-    <section className="relative">
+    <section className="flex flex-col w-full md:w-80 border-gray-200 border-[1px] rounded-xl shadow-md m-5 overflow-hidden">
+    <div className="relative w-full">
       <Link to={`/product/${product._id}`}>
-        <span className="absolute bottom-2 left-56 bg-green-800 text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full ">
-          {product?.brand}
-        </span>
         <img
-          className="cursor-pointer w-full"
+          className="w-full h-48 object-contain" 
           src={product.image}
           alt={product.name}
-          style={{ height: "170px", objectFit: "cover", margin: "2px" }}
         />
+        <span className="absolute bottom-2 left-2 bg-green-800 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+          {product.brand}
+        </span>
       </Link>
-      <HeartIcon product={product} />
-    </section>
-
-    <div className="p-5">
-      <div className="flex justify-between space-x-3">
-        <h5 className="mb-2 text-xl text-whiet dark:text-slate-50">
-          {product?.name}
+      <div className="absolute top-2 right-2">
+        <HeartIcon product={product} />
+      </div>
+    </div>
+    <div className="p-4 flex-1 flex flex-col justify-between">  
+      <div className="md:flex justify-between">
+        <h5 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">
+          {product.name}
         </h5>
-
-        <p className=" font-semibold text-black dark:text-slate-300">
-          {product?.price?.toLocaleString("en-US", {
+        <p className="text-lg font-semibold text-gray-900 dark:text-gray-300">
+          {product.price.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
         </p>
       </div>
-
-      <p className="mb-3 font-normal text-gray-700 dark:text-slate-300">
-          {product?.description}
+      <p className="text-gray-700 dark:text-gray-300 flex-grow">  
+        {product.description}
       </p>
-
-      <section className="flex justify-between items-center">
-        <div className="flex items-center space-x-24">
-          <Link
-            to={`/product/${product._id}`}
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-green-700 text-slate-50"
-          >
-            {t("read_more")}
-            <svg
-              className="w-3.5 h-3.5 ml-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </Link>
-
-         
-        </div>
-      </section>
+      <Link
+        to={`/product/${product._id}`}
+        className="inline-flex items-center justify-center mt-2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-md"
+      >
+        {t("read_more")}
+        <svg
+          className="ml-2 w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </Link>
     </div>
   </section>
   );

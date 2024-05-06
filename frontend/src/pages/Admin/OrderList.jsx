@@ -22,8 +22,9 @@ const OrderList = () => {
         <Message variant="danger">
           {error?.data?.message || error.error}
         </Message>
-      ) : (
-        <table className="container my-36 mx-auto max-w-sm md:max-w-6xl h-screen">
+        ) : (
+            <div className="py-36">
+        <table className="container mx-auto max-w-sm md:max-w-6xl">
           <AdminMenu />
           <Metadata title={"Orders"} />
           <thead className="max-w-sm md:w-full border text-xs md:text-sm">
@@ -79,7 +80,8 @@ const OrderList = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+              </table>
+              </div>
       )}
     </>
   );

@@ -5,7 +5,7 @@ import Button from "../components/Button";
 const ProductShowcase = () => {
   return (
     <div className="flex flex-wrap justify-center items-center py-12 mx-12 md:px-48 md:py-24">
-      <div className="flex flex-wrap items-center rounded-lg bg-[#FFD1AC] bg-opacity-30 p-6 shadow-lg">
+      <div className="flex flex-wrap items-center rounded-lg bg-[#FFD1AC] bg-opacity-30 dark:bg-opacity-80 p-6 shadow-lg">
         <div className="flex-1 min-w-0 md:px-24">
           <img src="https://i.redd.it/qrrpwbko0ag81.jpg" alt="Ipad Air Gen 5" className="h-auto w-full rounded-lg" />
         </div>

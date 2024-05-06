@@ -77,7 +77,7 @@ const ProductList = () => {
   return (
     <>
       <Metadata title={"Products"} />
-      <section className="container md:ml-[15rem] my-12">
+      <section className="container md:ml-[15rem] py-12">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">

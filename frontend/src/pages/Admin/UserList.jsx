@@ -77,7 +77,7 @@ const UserList = () => {
   };
 
   return (
-    <section className="p-4 my-12 md:ml-[10rem]">
+    <section className="p-4 py-12 md:ml-[10rem]">
       <h1 className="text-2xl font-semibold my-4 text-black dark:text-slate-50 text-center">
         {t("users")}
       </h1>
@@ -91,7 +91,7 @@ const UserList = () => {
           <div className="overflow-x-auto h-screen">
             <table className="min-w-full">
               <thead>
-                <tr className="bg-gray-100 dark:bg-inherit">
+                <tr>
                   <th className="px-4 py-2 text-left">{t("name")}</th>
                   <th className="px-4 py-2 text-left">{t("email")}</th>
                   <th className="px-4 py-2 text-left">{t("admin")}</th>

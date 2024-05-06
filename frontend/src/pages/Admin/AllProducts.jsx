@@ -21,7 +21,7 @@ const AllProducts = () => {
 
   return (
     <>
-      <section className="container md:mx-[8rem] md:ml-[15rem] my-12">
+      <section className="container md:mx-[8rem] md:ml-[15rem] py-12">
         <div className="flex flex-col md:flex-row">
           <div className="p-3">
             <div className="text-center my-8 text-xl font-bold h-12">

@@ -155,7 +155,7 @@ const ProductTabs = ({
               <Loader />
             ) : (
               data.map((product) => (
-                <div key={product._id}>
+                <div key={product._id} className="py-3">
                   <SmallProduct product={product} />
                 </div>
               ))

@@ -185,18 +185,17 @@ function Navigation() {
                             </span>
                             {cartItems.length > 0 && (
                               <span>
-                                <span className="px-1 py-0 text-sm rounded-full text-green-700">
+                                <span className="px-1 py-0  h-5 w-5 rounded-full bg-green-700 text-white">
                                   {cartItems.reduce((a, c) => a + c.qty, 0)}
                                 </span>
                               </span>
                             )}
                           </NavLink>
                         </li>
-
                         <li>
                           <NavLink
                             to="/favorite"
-                            className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                            className="group flex items-center space-x-2 rounded-md p-2 text-sm font-semibold"
                           >
                             <FaHeart
                               className="h-5 w-5 text-gray-900 dark:text-slate-50"
@@ -205,7 +204,9 @@ function Navigation() {
                             <span className="text-gray-900 dark:text-slate-50">
                               {t("favorites")}
                             </span>
-                            <FavoritesCount />
+                            <div className="flex items-center justify-center min-w-[20px] h-5 bg-green-700 text-white text-xs rounded-full">
+                              <FavoritesCount />
+                            </div>
                           </NavLink>
                         </li>
 
@@ -241,11 +242,11 @@ function Navigation() {
                         {userInfo && (
                           <li className="flex ">
                             <span>
-                              <FaSignOutAlt className="h-6 w-6 " />
+                              <FaSignOutAlt className="h-6 w-6 text-gray-900 dark:text-slate-50" />
                             </span>
                             <Button
                               onClick={logoutHandler}
-                              className="block -mt-2 w-full px-4 py-2 text-left"
+                              className="block -mt-2 w-full px-4 py-2 text-left text-gray-900 dark:text-slate-50"
                             >
                               <span className=""> {t("logout")}</span>
                             </Button>
@@ -292,12 +293,12 @@ function Navigation() {
               <li>
                 <NavLink
                   to="/shop"
-                  className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold "
+                  class="flex items-center space-x-2 hover:text-green-700"
                 >
-                  <FaShoppingBag
-                    className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
-                    aria-hidden="true"
-                  />
+                  <FaShoppingBag className="h-6 w-6 text-gray-900 dark:text-white" />
+                  <span className="text-sm text-center text-gray-900 dark:text-white">
+                    Shop
+                  </span>
                 </NavLink>
               </li>
               <li>
@@ -309,28 +310,39 @@ function Navigation() {
                     className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
                     aria-hidden="true"
                   />
-
+                  <span className="text-sm text-center text-gray-900 dark:text-white">
+                    Favorites
+                  </span>
                   <FavoritesCount />
                 </NavLink>
               </li>
 
-              <li>
+              <li className="relative">
                 <NavLink
                   to="/cart"
+                  className="flex items-center space-x-2 hover:text-green-700"
+                >
+                  <FaShoppingCart className="h-6 w-6 text-gray-900 dark:text-white" />
+                  <span>Cart</span>
+                  {cartItems.length > 0 && (
+                    <span className="absolute bottom-5 right-10  h-5 w-5 rounded-full bg-green-700 text-white flex items-center justify-center text-xs">
+                      {cartItems.reduce((a, c) => a + c.qty, 0)}
+                    </span>
+                  )}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact"
                   className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                 >
-                  <FaShoppingCart
+                  <FaEnvelopeOpen
                     className="h-5 w-5 text-gray-900 dark:text-slate-50 hover:text-green-700"
                     aria-hidden="true"
                   />
-
-                  {cartItems.length > 0 && (
-                    <span>
-                      <span className="px-1 py-0 text-sm bg-green-700 absolute top-1 right-48 rounded-full">
-                        {cartItems.reduce((a, c) => a + c.qty, 0)}
-                      </span>
-                    </span>
-                  )}
+                  <span className="text-sm text-center text-gray-900 dark:text-white">
+                    Contact
+                  </span>
                 </NavLink>
               </li>
               <li>
