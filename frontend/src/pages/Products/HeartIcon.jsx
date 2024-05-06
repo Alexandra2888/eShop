@@ -17,7 +17,8 @@ import {
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites) || [];
-  const isFavorite = favorites.some((product) => product._id === product._id);
+  const isFavorite = favorites.some((favProduct) => favProduct._id === product._id);
+
 
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
