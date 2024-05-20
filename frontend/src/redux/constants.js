@@ -1,4 +1,4 @@
-export const BASE_URL = "https://eshop-yn0p.onrender.com";
+export const BASE_URL = "https://main--eshop28.netlify.app/";
 
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
