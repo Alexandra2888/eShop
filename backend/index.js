@@ -24,12 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const buildPath = path.join(__dirname, 'build');
-// gets the static files from the build folder
-app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'))
-});
-
 
 
 const corsOptions = {
