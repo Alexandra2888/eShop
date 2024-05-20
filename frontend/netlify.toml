@@ -1,0 +1,19 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "frontend/dist"
+
+[build.environment]
+  NODE_VERSION = "16"
+  CI = "true"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://eshop-1-xj6m.onrender.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
