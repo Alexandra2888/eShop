@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: 'https://main--eshop28.netlify.app',
+  origin: 'https://eshop-1-xj6m.onrender.com/',
 };
 
 app.use(cors(corsOptions));
