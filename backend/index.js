@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-  origin: "*"
+  origin: 'https://main--eshop28.netlify.app',
 }
 
 app.use(cors(corsOptions));
