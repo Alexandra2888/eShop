@@ -1,4 +1,4 @@
-export const BASE_URL = "https://e-shop-4bls.vercel.app/";
+export const BASE_URL = "https://eshop-yn0p.onrender.com";
 
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
