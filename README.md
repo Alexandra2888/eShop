@@ -79,7 +79,8 @@ npm run frontend
 
 ## Preview 📸
 
-![image](https://github.com/Alexandra2888/eShop/assets/76844097/3dc36ba1-b8a6-42d0-ac28-1490e263193d)
+![Macbook Pro-1717079992553](https://github.com/Alexandra2888/eShop/assets/76844097/4d81359e-ff03-4459-9127-5ef62d262b39)
+
 
 ![image](https://github.com/Alexandra2888/eShop/assets/76844097/fcc98db1-319d-4650-82eb-a8fa8087f113)
 
