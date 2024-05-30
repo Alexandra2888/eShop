@@ -81,14 +81,11 @@ npm run frontend
 
 ![Macbook Pro-1717079992553](https://github.com/Alexandra2888/eShop/assets/76844097/4d81359e-ff03-4459-9127-5ef62d262b39)
 
-
-
 ![Macbook Pro-1717080129745](https://github.com/Alexandra2888/eShop/assets/76844097/fc8b1b2f-57f7-4e02-aed1-d406534ad793)
 
-![image](https://github.com/Alexandra2888/eShop/assets/76844097/59064768-2793-4db7-962f-60f35a69fe7c)
 
+![Macbook Pro-1717080201428](https://github.com/Alexandra2888/eShop/assets/76844097/f1177909-d295-4fac-9c6c-2c0ee4924ff6)
 
-## Demo Video 🎥
 
 
 ### Feel free to star ⭐ this repository if you like what you see and want to follow along with the project's progress!
