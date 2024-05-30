@@ -82,8 +82,8 @@ npm run frontend
 ![Macbook Pro-1717079992553](https://github.com/Alexandra2888/eShop/assets/76844097/4d81359e-ff03-4459-9127-5ef62d262b39)
 
 
-![Macbook Pro-1717080081097](https://github.com/Alexandra2888/eShop/assets/76844097/d2cc0c97-aa13-4fce-85be-5a841ca196da)
 
+![Macbook Pro-1717080129745](https://github.com/Alexandra2888/eShop/assets/76844097/fc8b1b2f-57f7-4e02-aed1-d406534ad793)
 
 ![image](https://github.com/Alexandra2888/eShop/assets/76844097/59064768-2793-4db7-962f-60f35a69fe7c)
 
