@@ -31,6 +31,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// API routes
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
@@ -47,17 +48,17 @@ const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Serve frontend
-if (process.env.NODE_ENV === "production") {
-  const frontendBuildPath = path.join(__dirname, "../frontend/dist");
-
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+  
   app.use(express.static(frontendBuildPath));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(frontendBuildPath, "index.html"))
-  );
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(frontendBuildPath, 'index.html'))
+  });
 } else {
-  app.get("/", (req, res) => {
-    res.send("API is running....");
+  app.get('/', (req, res) => {
+    res.send('API is running....');
   });
 }
 
