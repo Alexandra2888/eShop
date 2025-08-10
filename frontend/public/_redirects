@@ -1,0 +1,13 @@
+# Handle client-side routing for SPA
+/*    /index.html   200
+
+# Specific routes that should work
+/product/*    /index.html   200
+/order/*    /index.html   200
+/admin/*    /index.html   200
+/login    /index.html   200
+/register    /index.html   200
+/cart    /index.html   200
+/shop    /index.html   200
+/contact    /index.html   200
+/profile    /index.html   200
