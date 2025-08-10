@@ -1,17 +1,17 @@
 {
   "name": "eshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "eShop MERN Stack Backend API",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "backend": "nodemon index.js",
+    "dev": "nodemon index.js",
     "start": "node index.js",
-    "build": "npm run build",
+    "build": "echo 'Backend build completed'",
     "data:import": "node seeder.js",
     "data:destroy": "node seeder.js -d"
   },
-  "keywords": [],
+  "keywords": ["mern", "eshop", "ecommerce", "api"],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -31,5 +31,9 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
