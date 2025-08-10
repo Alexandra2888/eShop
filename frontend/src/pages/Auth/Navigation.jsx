@@ -222,21 +222,19 @@ function Navigation() {
                         </li>
 
                         {!userInfo && (
-                          <ul>
-                            <li>
-                              <NavLink
-                                to="/login"
-                                className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
-                              >
-                                <FaSignInAlt className=" h-6 w-6 text-gray-900 dark:text-slate-50 mr-2 mt-[4px] " />
+                          <li>
+                            <NavLink
+                              to="/login"
+                              className="flex items-center mt-5 transition-transform transform hover:translate-x-2"
+                            >
+                              <FaSignInAlt className=" h-6 w-6 text-gray-900 dark:text-slate-50 mr-2 mt-[4px] " />
 
-                                <span className="text-gray-900 dark:text-slate-50">
-                                  {" "}
-                                  {t("login")}
-                                </span>
-                              </NavLink>
-                            </li>
-                          </ul>
+                              <span className="text-gray-900 dark:text-slate-50">
+                                {" "}
+                                {t("login")}
+                              </span>
+                            </NavLink>
+                          </li>
                         )}
 
                         {userInfo && (
@@ -293,7 +291,7 @@ function Navigation() {
               <li>
                 <NavLink
                   to="/shop"
-                  class="flex items-center space-x-2 hover:text-green-700"
+                  className="flex items-center space-x-2 hover:text-green-700"
                 >
                   <FaShoppingBag className="h-6 w-6 text-gray-900 dark:text-white" />
                   <span className="text-sm text-center text-gray-900 dark:text-white">
@@ -357,7 +355,7 @@ function Navigation() {
               </li>
 
               {!userInfo && (
-                <>
+                <li>
                   <NavLink
                     to="/login"
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -367,15 +365,15 @@ function Navigation() {
                       aria-hidden="true"
                     />
                   </NavLink>
-                </>
+                </li>
               )}
               <li className="mx-3 text-gray-900 dark:text-slate-50">
                 <ToggleTheme />
               </li>
               {userInfo && (
-                <>
+                <li>
                   <Button
-                    onClick={logout}
+                    onClick={logoutHandler}
                     className="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                   >
                     <FaSignInAlt
@@ -383,7 +381,7 @@ function Navigation() {
                       aria-hidden="true"
                     />
                   </Button>
-                </>
+                </li>
               )}
             </ul>
           </div>

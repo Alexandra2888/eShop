@@ -24,7 +24,7 @@ const Home = () => {
         <Loader />
       ) : isError ? (
         <Message variant="danger">
-          {isError?.data.message || isError.error}
+          {isError?.data?.message || isError?.error || isError?.message || 'An error occurred while fetching products'}
         </Message>
       ) : (
             <>
@@ -52,11 +52,17 @@ const Home = () => {
 
           <div>
             <div className="flex justify-center flex-wrap mt-[2rem]">
-              {data.products.map((product) => (
-                <div key={product._id}>
-                  <Product product={product} />
+              {data?.products && data.products.length > 0 ? (
+                data.products.map((product) => (
+                  <div key={product._id}>
+                    <Product product={product} />
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-gray-500">No products found</p>
                 </div>
-              ))}
+              )}
                  
                 </div>
                 <ProductShowcase />

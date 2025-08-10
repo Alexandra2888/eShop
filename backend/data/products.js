@@ -1,7 +1,7 @@
 export const products = [
     {
         name: "Iphone Pro15",
-        image: "/uploads/image-1711827396144.jpeg",
+        image: "/uploads/iphone.jpeg",
         brand: "Apple",
         quantity: 90,
         category: "Phones",
@@ -11,7 +11,7 @@ export const products = [
     },
     {
         name: "Ipad Pro",
-        image: "/uploads/image-1711827468214.jpg",
+        image: "/uploads/ipad.jpg",
         brand: "Apple",
         quantity: 30,
         category: "Tablets",
@@ -21,7 +21,7 @@ export const products = [
     },
     {
         name: "Apple Watch",
-        image: "/uploads/image-1711827768438.jpeg",
+        image: "/uploads/apple-watch.jpeg",
         brand: "Apple",
         quantity: 70,
         category: "Wearables",
@@ -31,17 +31,17 @@ export const products = [
     },
     {
         name: "Camera Sony",
-        image: "/uploads/image-1711827581311.webp",
+        image: "/uploads/camera-sony.webp",
         brand: "Sony",
         quantity: 50,
-        category: "Camera & photography",
+        category: "Camera & Photography",
         description: "Best camera",
         price: 450,
         countInStock: 5
     },
     {
         name: "Sony Audio System",
-        image: "https://lcdn.altex.ro/media/catalog/product/M/H/MHC-V73D-PRODUCT-IMAGE…",
+        image: "/uploads/sony-audio.jpg",
         brand: "Sony",
         quantity: 100,
         category: "Audio & Video",
@@ -51,7 +51,7 @@ export const products = [
     },
     {
         name: "Macbook",
-        image: "https://www.alienstore.ro/cdn/shop/files/LaptopAppleMacBookPro16M3Alien…",
+        image: "/uploads/mackbook.webp",
         brand: "Apple",
         quantity: 50,
         category: "Laptops",
@@ -61,7 +61,7 @@ export const products = [
     },
     {
         name: "S24",
-        image: "/uploads/image-1711826509639.webp",
+        image: "/uploads/xiaomi.webp",
         brand: "Samsung",
         quantity: 50,
         category: "Phones",
@@ -71,7 +71,7 @@ export const products = [
     },
     {
         name: "S6 Tab",
-        image: "/uploads/image-1711826707931.jpeg",
+        image: "/uploads/samsung-tab.jpeg",
         brand: "Samsung",
         quantity: 40,
         category: "Tablets",
@@ -81,7 +81,7 @@ export const products = [
     },
     {
         name: "MX Mini",
-        image: "/uploads/image-1711827619327.jpg",
+        image: "/uploads/mx_mini.jpg",
         brand: "Logitech",
         quantity: 60,
         category: "Peripherals",
@@ -91,7 +91,7 @@ export const products = [
     },
     {
         name: "Lift",
-        image: "/uploads/image-1711827112299.webp",
+        image: "/uploads/mx_keys.avif",
         brand: "Logitech",
         quantity: 80,
         category: "Peripherals",
@@ -101,10 +101,10 @@ export const products = [
     },
     {
         name: "PS5",
-        image: "/uploads/image-1711870263876.jpeg",
+        image: "/uploads/ps5.jpeg",
         brand: "Sony",
         quantity: 40,
-        category: "Games",
+        category: "Gaming",
         description: "PS5",
         price: 550,
         countInStock: 4

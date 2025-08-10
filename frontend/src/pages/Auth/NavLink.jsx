@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const NavLink = ({ to, children }) => {
+const NavLink = ({ to, children, className }) => {
   const location = useLocation();
   const isActive = location.pathname === to;
   const activeClass = isActive
@@ -9,11 +9,9 @@ const NavLink = ({ to, children }) => {
   const classNames = `group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold  ${activeClass}`;
 
   return (
-    <li>
-      <Link to={to} className={classNames}>
-        {children}
-      </Link>
-    </li>
+    <Link to={to} className={className || classNames}>
+      {children}
+    </Link>
   );
 };
 
