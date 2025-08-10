@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { updateCart } from "../../../Utils/cartUtils";
 
-const initialState = localStorage.getItem("cart")
-  ? JSON.parse(localStorage.getItem("cart"))
-  : { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
+const initialState = (() => {
+  try {
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
+  } catch (error) {
+    console.warn("Failed to parse cart from localStorage:", error);
+    localStorage.removeItem("cart"); // Clean up corrupted data
+    return { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
+  }
+})();
 
 const cartSlice = createSlice({
   name: "cart",
