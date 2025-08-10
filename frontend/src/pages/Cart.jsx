@@ -11,7 +11,7 @@ import {
 
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
-import { getImageUrlHardcoded } from "../utils/imageUtils";
+// import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -35,6 +35,13 @@ const Cart = () => {
 
   const checkoutHandler = () => {
     navigate("/shipping");
+  };
+
+  // Temporary function to construct image URLs
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
   };
 
   return (
@@ -62,7 +69,7 @@ const Cart = () => {
                     <h2 className="text-xl font-bold border-b pb-2">Shopping Cart</h2>
                     {cartItems.length > 0 ? cartItems.map((item) => (
                       <div key={item._id} className="flex items-center py-2 border-b">
-                        <img src={getImageUrlHardcoded(item.image)} alt={item.name} className="w-20 h-20 object-cover rounded mr-4" />
+                        <img src={getImageUrl(item.image)} alt={item.name} className="w-20 h-20 object-cover rounded mr-4" />
                         <div className="flex-1">
                           <Link to={`/product/${item._id}`} className="text-lg font-semibold">{item.name}</Link>
                           <p className="text-gray-500">{item.brand}</p>

@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import HeartIcon from "./HeartIcon";
 import Button from "../../components/Button";
@@ -13,6 +12,13 @@ import Button from "../../components/Button";
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  // Temporary function to construct image URLs
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
+  };
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
@@ -31,7 +37,7 @@ const ProductCard = ({ p }) => {
           </span>
           <img
             className="cursor-pointer w-full"
-            src={getImageUrlHardcoded(p.image)}
+            src={getImageUrl(p.image)}
             alt={p.name}
             style={{ height: "170px", objectFit: "cover", margin: "2px" }}
           />

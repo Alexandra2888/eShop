@@ -9,7 +9,6 @@ import {
   useCreateReviewMutation,
 } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
@@ -61,6 +60,13 @@ const ProductDetails = () => {
     navigate("/cart");
   };
 
+  // Temporary function to construct image URLs
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
+  };
+
   return (
     <>
       <section>
@@ -89,7 +95,7 @@ const ProductDetails = () => {
               <div className="overflow-hidden py-12">
           <div className="md:flex">
             <div className="md:w-1/3">
-              <img src={getImageUrlHardcoded(product?.image)} alt={product?.name} className="w-full h-auto object-cover" />
+              <img src={getImageUrl(product?.image)} alt={product?.name} className="w-full h-auto object-cover" />
             </div>
             <div className="md:w-2/3 p-4">
               <div className="flex justify-between items-start">

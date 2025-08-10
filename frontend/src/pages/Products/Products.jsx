@@ -17,7 +17,6 @@ import {
   useCreateReviewMutation,
 } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import Rating from "./Rating";
 import Loader from "../../components/Loader";
@@ -69,6 +68,13 @@ const Product = () => {
     }
   };
 
+  // Temporary function to construct image URLs
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
+  };
+
   return (
     <>
       <div>
@@ -89,7 +95,7 @@ const Product = () => {
         <>
           <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
             <div>
-              <img src={getImageUrlHardcoded(product.image)} alt={product.name} className="w-full h-64 object-cover rounded-t-lg" />
+              <img src={getImageUrl(product.image)} alt={product.name} className="w-full h-64 object-cover rounded-t-lg" />
               <HeartIcon product={product} />
             </div>
             <div className="flex flex-col justify-between">
