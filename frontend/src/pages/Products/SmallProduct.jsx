@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 import { useTranslation } from "react-i18next";
+import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 const SmallProduct = ({ product }) => {
   const { t } = useTranslation();
@@ -8,11 +9,7 @@ const SmallProduct = ({ product }) => {
   return (
     <div className="w-[20rem] h-[26rem] ml-[2rem] flex flex-col bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="relative h-3/5 w-full overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="object-contain h-full w-full rounded-t-lg"
-        />
+        <img src={getImageUrlHardcoded(product.image)} alt={product.name} className="w-16 h-16 object-cover rounded" />
         <div className="absolute top-2 right-2">
           <HeartIcon product={product} />
         </div>

@@ -17,6 +17,7 @@ import {
   useCreateReviewMutation,
 } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import Rating from "./Rating";
 import Loader from "../../components/Loader";
@@ -88,11 +89,7 @@ const Product = () => {
         <>
           <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
             <div>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full  xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
-              />
+              <img src={getImageUrlHardcoded(product.image)} alt={product.name} className="w-full h-64 object-cover rounded-t-lg" />
               <HeartIcon product={product} />
             </div>
             <div className="flex flex-col justify-between">

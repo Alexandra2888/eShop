@@ -9,7 +9,7 @@ import {
   useCreateReviewMutation,
 } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { getImageUrlHardcoded } from "../../utils/imageUtils";
+import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";

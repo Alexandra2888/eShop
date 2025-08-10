@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { getImageUrlHardcoded } from "../../utils/imageUtils";
+import { getImageUrlHardcoded } from "../utils/imageUtils";
 
 import HeartIcon from "./HeartIcon";
 import Button from "../../components/Button";
