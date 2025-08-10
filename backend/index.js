@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL || 'https://eshop-frontend.onrender.com'] 
+    ? [process.env.FRONTEND_URL || 'https://eshop-frontend-2i8e.onrender.com'] 
     : "*",
   credentials: true,
   optionsSuccessStatus: 200
@@ -61,24 +61,20 @@ const __dirname = path.dirname(__filename);
 // Serve uploaded files
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendBuildPath = path.join(__dirname, '../frontend/dist');
-  
-  app.use(express.static(frontendBuildPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(frontendBuildPath, 'index.html'))
+// API root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'eShop API is running...',
+    environment: process.env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: '/api/health',
+      products: '/api/products',
+      users: '/api/users',
+      orders: '/api/orders'
+    }
   });
-} else {
-  app.get('/', (req, res) => {
-    res.json({ 
-      message: 'eShop API is running...',
-      environment: process.env.NODE_ENV,
-      timestamp: new Date().toISOString()
-    });
-  });
-}
+});
 
 // Global error handler
 app.use((err, req, res, next) => {
