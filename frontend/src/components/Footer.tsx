@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -27,6 +28,15 @@ const socialLinks = [
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubscribed(true);
+    setEmail("");
+  };
 
   return (
     <footer className="bg-zinc-950 border-t border-white/[0.06] text-zinc-400">
@@ -103,16 +113,37 @@ const Footer = () => {
               Get the latest deals and product drops.
             </p>
           </div>
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 sm:w-64 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/40 transition"
-            />
-            <button className="p-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl transition-colors duration-200">
-              <FaArrowRight size={14} />
-            </button>
-          </div>
+          {subscribed ? (
+            <p className="text-emerald-400 text-sm font-medium">
+              Thanks for subscribing!
+            </p>
+          ) : (
+            <form
+              onSubmit={handleSubscribe}
+              className="flex items-center gap-2 w-full sm:w-auto"
+              aria-label="Newsletter subscription"
+            >
+              <label htmlFor="footer-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 sm:w-64 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/40 transition"
+              />
+              <button
+                type="submit"
+                aria-label="Subscribe to newsletter"
+                className="p-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl transition-colors duration-200"
+              >
+                <FaArrowRight size={14} />
+              </button>
+            </form>
+          )}
         </motion.div>
 
         {/* Bottom bar */}

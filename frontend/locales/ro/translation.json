@@ -147,5 +147,9 @@
     "support":"Suport",
     "company":"Companie",
     "legal":"Legal",
-    "featured_products": "Produse recomandate"
+    "featured_products": "Produse recomandate",
+    "account": "Cont",
+    "no_orders_yet": "Nicio comandă încă",
+    "no_orders_description": "Comenzile tale vor apărea aici după ce plasezi una.",
+    "start_shopping": "Cumpără acum"
 }

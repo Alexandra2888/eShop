@@ -88,6 +88,7 @@ const ProductCard = ({ p }) => {
           </Link>
 
           <Button
+            aria-label={`Add ${p.name} to cart`}
             className="p-2.5 rounded-xl border border-zinc-200 dark:border-white/10 text-zinc-600 dark:text-zinc-300 hover:border-emerald-500 hover:text-emerald-500 dark:hover:border-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/5 transition-all duration-200"
             onClick={() => addToCartHandler(p, 1)}
           >

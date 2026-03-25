@@ -146,6 +146,10 @@
     "support":"Unterstützung",
     "company":"Unternehmen",
     "legal":"Rechtliches",
-    "featured_products": "Empfohlene Produkte"
+    "featured_products": "Empfohlene Produkte",
+    "account": "Konto",
+    "no_orders_yet": "Noch keine Bestellungen",
+    "no_orders_description": "Ihre Bestellungen werden hier angezeigt, sobald Sie eine aufgeben.",
+    "start_shopping": "Jetzt einkaufen"
   }
   

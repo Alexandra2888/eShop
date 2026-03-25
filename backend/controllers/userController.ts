@@ -8,6 +8,7 @@ const createUser = asyncHandler(async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
+    res.status(400);
     throw new Error("Please fill all the inputs.");
   }
 
@@ -49,7 +50,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   if (existingUser) {
     const isPasswordValid = await bcrypt.compare(
       password,
-      existingUser.password
+      existingUser.password,
     );
 
     if (isPasswordValid) {
@@ -98,7 +99,7 @@ const getCurrentUserProfile = asyncHandler(
       res.status(404);
       throw new Error("User not found.");
     }
-  }
+  },
 );
 
 const updateCurrentUserProfile = asyncHandler(
@@ -127,7 +128,7 @@ const updateCurrentUserProfile = asyncHandler(
       res.status(404);
       throw new Error("User not found");
     }
-  }
+  },
 );
 
 const deleteUserById = asyncHandler(async (req: Request, res: Response) => {

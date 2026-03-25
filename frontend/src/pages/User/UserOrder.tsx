@@ -42,7 +42,7 @@ const UserOrder = () => {
           className="mb-8"
         >
           <p className="text-emerald-500 text-xs font-semibold uppercase tracking-wider mb-1">
-            Account
+            {t("account")}
           </p>
           <h1 className="font-display text-2xl font-bold text-zinc-900 dark:text-white">
             {t("my_orders")}
@@ -60,16 +60,16 @@ const UserOrder = () => {
         ) : orders?.length === 0 ? (
           <div className="text-center py-24">
             <p className="text-zinc-400 text-lg font-medium mb-2">
-              No orders yet
+              {t("no_orders_yet")}
             </p>
             <p className="text-zinc-500 text-sm mb-6">
-              Your orders will appear here once you place one.
+              {t("no_orders_description")}
             </p>
             <Link
               to="/shop"
               className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold rounded-2xl transition-colors"
             >
-              Start Shopping
+              {t("start_shopping")}
             </Link>
           </div>
         ) : (

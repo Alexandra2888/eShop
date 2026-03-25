@@ -196,12 +196,14 @@ const UserList = () => {
                             <>
                               <button
                                 onClick={() => updateHandler(user._id)}
+                                aria-label={`Save changes for ${user.username}`}
                                 className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-colors"
                               >
                                 <FaCheck size={11} />
                               </button>
                               <button
                                 onClick={() => setEditableUserId(null)}
+                                aria-label={`Cancel editing ${user.username}`}
                                 className="p-2 rounded-lg bg-white/5 text-zinc-400 hover:bg-white/10 transition-colors"
                               >
                                 <FaTimes size={11} />
@@ -217,12 +219,14 @@ const UserList = () => {
                                     user.email,
                                   )
                                 }
+                                aria-label={`Edit ${user.username}`}
                                 className="p-2 rounded-lg bg-white/5 text-zinc-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-200"
                               >
                                 <FaEdit size={11} />
                               </button>
                               <button
                                 onClick={() => deleteHandler(user)}
+                                aria-label={`Delete ${user.username}`}
                                 className="p-2 rounded-lg bg-white/5 text-zinc-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200"
                               >
                                 <FaTrash size={11} />

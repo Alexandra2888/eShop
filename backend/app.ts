@@ -62,7 +62,8 @@ app.get("/api/health", (_req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+// Resolve uploads relative to the project root so it works in both dev and after build
+app.use("/uploads", express.static(path.resolve(process.cwd(), "uploads")));
 
 app.get("/", (_req, res) => {
   res.json({
@@ -80,14 +81,18 @@ app.get("/", (_req, res) => {
 
 app.use(
   (
-    err: Error,
+    err: any,
     _req: express.Request,
     res: express.Response,
     _next: express.NextFunction,
   ) => {
     console.error(err.stack);
-    res.status(500).json({
-      message: "Something went wrong!",
+    const statusCode =
+      res.statusCode !== 200
+        ? res.statusCode
+        : (err.status ?? err.statusCode ?? 500);
+    res.status(statusCode).json({
+      message: err.message || "Something went wrong!",
       error:
         process.env.NODE_ENV === "development"
           ? err.message

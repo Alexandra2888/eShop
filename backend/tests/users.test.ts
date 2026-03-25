@@ -3,7 +3,9 @@ import request from "supertest";
 import jwt from "jsonwebtoken";
 
 vi.mock("../config/db.js", () => ({ default: vi.fn() }));
-vi.mock("morgan", () => ({ default: () => (_req: any, _res: any, next: any) => next() }));
+vi.mock("morgan", () => ({
+  default: () => (_req: any, _res: any, next: any) => next(),
+}));
 
 const mockUserSave = vi.fn();
 const mockUserInstance = {
@@ -16,10 +18,10 @@ const mockUserInstance = {
 };
 
 vi.mock("../models/userModel.js", () => {
-  const MockUser: any = vi.fn().mockImplementation(() => ({
-    ...mockUserInstance,
-    save: mockUserSave,
-  }));
+  const MockUser: any = vi.fn().mockImplementation(function (this: any) {
+    Object.assign(this, mockUserInstance);
+    this.save = mockUserSave;
+  });
   MockUser.findOne = vi.fn();
   MockUser.find = vi.fn();
   MockUser.findById = vi.fn();
@@ -29,16 +31,28 @@ vi.mock("../models/userModel.js", () => {
 
 vi.mock("../models/productModel.js", () => ({
   default: {
-    find: vi.fn().mockReturnValue({ sort: vi.fn().mockReturnValue({ limit: vi.fn().mockResolvedValue([]) }) }),
+    find: vi
+      .fn()
+      .mockReturnValue({
+        sort: vi.fn().mockReturnValue({ limit: vi.fn().mockResolvedValue([]) }),
+      }),
     findById: vi.fn().mockResolvedValue(null),
     countDocuments: vi.fn().mockResolvedValue(0),
   },
 }));
 vi.mock("../models/categoryModel.js", () => ({
-  default: { find: vi.fn().mockResolvedValue([]), findById: vi.fn(), findOne: vi.fn() },
+  default: {
+    find: vi.fn().mockResolvedValue([]),
+    findById: vi.fn(),
+    findOne: vi.fn(),
+  },
 }));
 vi.mock("../models/orderModel.js", () => ({
-  default: { find: vi.fn().mockResolvedValue([]), findById: vi.fn(), aggregate: vi.fn().mockResolvedValue([]) },
+  default: {
+    find: vi.fn().mockResolvedValue([]),
+    findById: vi.fn(),
+    aggregate: vi.fn().mockResolvedValue([]),
+  },
 }));
 
 const { default: app } = await import("../app.js");
@@ -59,8 +73,7 @@ describe("User Auth Endpoints", () => {
         password: "wrongpassword",
       });
 
-      // asyncHandler catches the thrown error and responds with 500
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(401);
       expect(res.body.message).toMatch(/Invalid email or password/i);
     });
 
@@ -77,7 +90,7 @@ describe("User Auth Endpoints", () => {
         password: "wrongpassword",
       });
 
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(401);
       expect(res.body.message).toMatch(/Invalid email or password/i);
     });
 
@@ -113,7 +126,7 @@ describe("User Auth Endpoints", () => {
         // missing username and password
       });
 
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(400);
       expect(res.body.message).toMatch(/Please fill all the inputs/i);
     });
 
@@ -134,19 +147,7 @@ describe("User Auth Endpoints", () => {
     it("returns 201 with created user on successful registration", async () => {
       const User = (await import("../models/userModel.js")).default as any;
       User.findOne.mockResolvedValueOnce(null);
-
-      const newUser = {
-        _id: "newuser123",
-        username: "newuser",
-        email: "newuser@example.com",
-        isAdmin: false,
-        password: "hashed",
-        save: vi.fn().mockResolvedValue({}),
-      };
-      mockUserSave.mockResolvedValueOnce(newUser);
-
-      // Mock the User constructor to return our newUser instance
-      User.mockImplementationOnce(() => newUser);
+      mockUserSave.mockResolvedValueOnce(undefined);
 
       const res = await request(app).post("/api/users").send({
         username: "newuser",
@@ -154,7 +155,9 @@ describe("User Auth Endpoints", () => {
         password: "password123",
       });
 
-      expect([201, 500]).toContain(res.status);
+      expect(res.status).toBe(201);
+      expect(res.body).toHaveProperty("_id");
+      expect(res.body.email).toBe("test@example.com");
     });
   });
 
@@ -169,14 +172,15 @@ describe("User Auth Endpoints", () => {
   describe("GET /api/users/profile — requires auth", () => {
     it("returns error when no token is provided", async () => {
       const res = await request(app).get("/api/users/profile");
-      // asyncHandler in authenticate middleware catches the error
-      expect(res.status).toBe(500);
+      expect(res.status).toBe(401);
       expect(res.body.message).toMatch(/Not authorized/i);
     });
 
     it("returns user profile for valid JWT token", async () => {
       const User = (await import("../models/userModel.js")).default as any;
-      const token = jwt.sign({ userId: "user123" }, "test-secret-key", { expiresIn: "1h" });
+      const token = jwt.sign({ userId: "user123" }, "test-secret-key", {
+        expiresIn: "1h",
+      });
 
       User.findById.mockImplementationOnce(() => ({
         select: vi.fn().mockResolvedValueOnce({
@@ -197,7 +201,7 @@ describe("User Auth Endpoints", () => {
         .get("/api/users/profile")
         .set("Authorization", `Bearer ${token}`);
 
-      expect([200, 500]).toContain(res.status);
+      expect(res.status).toBe(200);
     });
   });
 });

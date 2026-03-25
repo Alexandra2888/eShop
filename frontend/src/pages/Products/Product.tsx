@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
 import HeartIcon from "./HeartIcon";
+import { getImageUrl } from "../../utils/imageUtils";
 
 const Product = ({ product }) => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const Product = ({ product }) => {
         <Link to={`/product/${product._id}`}>
           <motion.img
             className="w-full h-full object-contain p-4"
-            src={product.image}
+            src={getImageUrl(product.image)}
             alt={product.name}
             whileHover={{ scale: 1.06 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
