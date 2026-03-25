@@ -41,7 +41,7 @@ const Shop = () => {
 
   useEffect(() => {
     if (!checked.length || !radio.length) {
-      if (!filteredProductsQuery.isLoading) {
+      if (!filteredProductsQuery.isLoading && filteredProductsQuery.data) {
         // Filter products based on both checked categories and price filter
         const filteredProducts = filteredProductsQuery.data.filter(
           (product) => {
