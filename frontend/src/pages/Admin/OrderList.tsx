@@ -1,89 +1,154 @@
 import Message from "../../components/Message";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
 
 import Loader from "../../components/Loader";
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
-import Button from "../../components/Button";
 
-const OrderList = () => {
+const StatusBadge = ({
+  ok,
+  trueLabel,
+  falseLabel,
+}: {
+  ok: boolean;
+  trueLabel: string;
+  falseLabel: string;
+}) => (
+  <span
+    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
+      ok
+        ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
+        : "bg-amber-500/15 text-amber-400 border border-amber-500/20"
+    }`}
+  >
+    {ok ? trueLabel : falseLabel}
+  </span>
+);
+
+interface OrderListProps {
+  embedded?: boolean;
+}
+
+const OrderList = ({ embedded = false }: OrderListProps) => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
-
   const { t } = useTranslation();
 
-  return (
+  const content = (
     <>
       {isLoading ? (
-        <Loader />
+        <div className="flex justify-center py-16">
+          <Loader />
+        </div>
       ) : error ? (
-        <Message variant="danger">
+        <Message variant="error">
           {(error as any)?.data?.message || (error as any)?.error}
         </Message>
-        ) : (
-            <div className="py-36">
-        <table className="container mx-auto max-w-sm md:max-w-6xl">
-          <AdminMenu />
-          <Metadata title={"Orders"} />
-          <thead className="max-w-sm md:w-full border text-xs md:text-sm">
-            <tr className="mb-[5rem]">
-              <th className="text-left pl-1">{t("user")}</th>
-              <th className="text-left pl-1">{t("data")}</th>
-              <th className="text-left pl-1">{t("total")}</th>
-              <th className="text-left pl-1">{t("paid")}</th>
-              <th className="text-left pl-1">{t("delivered")}</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody className="text-xs md:text-sm">
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td>{order.user ? (order.user as any).username : "N/A"}</td>
-                <td>
-                  {order.createdAt ? order.createdAt.substring(0, 10) : "N/A"}
-                </td>
-
-                <td>$ {order.totalPrice}</td>
-
-                <td className="py-2">
-                  {order.isPaid ? (
-                    <p className="p-1 text-center bg-green-400 w-fit md:w-[6rem] rounded-full">
-                      {t("completed")}
-                    </p>
-                  ) : (
-                    <p className="p-1 text-center bg-red-400 w-fit md:w-[6rem] rounded-full">
-                      {t("pending")}
-                    </p>
-                  )}
-                </td>
-
-                <td className="px-2 py-2">
-                  {order.isDelivered ? (
-                    <p className="p-1 text-center bg-green-400 w-fit md:w-[6rem] rounded-full">
-                      {t("completed")}
-                    </p>
-                  ) : (
-                    <p className="p-1 text-center bg-red-400 w-fit md:w-[6rem] rounded-full">
-                      {t("pending")}
-                    </p>
-                  )}
-                </td>
-
-                <td>
-                  <Link to={`/order/${order._id}`}>
-                    <Button> {t("more")}</Button>
-                  </Link>
-                </td>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-white/[0.06]">
+                {[
+                  t("user"),
+                  t("data"),
+                  t("total"),
+                  t("paid"),
+                  t("delivered"),
+                  "",
+                ].map((h) => (
+                  <th
+                    key={h}
+                    className="text-left px-4 py-3 text-xs font-semibold text-zinc-500 uppercase tracking-wider whitespace-nowrap"
+                  >
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-              </table>
-              </div>
+            </thead>
+            <tbody className="divide-y divide-white/[0.04]">
+              {orders?.map((order: any, i: number) => (
+                <motion.tr
+                  key={order._id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  className="hover:bg-white/[0.02] transition-colors duration-150"
+                >
+                  <td className="px-4 py-3 text-zinc-300 font-medium whitespace-nowrap">
+                    {order.user ? (order.user as any).username : "N/A"}
+                  </td>
+                  <td className="px-4 py-3 text-zinc-500 whitespace-nowrap text-xs">
+                    {order.createdAt ? order.createdAt.substring(0, 10) : "N/A"}
+                  </td>
+                  <td className="px-4 py-3 text-white font-semibold whitespace-nowrap">
+                    ${order.totalPrice}
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusBadge
+                      ok={order.isPaid}
+                      trueLabel={t("completed")}
+                      falseLabel={t("pending")}
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusBadge
+                      ok={order.isDelivered}
+                      trueLabel={t("completed")}
+                      falseLabel={t("pending")}
+                    />
+                  </td>
+                  <td className="px-4 py-3">
+                    <Link
+                      to={`/order/${order._id}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-emerald-400 border border-white/10 hover:border-emerald-500/30 rounded-lg transition-all duration-200"
+                    >
+                      {t("more")}
+                      <FaExternalLinkAlt size={9} />
+                    </Link>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </>
+  );
+
+  if (embedded) {
+    return (
+      <div className="bg-zinc-900 border border-white/[0.06] rounded-2xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-white/[0.06]">
+          <h3 className="text-white font-semibold">Recent Orders</h3>
+        </div>
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      <Metadata title="Orders" />
+      <AdminMenu />
+      <main className="md:pl-56 px-6 py-8">
+        <div className="mb-8">
+          <p className="text-emerald-500 text-xs font-semibold uppercase tracking-wider mb-1">
+            Admin
+          </p>
+          <h1 className="font-display text-3xl font-bold text-white">
+            {t("manage_orders")}
+          </h1>
+        </div>
+        <div className="bg-zinc-900 border border-white/[0.06] rounded-2xl overflow-hidden">
+          {content}
+        </div>
+      </main>
+    </div>
   );
 };
 

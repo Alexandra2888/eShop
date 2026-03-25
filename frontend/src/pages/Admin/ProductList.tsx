@@ -2,14 +2,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 import { useCreateProductMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 
 import AdminMenu from "./AdminMenu";
 import Metadata from "../../components/Metadata";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
+
+const fieldClass =
+  "w-full bg-zinc-800 border border-white/10 focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 text-white placeholder-zinc-600 text-sm px-4 py-3 rounded-xl outline-none transition-all duration-200";
+
+const labelClass =
+  "block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2";
 
 const ProductList = () => {
   const [image, setImage] = useState("");
@@ -24,12 +29,10 @@ const ProductList = () => {
 
   const [createProduct] = useCreateProductMutation();
   const { data: categories } = useFetchCategoriesQuery();
-
   const { t } = useTranslation();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       const result = await createProduct({
         name,
@@ -42,138 +45,161 @@ const ProductList = () => {
         countInStock: stock,
       } as any);
       const data = (result as any).data;
-
-      if (data?.error) {
-        toast.error(data.error);
-      } else {
-        toast.success(`${data?.name} is created`);
-        navigate("/");
+      if (data?.error) toast.error(data.error);
+      else {
+        toast.success(`"${data?.name}" created`);
+        navigate("/admin/allproductslist");
       }
     } catch (error) {
-      console.error(error);
-      toast.error("Product create failed. Try Again.");
+      toast.error("Product creation failed. Try again.");
     }
   };
 
   return (
-    <>
-      <Metadata title={"Products"} />
-      <section className="container md:ml-[15rem] py-12">
-        <div className="flex flex-col md:flex-row">
-          <AdminMenu />
-          <div className="md:w-3/4 p-3">
-            <div className="h-12 text-center"> {t("create_product")}</div>
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      <Metadata title="Create Product" />
+      <AdminMenu />
 
-            {image && (
-              <div className="text-center">
+      <main className="md:pl-56 px-6 py-8">
+        <div className="mb-8">
+          <p className="text-emerald-500 text-xs font-semibold uppercase tracking-wider mb-1">
+            Admin
+          </p>
+          <h1 className="font-display text-3xl font-bold text-white">
+            {t("create_product")}
+          </h1>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-4xl bg-zinc-900 border border-white/[0.06] rounded-2xl p-8"
+        >
+          {/* Image preview */}
+          {image && (
+            <div className="mb-6 flex justify-center">
+              <div className="w-40 h-40 rounded-2xl overflow-hidden bg-zinc-800 border border-white/10">
                 <img
                   src={image}
-                  alt="product preview"
-                  className="block mx-auto max-h-[200px] object-contain"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                  alt="preview"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
                 />
               </div>
-            )}
+            </div>
+          )}
 
-            <div className="mb-3">
-              <label className="block text-white mb-2 font-semibold">{t("image_url")}</label>
-              <Input
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Image URL */}
+            <div>
+              <label className={labelClass}>{t("image_url")}</label>
+              <input
                 type="url"
                 placeholder="https://example.com/image.jpg"
-                className="p-4 mb-3 w-full border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
+                className={fieldClass}
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
             </div>
 
-            <div className="p-3">
-              <div className="flex flex-wrap">
-                <div className="one">
-                  <label htmlFor="name">{t("name")}</label> <br />
-                  <Input
-                    type="text"
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="two md:ml-10 ">
-                  <label htmlFor="name block">{t("price")}</label> <br />
-                  <Input
-                    type="number"
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
-                </div>
+            {/* Name + Price */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>{t("name")}</label>
+                <input
+                  type="text"
+                  className={fieldClass}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </div>
-              <div className="flex flex-wrap">
-                <div className="one">
-                  <label htmlFor="name block">{t("quantity")}</label> <br />
-                  <Input
-                    type="number"
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                  />
-                </div>
-                <div className="two md:ml-10 ">
-                  <label htmlFor="name block"> {t("brand")}</label> <br />
-                  <Input
-                    type="text"
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
-                    value={brand}
-                    onChange={(e) => setBrand(e.target.value)}
-                  />
-                </div>
+              <div>
+                <label className={labelClass}>{t("price")}</label>
+                <input
+                  type="number"
+                  className={fieldClass}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
               </div>
+            </div>
 
-              <label htmlFor="" className="my-5">
-                {t("description")}
-              </label>
+            {/* Quantity + Brand */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>{t("quantity")}</label>
+                <input
+                  type="number"
+                  className={fieldClass}
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>{t("brand")}</label>
+                <input
+                  type="text"
+                  className={fieldClass}
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div>
+              <label className={labelClass}>{t("description")}</label>
               <textarea
-                className="p-2 mb-3 bg-white dark:bg-[#3A3A3A] dark:text-slate-50 border rounded-lg w-[95%] text-white"
+                rows={4}
+                className={`${fieldClass} resize-none`}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+              />
+            </div>
 
-              <div className="flex flex-col md:flex-row md:justify-between">
-                <div>
-                  <label htmlFor="name block">{t("count_in_stock")}</label>{" "}
-                  <br />
-                  <input
-                    type="text"
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#3A3A3A] dark:text-slate-50"
-                    value={stock}
-                    onChange={(e) => setStock(parseInt(e.target.value) || 0)}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="">{t("category")}</label> <br />
-                  <select
-                    className="p-4 mb-3 md:w-[30rem] border rounded-lg bg-white dark:bg-[#3A3A3A] dark:text-slate-50"
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    {categories?.map((c) => (
-                      <option key={c._id} value={c._id}>
-                        {c.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            {/* Stock + Category */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label className={labelClass}>{t("count_in_stock")}</label>
+                <input
+                  type="number"
+                  className={fieldClass}
+                  value={stock}
+                  onChange={(e) => setStock(parseInt(e.target.value) || 0)}
+                />
               </div>
-              <Button
-                onClick={handleSubmit}
-                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-green-700 text-slate-50"
+              <div>
+                <label className={labelClass}>{t("category")}</label>
+                <select
+                  className={`${fieldClass} cursor-pointer`}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="">Select a category…</option>
+                  {categories?.map((c: any) => (
+                    <option key={c._id} value={c._id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <div className="flex justify-end pt-2">
+              <button
+                type="submit"
+                className="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-xl shadow-glow-sm hover:shadow-glow transition-all duration-200"
               >
                 {t("submit")}
-              </Button>
+              </button>
             </div>
-          </div>
-        </div>
-      </section>
-    </>
+          </form>
+        </motion.div>
+      </main>
+    </div>
   );
 };
 
