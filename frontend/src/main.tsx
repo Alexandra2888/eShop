@@ -43,6 +43,7 @@ const Shipping = lazy(() => import("./pages/Orders/Shipping"));
 const PlaceOrder = lazy(() => import("./pages/Orders/PlaceOrder"));
 const Order = lazy(() => import("./pages/Orders/Order"));
 const OrderList = lazy(() => import("./pages/Admin/OrderList"));
+const UserOrder = lazy(() => import("./pages/User/UserOrder"));
 
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Contact = lazy(() => import("./pages/Contact/Contact"));
@@ -167,6 +168,14 @@ const router = createBrowserRouter(
             element={
               <Suspense fallback={<Loader />}>
                 <Order />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/user-orders"
+            element={
+              <Suspense fallback={<Loader />}>
+                <UserOrder />
               </Suspense>
             }
           />

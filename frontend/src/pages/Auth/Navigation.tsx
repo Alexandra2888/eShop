@@ -33,7 +33,6 @@ const navItems = [
   { to: "/cart", icon: FaShoppingCart, labelKey: "cart" },
   { to: "/contact", icon: FaEnvelopeOpen, labelKey: "contact" },
 ];
-
 function Navigation() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -164,6 +163,13 @@ function Navigation() {
               </Link>
             ) : (
               <div className="flex items-center gap-2">
+                <Link
+                  to="/user-orders"
+                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/5 rounded-lg transition-all duration-200"
+                >
+                  <FaShoppingBag size={13} />
+                  My Orders
+                </Link>
                 <Link
                   to="/profile"
                   className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 hover:bg-emerald-500/20 transition-all duration-200"
