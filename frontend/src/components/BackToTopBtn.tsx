@@ -1,47 +1,34 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowUp } from "react-icons/fa";
 
 const TopBtn = () => {
-  const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
-
-  const checkScrollHeight = () => {
-    if (window.scrollY > 150) {
-      setIsScrollButtonVisible(true);
-    } else {
-      setIsScrollButtonVisible(false);
-    }
-  };
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", checkScrollHeight);
-    return () => {
-      window.removeEventListener("scroll", checkScrollHeight);
-    };
+    const onScroll = () => setVisible(window.scrollY > 150);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <section
-      className={`fixed bottom-8 right-8 items-center h-10 w-10 justify-center z-40 cursor-pointer bg-green-700 rounded-full transition-transform duration-300 scale-100 hover:scale-110 ${
-        isScrollButtonVisible ? "flex" : "hidden"
-      }`}
-      onClick={scrollToTop}
-    >
-      <svg
-        width={24}
-        height={24}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#131212"
-        strokeWidth={3}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 19V5M5 12l7-7 7 7" />
-      </svg>
-    </section>
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-8 right-8 z-50 w-11 h-11 bg-emerald-500 hover:bg-emerald-400 text-white rounded-2xl shadow-glow hover:shadow-glow-lg flex items-center justify-center transition-colors duration-200"
+          aria-label="Back to top"
+        >
+          <FaArrowUp size={14} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 

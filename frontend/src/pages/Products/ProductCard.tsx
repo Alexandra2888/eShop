@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FaArrowRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { getImageUrl } from "../../utils/imageUtils";
@@ -16,81 +18,84 @@ const ProductCard = ({ p }) => {
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
-    toast.success("Item added successfully", {
+    toast.success("Added to cart", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
     });
   };
 
   return (
-    <section className="flex flex-wrap md:w-[20rem] md:h-[20rem] border-gray-200 border-[1px] rounded-xl shadow-md space-x-5  overflow-hidden ">
-      <section className="relative">
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6 }}
+      className="group relative flex flex-col w-72 rounded-2xl overflow-hidden
+        bg-white dark:bg-zinc-900
+        border border-zinc-100 dark:border-white/[0.06]
+        shadow-card dark:shadow-card-dark
+        hover:shadow-card-hover dark:hover:shadow-card-dark-hover
+        transition-shadow duration-400 card-shine"
+    >
+      {/* Image */}
+      <div className="relative overflow-hidden h-48 bg-zinc-50 dark:bg-zinc-800/50">
         <Link to={`/product/${p._id}`}>
-          <span className="absolute bottom-3 right-3 bg-green-800 text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full ">
-            {p?.brand}
-          </span>
-          <img
-            className="cursor-pointer w-full"
+          <motion.img
+            className="w-full h-full object-cover"
             src={getImageUrl(p.image)}
             alt={p.name}
-            style={{ height: "170px", objectFit: "cover", margin: "2px" }}
+            whileHover={{ scale: 1.06 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           />
         </Link>
-        <HeartIcon product={p} />
-      </section>
+        <span className="absolute bottom-3 right-3 bg-emerald-500/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+          {p?.brand}
+        </span>
+        <div className="absolute top-3 left-3">
+          <HeartIcon product={p} />
+        </div>
+      </div>
 
-      <div className="p-5">
-        <div className="flex justify-between">
-          <h5 className="mb-2 text-xl text-whiet dark:text-slate-50">
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5">
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <h3 className="font-semibold text-zinc-900 dark:text-white text-sm leading-snug">
             {p?.name}
-          </h5>
-
-          <p className=" font-semibold text-black dark:text-slate-300">
+          </h3>
+          <span className="shrink-0 font-bold text-emerald-500 text-sm">
             {p?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
             })}
-          </p>
+          </span>
         </div>
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-slate-300">
-          {p?.description?.substring(0, 60)} ...
+        <p className="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed line-clamp-2 mb-4 flex-1">
+          {p?.description?.substring(0, 80)}...
         </p>
 
-        <section className="flex justify-between items-center">
-          <div className="flex items-center space-x-24">
-            <Link
-              to={`/product/${p._id}`}
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-green-700 text-slate-50"
-            >
-              {t("read_more")}
-              <svg
-                className="w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            to={`/product/${p._id}`}
+            className="group/btn flex-1 inline-flex items-center justify-between px-4 py-2.5 bg-zinc-900 dark:bg-white/5 hover:bg-emerald-500 dark:hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition-all duration-250"
+          >
+            {t("read_more")}
+            <FaArrowRight
+              size={11}
+              className="translate-x-0 group-hover/btn:translate-x-1 transition-transform duration-200"
+            />
+          </Link>
 
-            <Button
-              className="p-2 rounded-full"
-              onClick={() => addToCartHandler(p, 1)}
-            >
-              <AiOutlineShoppingCart size={25} />
-            </Button>
-          </div>
-        </section>
+          <Button
+            className="p-2.5 rounded-xl border border-zinc-200 dark:border-white/10 text-zinc-600 dark:text-zinc-300 hover:border-emerald-500 hover:text-emerald-500 dark:hover:border-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/5 transition-all duration-200"
+            onClick={() => addToCartHandler(p, 1)}
+          >
+            <AiOutlineShoppingCart size={18} />
+          </Button>
+        </div>
       </div>
-    </section>
+    </motion.article>
   );
 };
 

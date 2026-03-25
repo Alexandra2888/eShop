@@ -1,23 +1,34 @@
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 interface MessageProps {
-  variant?: string;
+  variant?: "success" | "succcess" | "error" | "info" | string;
   children: ReactNode;
 }
 
 const Message = ({ variant, children }: MessageProps) => {
-  const getVariantClass = () => {
-    switch (variant) {
-      case "succcess":
-        return "bg-green-100 text-green-800";
-      case "error":
-        return "bg-red-100 text-red-800";
-      default:
-        return "bg-blue-100 text-blue-800";
-    }
+  const styles = {
+    success: "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400",
+    succcess: "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400",
+    error: "bg-red-500/10 border border-red-500/20 text-red-400",
+    danger: "bg-red-500/10 border border-red-500/20 text-red-400",
+    info: "bg-blue-500/10 border border-blue-500/20 text-blue-400",
   };
 
-  return <div className={`p-4 rounded ${getVariantClass()}`}>{children}</div>;
+  const cls =
+    styles[variant as string] ??
+    "bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-zinc-600 dark:text-zinc-400";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className={`px-4 py-3 rounded-xl text-sm font-medium ${cls}`}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
 export default Message;
