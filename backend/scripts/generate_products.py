@@ -22,7 +22,7 @@ CLEAR_EXISTING = False        # set True to wipe products before inserting
 
 config = dotenv_values(ENV_PATH)
 MONGO_URL = config.get("MONGO_URL", "mongodb://localhost:27017/eshop")
-DB_NAME = "eshop"
+DB_NAME = "test"
 
 # ── Category-specific data ──────────────────────────────────────────────────
 CATEGORY_DATA = {

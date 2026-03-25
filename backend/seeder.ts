@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import colors from "colors";
 import users from "./data/users.js";
 import { products } from "./data/products.js";
 import { categories } from "./data/categories.js";
@@ -21,6 +20,9 @@ const importData = async (): Promise<void> => {
     await Product.deleteMany();
     await User.deleteMany();
     await Category.deleteMany();
+
+    // Drop stale indexes that may conflict with current schema
+    await Product.collection.dropIndexes().catch(() => {});
 
     // Seed users
     const createdUsers = await User.insertMany(users);
@@ -46,10 +48,10 @@ const importData = async (): Promise<void> => {
     // Seed products with category IDs and adminUser
     await Product.insertMany(sampleProducts);
 
-    console.log("Data Imported!".green.inverse);
+    console.log("✅ Data Imported!");
     process.exit();
   } catch (error) {
-    console.error(`${error}`.red.inverse);
+    console.error("❌ Import error:", error);
     process.exit(1);
   }
 };
@@ -61,10 +63,10 @@ const destroyData = async (): Promise<void> => {
     await User.deleteMany();
     await Category.deleteMany();
 
-    console.log("Data Destroyed!".red.inverse);
+    console.log("🗑  Data Destroyed!");
     process.exit();
   } catch (error) {
-    console.error(`${error}`.red.inverse);
+    console.error("❌ Destroy error:", error);
     process.exit(1);
   }
 };
