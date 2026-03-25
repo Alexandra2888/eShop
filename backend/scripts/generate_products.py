@@ -202,7 +202,7 @@ def build_product(category_id, cat_name: str, index: int) -> dict:
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
-    client = MongoClient(MONGO_URL)
+    client = MongoClient(MONGO_URL, tls=True, tlsAllowInvalidCertificates=True)
     db = client[DB_NAME]
 
     # Fetch categories
