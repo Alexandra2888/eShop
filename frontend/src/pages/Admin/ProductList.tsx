@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
-import {
-  useCreateProductMutation,
-  useUploadProductImageMutation,
-} from "../../redux/api/productApiSlice";
+import { useCreateProductMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 
 import AdminMenu from "./AdminMenu";
@@ -23,10 +20,8 @@ const ProductList = () => {
   const [quantity, setQuantity] = useState("");
   const [brand, setBrand] = useState("");
   const [stock, setStock] = useState(0);
-  const [imageUrl, setImageUrl] = useState(null);
   const navigate = useNavigate();
 
-  const [uploadProductImage] = useUploadProductImageMutation();
   const [createProduct] = useCreateProductMutation();
   const { data: categories } = useFetchCategoriesQuery();
 
@@ -36,21 +31,20 @@ const ProductList = () => {
     e.preventDefault();
 
     try {
-      const productData = new FormData();
-      productData.append("image", image);
-      productData.append("name", name);
-      productData.append("description", description);
-      productData.append("price", price);
-      productData.append("category", category);
-      productData.append("quantity", quantity);
-      productData.append("brand", brand);
-      productData.append("countInStock", String(stock));
-
-      const result = await createProduct(productData);
+      const result = await createProduct({
+        name,
+        image,
+        description,
+        price: Number(price),
+        category,
+        quantity: Number(quantity),
+        brand,
+        countInStock: stock,
+      } as any);
       const data = (result as any).data;
 
       if (data?.error) {
-        toast.error("Product create failed. Try Again.");
+        toast.error(data.error);
       } else {
         toast.success(`${data?.name} is created`);
         navigate("/");
@@ -58,20 +52,6 @@ const ProductList = () => {
     } catch (error) {
       console.error(error);
       toast.error("Product create failed. Try Again.");
-    }
-  };
-
-  const uploadFileHandler = async (e) => {
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-
-    try {
-      const res = await uploadProductImage(formData).unwrap();
-      toast.success(res.message);
-      setImage(res.image);
-      setImageUrl(res.image);
-    } catch (error) {
-      toast.error(error?.data?.message || error.error);
     }
   };
 
@@ -84,28 +64,26 @@ const ProductList = () => {
           <div className="md:w-3/4 p-3">
             <div className="h-12 text-center"> {t("create_product")}</div>
 
-            {imageUrl && (
+            {image && (
               <div className="text-center">
                 <img
-                  src={imageUrl}
-                  alt="product"
-                  className="block mx-auto max-h-[200px]"
+                  src={image}
+                  alt="product preview"
+                  className="block mx-auto max-h-[200px] object-contain"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
               </div>
             )}
 
             <div className="mb-3">
-              <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                {image ? image : "Upload Image"}
-
-                <Input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={uploadFileHandler}
-                  className={!image ? "hidden" : "text-white"}
-                />
-              </label>
+              <label className="block text-white mb-2 font-semibold">{t("image_url")}</label>
+              <Input
+                type="url"
+                placeholder="https://example.com/image.jpg"
+                className="p-4 mb-3 w-full border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
             </div>
 
             <div className="p-3">

@@ -34,7 +34,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
-    createProduct: builder.mutation<Product, FormData>({
+    createProduct: builder.mutation<Product, Partial<Product>>({
       query: (productData) => ({
         url: `${PRODUCT_URL}`,
         method: "POST",
@@ -45,12 +45,12 @@ export const productApiSlice = apiSlice.injectEndpoints({
 
     updateProduct: builder.mutation<
       Product,
-      { productId: string; formData: FormData }
+      { productId: string; productData: Partial<Product> }
     >({
-      query: ({ productId, formData }) => ({
+      query: ({ productId, productData }) => ({
         url: `${PRODUCT_URL}/${productId}`,
         method: "PUT",
-        body: formData,
+        body: productData,
       }),
     }),
 

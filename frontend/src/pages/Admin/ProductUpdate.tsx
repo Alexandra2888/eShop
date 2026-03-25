@@ -7,7 +7,6 @@ import {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetProductByIdQuery,
-  useUploadProductImageMutation,
 } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 
@@ -42,8 +41,6 @@ const AdminProductUpdate = () => {
   // Fetch categories using RTK Query
   const { data: categories = [] } = useFetchCategoriesQuery();
 
-  const [uploadProductImage] = useUploadProductImageMutation();
-
   // Define the update product mutation
   const [updateProduct] = useUpdateProductMutation();
 
@@ -64,39 +61,22 @@ const AdminProductUpdate = () => {
     }
   }, [productData]);
 
-  const uploadFileHandler = async (e) => {
-    const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    try {
-      const res = await uploadProductImage(formData).unwrap();
-      toast.success("Item added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
-      });
-      setImage(res.image);
-    } catch (err) {
-      toast.success("Item added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
-      });
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("image", image as string);
-      formData.append("name", name as string);
-      formData.append("description", description as string);
-      formData.append("price", String(price));
-      formData.append("category", typeof category === "string" ? category : (category as any)._id);
-      formData.append("quantity", String(quantity));
-      formData.append("brand", brand as string);
-      formData.append("countInStock", String(stock));
+      const productData = {
+        name,
+        image,
+        description,
+        price: Number(price),
+        category: typeof category === "string" ? category : (category as any)._id,
+        quantity: Number(quantity),
+        brand,
+        countInStock: stock,
+      };
 
       // Update product using the RTK Query mutation
-      const data: any = await updateProduct({ productId: params._id, formData });
+      const data: any = await updateProduct({ productId: params._id, productData });
 
       if (data?.error) {
         toast.error(data.error, {
@@ -163,16 +143,14 @@ const AdminProductUpdate = () => {
             )}
 
             <div className="mb-3">
-              <label className="text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 max-w-sm">
-                {image ? String(image) : "Upload image"}
-                <Input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={uploadFileHandler}
-                  className="text-white"
-                />
-              </label>
+              <label className="block text-white mb-2 font-semibold">{t("image_url")}</label>
+              <Input
+                type="url"
+                placeholder="https://example.com/image.jpg"
+                className="p-4 w-full border rounded-lg bg-white text-black dark:bg-[#3A3A3A] dark:text-slate-50"
+                value={String(image)}
+                onChange={(e) => setImage(e.target.value)}
+              />
             </div>
             <div className="flex flex-col justify-center md:ml-[8rem]">
               <div className="p-3">
