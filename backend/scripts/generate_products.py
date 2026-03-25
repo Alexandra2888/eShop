@@ -22,6 +22,7 @@ CLEAR_EXISTING = False        # set True to wipe products before inserting
 
 config = dotenv_values(ENV_PATH)
 MONGO_URL = config.get("MONGO_URL", "mongodb://localhost:27017/eshop")
+DB_NAME = "eshop"
 
 # ── Category-specific data ──────────────────────────────────────────────────
 CATEGORY_DATA = {
@@ -202,7 +203,7 @@ def build_product(category_id, cat_name: str, index: int) -> dict:
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     client = MongoClient(MONGO_URL)
-    db = client.get_default_database()
+    db = client[DB_NAME]
 
     # Fetch categories
     categories = list(db["categories"].find({}))
