@@ -4,14 +4,12 @@ const FavoritesCount = () => {
   const favorites = useSelector((state: any) => state.favorites);
   const favoriteCount = favorites.length;
 
+  if (favoriteCount === 0) return null;
+
   return (
-    <div className="md:absolute md:top-2">
-      {favoriteCount > 0 && (
-        <span className="px-1 py-0 text-sm text-white bg-green-700 rounded-full">
-          {favoriteCount}
-        </span>
-      )}
-    </div>
+    <span className="bg-emerald-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none shrink-0">
+      {favoriteCount}
+    </span>
   );
 };
 

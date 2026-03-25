@@ -17,8 +17,9 @@ import {
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state: any) => state.favorites) || [];
-  const isFavorite = favorites.some((favProduct) => favProduct._id === product._id);
-
+  const isFavorite = favorites.some(
+    (favProduct) => favProduct._id === product._id,
+  );
 
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
@@ -38,16 +39,21 @@ const HeartIcon = ({ product }) => {
   };
 
   return (
-    <div
-      className="absolute top-2 right-5 cursor-pointer"
+    <button
+      type="button"
+      aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
       onClick={toggleFavorites}
+      className="cursor-pointer p-1.5 rounded-full transition-colors duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
     >
       {isFavorite ? (
-        <FaHeart className="text-green-500" />
+        <FaHeart className="text-emerald-500" size={18} />
       ) : (
-        <FaRegHeart className="text-green-600" />
+        <FaRegHeart
+          className="text-zinc-400 hover:text-emerald-500 transition-colors duration-200"
+          size={18}
+        />
       )}
-    </div>
+    </button>
   );
 };
 

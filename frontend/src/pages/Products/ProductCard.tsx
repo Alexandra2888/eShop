@@ -31,7 +31,7 @@ const ProductCard = ({ p }) => {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -6 }}
-      className="group relative flex flex-col w-72 rounded-2xl overflow-hidden
+      className="group relative flex flex-col w-72 h-[340px] rounded-2xl overflow-hidden
         bg-white dark:bg-zinc-900
         border border-zinc-100 dark:border-white/[0.06]
         shadow-card dark:shadow-card-dark
@@ -60,7 +60,7 @@ const ProductCard = ({ p }) => {
       {/* Content */}
       <div className="flex flex-col flex-1 p-5">
         <div className="flex items-start justify-between gap-3 mb-2">
-          <h3 className="font-semibold text-zinc-900 dark:text-white text-sm leading-snug">
+          <h3 className="font-semibold text-zinc-900 dark:text-white text-sm leading-snug line-clamp-1">
             {p?.name}
           </h3>
           <span className="shrink-0 font-bold text-emerald-500 text-sm">
