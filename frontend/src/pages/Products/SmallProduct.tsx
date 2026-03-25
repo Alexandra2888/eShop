@@ -1,17 +1,10 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 import { useTranslation } from "react-i18next";
-// import { getImageUrlHardcoded } from "../utils/imageUtils";
+import { getImageUrl } from "../../utils/imageUtils";
 
 const SmallProduct = ({ product }) => {
   const { t } = useTranslation();
-
-  // Temporary function to construct image URLs
-  const getImageUrl = (imagePath) => {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http')) return imagePath;
-    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
-  };
 
   return (
     <div className="w-[20rem] h-[26rem] ml-[2rem] flex flex-col bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">

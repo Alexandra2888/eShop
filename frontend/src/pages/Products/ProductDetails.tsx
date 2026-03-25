@@ -16,6 +16,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import Button from "../../components/Button";
+import { getImageUrl } from "../../utils/imageUtils";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -58,13 +59,6 @@ const ProductDetails = () => {
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty } as any));
     navigate("/cart");
-  };
-
-  // Temporary function to construct image URLs
-  const getImageUrl = (imagePath) => {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http')) return imagePath;
-    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
   };
 
   return (

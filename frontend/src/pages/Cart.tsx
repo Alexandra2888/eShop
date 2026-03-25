@@ -11,7 +11,7 @@ import {
 
 import Metadata from "../components/Metadata";
 import Button from "../components/Button";
-// import { getImageUrlHardcoded } from "../utils/imageUtils";
+import { getImageUrl } from "../utils/imageUtils";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -35,13 +35,6 @@ const Cart = () => {
 
   const checkoutHandler = () => {
     navigate("/shipping");
-  };
-
-  // Temporary function to construct image URLs
-  const getImageUrl = (imagePath) => {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http')) return imagePath;
-    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
   };
 
   return (

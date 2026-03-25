@@ -17,6 +17,7 @@ import {
   useCreateReviewMutation,
 } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { getImageUrl } from "../../utils/imageUtils";
 
 import Ratings from "./Ratings";
 import Loader from "../../components/Loader";
@@ -66,13 +67,6 @@ const Product = () => {
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
-  };
-
-  // Temporary function to construct image URLs
-  const getImageUrl = (imagePath) => {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http')) return imagePath;
-    return `https://eshop-backend-iq47.onrender.com${imagePath}`;
   };
 
   return (
