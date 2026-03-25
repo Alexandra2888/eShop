@@ -4,10 +4,14 @@ import App from "./App";
 import { ErrorBoundry } from "./error-boundry";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { Route, RouterProvider, createRoutesFromElements } from "react-router";
-import { createBrowserRouter } from "react-router-dom";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import { lazy, Suspense } from "react";
-import '../i18n'; 
+import "../i18n";
 
 import Loader from "./components/Loader";
 
@@ -15,40 +19,37 @@ import PrivateRoute from "./components/PrivateRoute";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 // Auth
-const Login = lazy(() => import('./pages/Auth/Login'));
-const Register = lazy(() => import('./pages/Auth/Register'));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Register = lazy(() => import("./pages/Auth/Register"));
 
-
-const AdminRoute = lazy(() => import('./pages/Admin/AdminRoute'));
+const AdminRoute = lazy(() => import("./pages/Admin/AdminRoute"));
 const Profile = lazy(() => import("./pages/User/Profile.jsx"));
-const UserList = lazy(() => import('./pages/Admin/UserList'));
+const UserList = lazy(() => import("./pages/Admin/UserList"));
 
-const CategoryList = lazy(() =>import('./pages/Admin/CategoryList'));
+const CategoryList = lazy(() => import("./pages/Admin/CategoryList"));
 
+const ProductList = lazy(() => import("./pages/Admin/ProductList"));
+const AllProducts = lazy(() => import("./pages/Admin/AllProducts"));
+const ProductUpdate = lazy(() => import("./pages/Admin/ProductUpdate"));
 
-const ProductList = lazy(() => import('./pages/Admin/ProductList'));
-const AllProducts = lazy(() => import('./pages/Admin/AllProducts'));
-const ProductUpdate = lazy(() => import('./pages/Admin/ProductUpdate'));
+const Home = lazy(() => import("./pages/Home"));
+const Favorites = lazy(() => import("./pages/Products/Favorites"));
+const ProductDetails = lazy(() => import("./pages/Products/ProductDetails"));
 
-const Home = lazy(() => import('./pages/Home'));
-const Favorites = lazy(() => import('./pages/Products/Favorites'));
-const ProductDetails = lazy(() => import('./pages/Products/ProductDetails'));
+const Cart = lazy(() => import("./pages/Cart"));
+const Shop = lazy(() => import("./pages/Shop"));
 
-const Cart = lazy(() => import('./pages/Cart'));
-const Shop = lazy(() => import('./pages/Shop'));
+const Shipping = lazy(() => import("./pages/Orders/Shipping"));
+const PlaceOrder = lazy(() => import("./pages/Orders/PlaceOrder"));
+const Order = lazy(() => import("./pages/Orders/Order"));
+const OrderList = lazy(() => import("./pages/Admin/OrderList"));
 
-const Shipping = lazy(() => import('./pages/Orders/Shipping'));
-const PlaceOrder = lazy(() => import('./pages/Orders/PlaceOrder'));
-const Order = lazy(() => import('./pages/Orders/Order'));
-const OrderList = lazy(() => import('./pages/Admin/OrderList'));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const Contact = lazy(() => import("./pages/Contact/Contact"));
 
-const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'));
-const Contact = lazy(() => import('./pages/Contact/Contact'));
+const Invoice = lazy(() => import("./pages/Invoice/Invoice"));
 
-const Invoice = lazy(() => import('./pages/Invoice/Invoice'));
-
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -153,7 +154,7 @@ const router = createBrowserRouter(
               </Suspense>
             }
           />
-           <Route
+          <Route
             path="order/:id/invoice"
             element={
               <Suspense fallback={<Loader />}>
@@ -248,9 +249,9 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
-    </>
+    </>,
   ),
-  { future: { v7_startTransition: true } as any }
+  { future: { v7_startTransition: true } as any },
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -260,5 +261,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <RouterProvider router={router} />
       </PayPalScriptProvider>
     </Provider>
-  </ErrorBoundry>
+  </ErrorBoundry>,
 );

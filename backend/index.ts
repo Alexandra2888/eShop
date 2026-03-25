@@ -3,6 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
 import { fileURLToPath } from "url";
 
 // Utils
@@ -12,6 +14,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 dotenv.config();
 const port = process.env.PORT || 5001;
@@ -20,6 +23,13 @@ connectDB();
 
 const app = express();
 
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  }),
+);
+app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
@@ -27,10 +37,7 @@ app.use(cookieParser());
 const corsOptions: cors.CorsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? [
-          process.env.FRONTEND_URL ||
-            "https://eshop-frontend-2i8e.onrender.com",
-        ]
+      ? [process.env.FRONTEND_URL || "https://eshop-frontend-2i8e.onrender.com"]
       : "*",
   credentials: true,
   optionsSuccessStatus: 200,
@@ -44,6 +51,7 @@ app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
@@ -85,7 +93,7 @@ app.use(
     err: Error,
     req: express.Request,
     res: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) => {
     console.error(err.stack);
     res.status(500).json({
@@ -95,7 +103,7 @@ app.use(
           ? err.message
           : "Internal server error",
     });
-  }
+  },
 );
 
 app.listen(port, () => {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FiMessageCircle } from "react-icons/fi";
 
 import Button from "../components/Button";
+import { BASE_URL, CHAT_URL } from "../redux/constants";
 
 const TypingIndicator = ({ content }) => {
   return (
@@ -66,7 +67,11 @@ const ChatWidget = () => {
       console.error("Error fetching message:", error);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { message: "Error: Could not fetch message.", sentTime: new Date().toISOString(), sender: "system" },
+        {
+          message: "Error: Could not fetch message.",
+          sentTime: new Date().toISOString(),
+          sender: "system",
+        },
       ]);
     } finally {
       setIsTyping(false);
@@ -91,14 +96,22 @@ const ChatWidget = () => {
       messages: apiMessages,
     };
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch(`${BASE_URL}${CHAT_URL}/completions`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPEN_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiRequestBody),
     });
+
+    if (!response.ok) {
+      const errBody = await response.json().catch(() => ({}));
+      throw new Error(
+        typeof errBody === "object" && errBody !== null && "message" in errBody
+          ? String((errBody as { message: string }).message)
+          : `Chat request failed (${response.status})`,
+      );
+    }
 
     return response.json();
   }
