@@ -1,23 +1,21 @@
 import mongoose from "mongoose";
+import { IUser } from "../types/index.js";
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema<IUser>(
   {
     username: {
       type: String,
       required: true,
     },
-
     email: {
       type: String,
       required: true,
       unique: true,
     },
-
     password: {
       type: String,
       required: true,
     },
-
     isAdmin: {
       type: Boolean,
       required: true,
@@ -27,6 +25,6 @@ const userSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model<IUser>("User", userSchema);
 
 export default User;

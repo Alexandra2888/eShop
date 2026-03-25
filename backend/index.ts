@@ -1,4 +1,3 @@
-// packages
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
@@ -6,7 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { fileURLToPath } from "url";
 
-// Utiles
+// Utils
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
@@ -21,16 +20,20 @@ connectDB();
 
 const app = express();
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL || 'https://eshop-frontend-2i8e.onrender.com'] 
-    : "*",
+const corsOptions: cors.CorsOptions = {
+  origin:
+    process.env.NODE_ENV === "production"
+      ? [
+          process.env.FRONTEND_URL ||
+            "https://eshop-frontend-2i8e.onrender.com",
+        ]
+      : "*",
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -48,10 +51,10 @@ app.get("/api/config/paypal", (req, res) => {
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ 
-    status: "OK", 
+  res.status(200).json({
+    status: "OK",
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV 
+    environment: process.env.NODE_ENV,
   });
 });
 
@@ -62,30 +65,40 @@ const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // API root endpoint
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'eShop API is running...',
+app.get("/", (req, res) => {
+  res.json({
+    message: "eShop API is running...",
     environment: process.env.NODE_ENV,
     timestamp: new Date().toISOString(),
     endpoints: {
-      health: '/api/health',
-      products: '/api/products',
-      users: '/api/users',
-      orders: '/api/orders'
-    }
+      health: "/api/health",
+      products: "/api/products",
+      users: "/api/users",
+      orders: "/api/orders",
+    },
   });
 });
 
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ 
-    message: 'Something went wrong!',
-    error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
-  });
-});
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.error(err.stack);
+    res.status(500).json({
+      message: "Something went wrong!",
+      error:
+        process.env.NODE_ENV === "development"
+          ? err.message
+          : "Internal server error",
+    });
+  }
+);
 
 app.listen(port, () => {
   console.log(`🚀 Server running on port: ${port}`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
 });

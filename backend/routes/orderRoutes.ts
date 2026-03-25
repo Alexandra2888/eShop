@@ -1,6 +1,4 @@
 import express from "express";
-const router = express.Router();
-
 import {
   createOrder,
   getAllOrders,
@@ -12,8 +10,9 @@ import {
   markOrderAsPaid,
   markOrderAsDelivered,
 } from "../controllers/orderController.js";
-
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
+
+const router = express.Router();
 
 router
   .route("/")

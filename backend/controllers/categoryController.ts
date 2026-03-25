@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import Category from "../models/categoryModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 
-const createCategory = asyncHandler(async (req, res) => {
+const createCategory = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { name } = req.body;
 
@@ -23,7 +24,7 @@ const createCategory = asyncHandler(async (req, res) => {
   }
 });
 
-const updateCategory = asyncHandler(async (req, res) => {
+const updateCategory = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { name } = req.body;
     const { categoryId } = req.params;
@@ -44,9 +45,9 @@ const updateCategory = asyncHandler(async (req, res) => {
   }
 });
 
-const removeCategory = asyncHandler(async (req, res) => {
+const removeCategory = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const removed = await Category.findByIdAndRemove(req.params.categoryId);
+    const removed = await Category.findByIdAndDelete(req.params.categoryId);
     res.json(removed);
   } catch (error) {
     console.error(error);
@@ -54,23 +55,23 @@ const removeCategory = asyncHandler(async (req, res) => {
   }
 });
 
-const listCategory = asyncHandler(async (req, res) => {
+const listCategory = asyncHandler(async (req: Request, res: Response) => {
   try {
     const all = await Category.find({});
     res.json(all);
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error.message);
+    return res.status(400).json((error as Error).message);
   }
 });
 
-const readCategory = asyncHandler(async (req, res) => {
+const readCategory = asyncHandler(async (req: Request, res: Response) => {
   try {
     const category = await Category.findOne({ _id: req.params.id });
     res.json(category);
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error.message);
+    return res.status(400).json((error as Error).message);
   }
 });
 

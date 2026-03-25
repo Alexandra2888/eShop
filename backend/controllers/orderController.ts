@@ -1,8 +1,10 @@
+import { Request, Response } from "express";
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
+import { IOrderItem } from "../types/index.js";
 
 // Utility Function
-function calcPrices(orderItems) {
+function calcPrices(orderItems: IOrderItem[]) {
   const itemsPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0
@@ -26,7 +28,7 @@ function calcPrices(orderItems) {
   };
 }
 
-const createOrder = async (req, res) => {
+const createOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const { orderItems, shippingAddress, paymentMethod } = req.body;
 
@@ -36,10 +38,10 @@ const createOrder = async (req, res) => {
     }
 
     const itemsFromDB = await Product.find({
-      _id: { $in: orderItems.map((x) => x._id) },
+      _id: { $in: orderItems.map((x: any) => x._id) },
     });
 
-    const dbOrderItems = orderItems.map((itemFromClient) => {
+    const dbOrderItems = orderItems.map((itemFromClient: any) => {
       const matchingItemFromDB = itemsFromDB.find(
         (itemFromDB) => itemFromDB._id.toString() === itemFromClient._id
       );
@@ -62,7 +64,7 @@ const createOrder = async (req, res) => {
 
     const order = new Order({
       orderItems: dbOrderItems,
-      user: req.user._id,
+      user: req.user!._id,
       shippingAddress,
       paymentMethod,
       itemsPrice,
@@ -74,48 +76,54 @@ const createOrder = async (req, res) => {
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const getAllOrders = async (req, res) => {
+const getAllOrders = async (req: Request, res: Response): Promise<void> => {
   try {
     const orders = await Order.find({}).populate("user", "id username");
     res.json(orders);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const getUserOrders = async (req, res) => {
+const getUserOrders = async (req: Request, res: Response): Promise<void> => {
   try {
-    const orders = await Order.find({ user: req.user._id });
+    const orders = await Order.find({ user: req.user!._id });
     res.json(orders);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const countTotalOrders = async (req, res) => {
+const countTotalOrders = async (req: Request, res: Response): Promise<void> => {
   try {
     const totalOrders = await Order.countDocuments();
     res.json({ totalOrders });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const calculateTotalSales = async (req, res) => {
+const calculateTotalSales = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const orders = await Order.find();
     const totalSales = orders.reduce((sum, order) => sum + order.totalPrice, 0);
     res.json({ totalSales });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const calcualteTotalSalesByDate = async (req, res) => {
+const calcualteTotalSalesByDate = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const salesByDate = await Order.aggregate([
       {
@@ -135,11 +143,11 @@ const calcualteTotalSalesByDate = async (req, res) => {
 
     res.json(salesByDate);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const findOrderById = async (req, res) => {
+const findOrderById = async (req: Request, res: Response): Promise<void> => {
   try {
     const order = await Order.findById(req.params.id).populate(
       "user",
@@ -153,17 +161,17 @@ const findOrderById = async (req, res) => {
       throw new Error("Order not found");
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const markOrderAsPaid = async (req, res) => {
+const markOrderAsPaid = async (req: Request, res: Response): Promise<void> => {
   try {
     const order = await Order.findById(req.params.id);
 
     if (order) {
       order.isPaid = true;
-      order.paidAt = Date.now();
+      order.paidAt = new Date(Date.now());
       order.paymentResult = {
         id: req.body.id,
         status: req.body.status,
@@ -178,17 +186,20 @@ const markOrderAsPaid = async (req, res) => {
       throw new Error("Order not found");
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 
-const markOrderAsDelivered = async (req, res) => {
+const markOrderAsDelivered = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const order = await Order.findById(req.params.id);
 
     if (order) {
       order.isDelivered = true;
-      order.deliveredAt = Date.now();
+      order.deliveredAt = new Date(Date.now());
 
       const updatedOrder = await order.save();
       res.json(updatedOrder);
@@ -197,7 +208,7 @@ const markOrderAsDelivered = async (req, res) => {
       throw new Error("Order not found");
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 };
 

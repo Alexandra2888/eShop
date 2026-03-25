@@ -14,7 +14,7 @@ dotenv.config();
 
 connectDB();
 
-const importData = async () => {
+const importData = async (): Promise<void> => {
   try {
     // Delete existing data
     await Order.deleteMany();
@@ -28,10 +28,13 @@ const importData = async () => {
 
     // Seed categories and create a map from category name to category ID
     const createdCategories = await Category.insertMany(categories);
-    const categoryMap = createdCategories.reduce((acc, category) => {
-      acc[category.name] = category._id;
-      return acc;
-    }, {});
+    const categoryMap = createdCategories.reduce(
+      (acc: Record<string, mongoose.Types.ObjectId>, category) => {
+        acc[category.name] = category._id as mongoose.Types.ObjectId;
+        return acc;
+      },
+      {}
+    );
 
     // Map products to include user and category ID
     const sampleProducts = products.map((product) => ({
@@ -51,7 +54,7 @@ const importData = async () => {
   }
 };
 
-const destroyData = async () => {
+const destroyData = async (): Promise<void> => {
   try {
     await Order.deleteMany();
     await Product.deleteMany();

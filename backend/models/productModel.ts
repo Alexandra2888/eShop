@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import { IProduct, IReview } from "../types/index.js";
+
 const { ObjectId } = mongoose.Schema;
 
-const reviewSchema = mongoose.Schema(
+const reviewSchema = new mongoose.Schema<IReview>(
   {
     name: { type: String, required: true },
     rating: { type: Number, required: true },
@@ -15,7 +17,7 @@ const reviewSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const productSchema = mongoose.Schema(
+const productSchema = new mongoose.Schema<IProduct>(
   {
     name: { type: String, required: true },
     image: { type: String, required: true },
@@ -32,5 +34,5 @@ const productSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model<IProduct>("Product", productSchema);
 export default Product;

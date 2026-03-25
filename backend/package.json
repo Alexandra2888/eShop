@@ -2,14 +2,15 @@
   "name": "eshop",
   "version": "1.0.0",
   "description": "eShop MERN Stack Backend API",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "build": "echo 'Backend build completed'",
-    "data:import": "node seeder.js",
-    "data:destroy": "node seeder.js -d"
+    "dev": "nodemon --exec ts-node --esm index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "data:import": "ts-node --esm seeder.ts",
+    "data:destroy": "ts-node --esm seeder.ts -d"
   },
   "keywords": [
     "mern",
@@ -40,5 +41,17 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
   }
 }
