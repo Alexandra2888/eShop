@@ -8,7 +8,7 @@ test.describe("Navigation", () => {
 
   test("navigates directly to /shop URL", async ({ page }) => {
     await page.goto("/shop");
-    await page.waitForSelector('text=Filter by', { timeout: 15_000 });
+    await page.waitForSelector("text=Filter by", { timeout: 15_000 });
     await expect(page).toHaveURL("/shop");
   });
 
@@ -36,7 +36,9 @@ test.describe("Navigation", () => {
     await expect(page).toHaveURL("/register");
   });
 
-  test("redirects unauthenticated user from /profile to /login", async ({ page }) => {
+  test("redirects unauthenticated user from /profile to /login", async ({
+    page,
+  }) => {
     await page.goto("/profile");
     await page.waitForSelector('input[name="email"]', { timeout: 15_000 });
     await expect(page).toHaveURL("/login");
@@ -50,11 +52,13 @@ test.describe("Navigation", () => {
         .locator("text=not the page")
         .or(page.locator("text=404"))
         .or(page.locator("text=Not Found"))
-        .first()
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 
-  test("clicking Shop nav link from home navigates to /shop", async ({ page }) => {
+  test("clicking Shop nav link from home navigates to /shop", async ({
+    page,
+  }) => {
     await page.goto("/");
     await page.waitForSelector('a[href="/shop"]', { timeout: 15_000 });
     await page.locator('a[href="/shop"]').first().click();
@@ -76,10 +80,11 @@ test.describe("Contact Page", () => {
 
   test("shows contact form or message section", async ({ page }) => {
     await expect(
-      page.locator("text=Drop us a message")
+      page
+        .locator("text=Drop us a message")
         .or(page.locator("textarea"))
         .or(page.locator('input[type="email"]'))
-        .first()
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 });

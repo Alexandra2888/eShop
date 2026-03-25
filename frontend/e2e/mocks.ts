@@ -57,73 +57,142 @@ export async function mockApiRoutes(page: Page) {
 
     // --- Products ---
     if (pathname === "/api/products/top") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_PRODUCTS) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_PRODUCTS),
+      });
     }
     if (pathname === "/api/products/new") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_PRODUCTS) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_PRODUCTS),
+      });
     }
     if (pathname === "/api/products/allproducts") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_PRODUCTS) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_PRODUCTS),
+      });
     }
     if (pathname === "/api/products/filtered-products") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_PRODUCTS) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_PRODUCTS),
+      });
     }
     // Paginated products list
     if (pathname === "/api/products" && method === "GET") {
       return route.fulfill({
         status: 200,
         contentType: "application/json",
-        body: JSON.stringify({ products: MOCK_PRODUCTS, page: 1, pages: 1, hasMore: false }),
+        body: JSON.stringify({
+          products: MOCK_PRODUCTS,
+          page: 1,
+          pages: 1,
+          hasMore: false,
+        }),
       });
     }
     // Single product
     if (pathname.startsWith("/api/products/")) {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_PRODUCTS[0]) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_PRODUCTS[0]),
+      });
     }
 
     // --- Categories ---
     if (pathname === "/api/category/categories") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_CATEGORIES) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_CATEGORIES),
+      });
     }
     if (pathname.startsWith("/api/category/")) {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(MOCK_CATEGORIES[0]) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_CATEGORIES[0]),
+      });
     }
 
     // --- PayPal ---
     if (pathname === "/api/config/paypal") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ clientId: "test-paypal-id" }) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ clientId: "test-paypal-id" }),
+      });
     }
 
     // --- Users ---
     if (pathname === "/api/users/auth" && method === "POST") {
-      return route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify(MOCK_USER) });
+      return route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_USER),
+      });
     }
     if (pathname === "/api/users/logout") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ message: "Logged out successfully" }) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ message: "Logged out successfully" }),
+      });
     }
     if (pathname === "/api/users" && method === "POST") {
-      return route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify(MOCK_USER) });
+      return route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify(MOCK_USER),
+      });
     }
     if (pathname === "/api/users/profile") {
-      return route.fulfill({ status: 401, contentType: "application/json", body: JSON.stringify({ message: "Not authorized" }) });
+      return route.fulfill({
+        status: 401,
+        contentType: "application/json",
+        body: JSON.stringify({ message: "Not authorized" }),
+      });
     }
 
     // --- Orders ---
     if (pathname.startsWith("/api/orders")) {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify([]) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([]),
+      });
     }
 
     // --- Chat ---
     if (pathname.startsWith("/api/chat")) {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ reply: "Hello!" }) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ reply: "Hello!" }),
+      });
     }
 
     // --- Health ---
     if (pathname === "/api/health") {
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ status: "OK" }) });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ status: "OK" }),
+      });
     }
 
     // Fallback: let unknown API routes through (or fulfill with 404)
-    await route.fulfill({ status: 404, contentType: "application/json", body: JSON.stringify({ message: "Not found" }) });
+    await route.fulfill({
+      status: 404,
+      contentType: "application/json",
+      body: JSON.stringify({ message: "Not found" }),
+    });
   });
 }

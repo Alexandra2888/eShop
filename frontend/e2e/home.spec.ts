@@ -38,12 +38,17 @@ test.describe("Home Page", () => {
 
   test("shows Latest Products section after API resolves", async ({ page }) => {
     await expect(
-      page.locator("text=Latest products").or(page.locator("text=Latest Products")).first()
+      page
+        .locator("text=Latest products")
+        .or(page.locator("text=Latest Products"))
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 
   test("renders product names from mocked API data", async ({ page }) => {
-    await expect(page.locator("text=Laptop Pro X").first()).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("text=Laptop Pro X").first()).toBeVisible({
+      timeout: 10_000,
+    });
   });
 
   test("navigates to Shop page when clicking Shop link", async ({ page }) => {

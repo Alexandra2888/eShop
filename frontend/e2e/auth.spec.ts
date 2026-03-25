@@ -18,18 +18,27 @@ test.describe("Login Page", () => {
     await page.waitForSelector('input[name="email"]', { timeout: 15_000 });
   });
 
-  test("renders login form with email and password fields", async ({ page }) => {
+  test("renders login form with email and password fields", async ({
+    page,
+  }) => {
     await expect(page.locator('input[name="email"]')).toBeVisible();
     await expect(page.locator('input[name="passowrd"]')).toBeVisible();
   });
 
   test("shows Sign In heading", async ({ page }) => {
-    await expect(page.locator("h2").filter({ hasText: /sign.?in/i }).first()).toBeVisible();
+    await expect(
+      page
+        .locator("h2")
+        .filter({ hasText: /sign.?in/i })
+        .first(),
+    ).toBeVisible();
   });
 
   test("shows validation error for empty form submission", async ({ page }) => {
     await page.locator('button[type="submit"]').click();
-    await expect(page.locator(".text-red-500").first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator(".text-red-500").first()).toBeVisible({
+      timeout: 5_000,
+    });
   });
 
   test("shows validation error for empty password", async ({ page }) => {
@@ -37,7 +46,9 @@ test.describe("Login Page", () => {
     await page.locator('input[name="email"]').fill("valid@example.com");
     // Leave password empty
     await page.locator('button[type="submit"]').click();
-    await expect(page.locator(".text-red-500").first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator(".text-red-500").first()).toBeVisible({
+      timeout: 5_000,
+    });
   });
 
   test("navigates to register page via the register link", async ({ page }) => {
@@ -45,7 +56,9 @@ test.describe("Login Page", () => {
     await expect(page).toHaveURL("/register");
   });
 
-  test("submits login form and redirects to home on success", async ({ page }) => {
+  test("submits login form and redirects to home on success", async ({
+    page,
+  }) => {
     await page.locator('input[name="email"]').fill("test@example.com");
     await page.locator('input[name="passowrd"]').fill("password123");
     await page.locator('button[type="submit"]').click();
@@ -68,10 +81,17 @@ test.describe("Register Page", () => {
   });
 
   test("shows Register heading", async ({ page }) => {
-    await expect(page.locator("h2").filter({ hasText: /register/i }).first()).toBeVisible();
+    await expect(
+      page
+        .locator("h2")
+        .filter({ hasText: /register/i })
+        .first(),
+    ).toBeVisible();
   });
 
-  test("shows validation error when password is too short", async ({ page }) => {
+  test("shows validation error when password is too short", async ({
+    page,
+  }) => {
     await page.locator('input[name="name"]').fill("Test User");
     await page.locator('input[name="email"]').fill("new@example.com");
     // Password less than 6 chars → Zod fails, mismatch check also runs
@@ -79,7 +99,9 @@ test.describe("Register Page", () => {
     await passwordInputs.nth(0).fill("abc");
     await passwordInputs.nth(1).fill("different");
     await page.locator('button[type="submit"]').click();
-    await expect(page.locator(".text-red-500").first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator(".text-red-500").first()).toBeVisible({
+      timeout: 5_000,
+    });
   });
 
   test("navigates to login page via the login link", async ({ page }) => {
@@ -88,7 +110,9 @@ test.describe("Register Page", () => {
     await expect(page).toHaveURL("/login");
   });
 
-  test("submits register form successfully and redirects home", async ({ page }) => {
+  test("submits register form successfully and redirects home", async ({
+    page,
+  }) => {
     await page.locator('input[name="name"]').fill("New User");
     await page.locator('input[name="email"]').fill("newuser@example.com");
     const passwordInputs = page.locator('input[type="password"]');

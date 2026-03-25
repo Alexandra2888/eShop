@@ -6,7 +6,7 @@ test.describe("Shop Page", () => {
     await mockApiRoutes(page);
     await page.goto("/shop");
     // Wait for the filter sidebar to appear (it renders when categories load)
-    await page.waitForSelector('text=Filter by', { timeout: 15_000 });
+    await page.waitForSelector("text=Filter by", { timeout: 15_000 });
   });
 
   test("loads without crashing", async ({ page }) => {
@@ -20,17 +20,22 @@ test.describe("Shop Page", () => {
         .locator("text=Filter by categories")
         .or(page.locator("text=Filter by brands"))
         .or(page.locator("text=Filter by price"))
-        .first()
+        .first(),
     ).toBeVisible();
   });
 
   test("shows mocked category names in filters", async ({ page }) => {
-    await expect(page.locator("text=Electronics").first()).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator("text=Electronics").first()).toBeVisible({
+      timeout: 10_000,
+    });
   });
 
   test("shows mocked product cards", async ({ page }) => {
     await expect(
-      page.locator("text=Laptop Pro X").or(page.locator("text=Wireless Headphones Z")).first()
+      page
+        .locator("text=Laptop Pro X")
+        .or(page.locator("text=Wireless Headphones Z"))
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 });
@@ -49,10 +54,11 @@ test.describe("Cart Page", () => {
 
   test("shows shopping cart content area", async ({ page }) => {
     await expect(
-      page.locator("text=Shopping cart")
+      page
+        .locator("text=Shopping cart")
         .or(page.locator("text=Your cart is empty"))
         .or(page.locator("text=cart is empty"))
-        .first()
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 });
@@ -71,10 +77,11 @@ test.describe("Favorites Page", () => {
 
   test("shows favorites heading or empty state", async ({ page }) => {
     await expect(
-      page.locator("text=FAVORITE PRODUCTS")
+      page
+        .locator("text=FAVORITE PRODUCTS")
         .or(page.locator("text=Favorite Products"))
         .or(page.locator("text=No favorites"))
-        .first()
+        .first(),
     ).toBeVisible({ timeout: 10_000 });
   });
 });
