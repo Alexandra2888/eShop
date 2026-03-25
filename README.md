@@ -1,7 +1,9 @@
 # eShop 🛒
+
 Welcome to **eShop**, a fully integrated MERN stack e-commerce platform where performance and real-time experience come first. eShop provides a seamless shopping experience, complete with cart management, payment processing, and a snappy UI.
 
 ## Version 🏷️
+
 - Backend: `1.0.0`
 - Frontend: `1.0.0`
 
@@ -25,6 +27,7 @@ eShop is designed to be a lightweight, yet powerful e-commerce solution. Built w
 ## Technologies 🧰
 
 ### Frontend
+
 - **React 18** - Modern React with hooks
 - **Redux Toolkit** - State management
 - **TailwindCSS** - Utility-first CSS framework
@@ -33,6 +36,7 @@ eShop is designed to be a lightweight, yet powerful e-commerce solution. Built w
 - **i18next** - Internationalization
 
 ### Backend
+
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
 - **MongoDB** - NoSQL database
@@ -41,6 +45,7 @@ eShop is designed to be a lightweight, yet powerful e-commerce solution. Built w
 - **Multer** - File uploads
 
 ### Security & Performance
+
 - **Helmet** - Security headers
 - **CORS** - Cross-origin resource sharing
 - **bcryptjs** - Password hashing
@@ -49,6 +54,7 @@ eShop is designed to be a lightweight, yet powerful e-commerce solution. Built w
 ## 🚀 Quick Deploy
 
 ### Option 1: Render (Recommended)
+
 ```bash
 # Run the deployment script
 ./deploy.sh
@@ -57,6 +63,7 @@ eShop is designed to be a lightweight, yet powerful e-commerce solution. Built w
 ```
 
 ### Option 2: Docker
+
 ```bash
 # Build and run with Docker
 docker build -t eshop-app .
@@ -67,16 +74,19 @@ docker-compose up -d
 ```
 
 ### Option 3: Manual Deployment
+
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
 
 ## Installation 💾
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - MongoDB (local or Atlas)
 - npm or yarn
 
 ### Local Development
+
 ```bash
 # Clone the repository
 git clone https://github.com/Alexandra2888/eShop
@@ -99,12 +109,13 @@ npm run frontend
 ## Usage 🖥️
 
 ### Development Scripts
+
 ```bash
 # Backend development
 npm run backend          # Start backend with nodemon
 npm run start           # Start backend in production mode
 
-# Frontend development  
+# Frontend development
 npm run frontend        # Start frontend dev server
 npm run build           # Build frontend for production
 
@@ -114,9 +125,11 @@ npm run data:destroy    # Clear database
 ```
 
 ### Environment Variables
+
 Create `.env` files in both `backend/` and `frontend/` directories:
 
 **Backend (.env)**
+
 ```bash
 MONGO_URL=mongodb://localhost:27017/eshop
 JWT_SECRET=your_jwt_secret_key
@@ -127,6 +140,7 @@ PAYPAL_CLIENT_SECRET=your_paypal_client_secret
 ```
 
 **Frontend (.env)**
+
 ```bash
 VITE_API_URL=http://localhost:5001
 ```
@@ -135,7 +149,9 @@ VITE_API_URL=http://localhost:5001
 
 ```
 eShop/
-├── backend/                 # Backend API
+├── docs/                   # Architecture RFCs & design documents
+│   └── RFC-001-system-design.md
+├── backend/                 # Backend API (Node.js + Express + TypeScript)
 │   ├── config/             # Database & configuration
 │   ├── controllers/        # Route controllers
 │   ├── middlewares/        # Custom middlewares
@@ -143,11 +159,11 @@ eShop/
 │   ├── routes/             # API endpoints
 │   ├── uploads/            # File uploads
 │   └── utils/              # Utility functions
-├── frontend/               # React frontend
+├── frontend/               # React frontend (Vite + TypeScript)
 │   ├── src/
 │   │   ├── components/     # Reusable components
 │   │   ├── pages/          # Page components
-│   │   ├── redux/          # State management
+│   │   ├── redux/          # State management (RTK Query + slices)
 │   │   └── utils/          # Frontend utilities
 │   └── public/             # Static assets
 ├── docker-compose.yml      # Docker configuration
@@ -159,17 +175,20 @@ eShop/
 ## 🌐 API Endpoints
 
 ### Authentication
+
 - `POST /api/users/register` - User registration
 - `POST /api/users/login` - User login
 - `GET /api/users/profile` - Get user profile
 
 ### Products
+
 - `GET /api/products` - Get all products
 - `GET /api/products/:id` - Get product by ID
 - `POST /api/products` - Create product (admin)
 - `PUT /api/products/:id` - Update product (admin)
 
 ### Orders
+
 - `POST /api/orders` - Create order
 - `GET /api/orders/myorders` - Get user orders
 - `GET /api/orders/:id` - Get order by ID
@@ -177,6 +196,7 @@ eShop/
 ## 🎯 Portfolio Features
 
 This project demonstrates:
+
 - **Full-stack development** with MERN stack
 - **Modern React patterns** (hooks, context, functional components)
 - **State management** with Redux Toolkit
@@ -192,12 +212,14 @@ This project demonstrates:
 ## 🔧 Development
 
 ### Code Quality
+
 - ESLint configuration
 - Prettier formatting
 - SOLID principles
 - KISS design patterns
 
 ### Testing
+
 - Manual testing for all features
 - API endpoint testing
 - Cross-browser compatibility
@@ -213,15 +235,25 @@ This project demonstrates:
 ## 🚨 Troubleshooting
 
 ### Common Issues
+
 1. **CORS errors**: Check backend CORS configuration
 2. **MongoDB connection**: Verify connection string and network access
 3. **Build failures**: Ensure Node.js 18+ and all dependencies installed
 4. **File uploads**: Check uploads directory permissions
 
 ### Getting Help
+
 - Check [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment issues
 - Review [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)
 - Check console logs for error details
+
+## 📐 Architecture & Design Docs
+
+Technical RFCs and design documents live in the [`/docs`](./docs) folder.
+
+| Document                                                   | Description                                                                                                   |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [RFC-001 — System Design](./docs/RFC-001-system-design.md) | Full system architecture: component design, data models, API reference, security, deployment, and future work |
 
 ## Contributing 🤝
 

@@ -146,5 +146,9 @@
     "solutions":"Solutions",
     "support":"Suport",
     "company":"Company",
-    "legal":"Legal"
+    "legal":"Legal",
+    "account": "Account",
+    "no_orders_yet": "No orders yet",
+    "no_orders_description": "Your orders will appear here once you place one.",
+    "start_shopping": "Start Shopping"
 }
