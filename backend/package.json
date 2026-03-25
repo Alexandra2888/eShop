@@ -9,6 +9,9 @@
     "start": "node dist/index.js",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "data:import": "tsx seeder.ts",
     "data:destroy": "tsx seeder.ts -d"
   },
@@ -51,8 +54,12 @@
     "@types/morgan": "^1.9.10",
     "@types/multer": "^2.1.0",
     "@types/node": "^25.5.0",
+    "@types/supertest": "^7.2.0",
+    "@vitest/coverage-v8": "^4.1.1",
+    "supertest": "^7.2.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.1"
   }
 }
